@@ -2,7 +2,6 @@
  *  tree/grow.c by B. D. Ripley  Copyright (C) 1994-2002
  */
 #include <R.h>
-#include "verS.h"
 
 static double XLOGX(double x) 
 {
@@ -13,9 +12,9 @@ static double XLOGX(double x)
 #define False 0
 #define EPS 1e-4
 #define NALEVEL -99999
-#undef max
-#define max(a, b) ((a>b)?a:b)
-
+#ifndef max
+# define max(a, b) ((a>b)?a:b)
+#endif
 
 #define DEBUG False
 #define Printf if (DEBUG) printf

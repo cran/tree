@@ -7,9 +7,11 @@
 #define EPS 1e-4
 #include <math.h>
 #include <R.h>
-#include "verS.h"
 #include <string.h> /* for strchr */
 
+#ifndef Salloc
+#  define Salloc(n, t) (t *)S_alloc(n, sizeof(t))
+#endif
 
 /* workaround for log(0) */
 #define safe_log(result, x) result = log(x + 1e-200)

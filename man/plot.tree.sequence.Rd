@@ -24,7 +24,7 @@ plot.tree.sequence(x, ..., type = "l", ylim = range(x$dev),
     the natural ordering of \code{k}
     and the amount of pruning. Only the first character is needed.
     }
-  \item{\dots}{graphical parameters.}
+  \item{\dots}{graphical parameters.
   }
 }
 \section{Side Effects}{

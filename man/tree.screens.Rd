@@ -11,7 +11,7 @@ tree.screens(figs, screen.arg = 0, ...)
   \item{\dots}{plot parameters to be passed to \code{par}.}
 }
 \description{
-  Splits the screen in a way suitable for using \code{tile.tree}.}
+  Splits the screen in a way suitable for using \code{tile.tree}.
 }
 \value{
   A vector of screen numbers for the newly-created screens.
