@@ -1,6 +1,13 @@
 Library tree
 ============
 
+Version 1.0-8  2002-05-22
+
+pred2.tree had double() where single() was required.  Changed C code to use
+double throughout.
+
+Ensure mindev >= 0, clarify help for tree.control.
+
 Version 1.0-7  2002-03-18
 
 Register C routines.

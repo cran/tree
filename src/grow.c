@@ -1,5 +1,5 @@
 /*
- *  tree/grow.c by B. D. Ripley  Copyright (C) 1994-2000
+ *  tree/grow.c by B. D. Ripley  Copyright (C) 1994-2002
  */
 #include <R.h>
 #include "verS.h"
@@ -35,7 +35,7 @@ static Sint *levels, *node, *var, *where, *ordered;
 
 static char **cutleft, **cutright;
 static int nc, *indl, *indr, *ind, exists, offset, maxnl;
-static singl *yp;
+static double *yp;
 static double *tab, *cnt, *n, *ys;
 
 
@@ -717,7 +717,7 @@ BDRgrow1(double *pX, double *pY, double *pw, Sint *plevels, Sint *junk1,
     scprob = (double*) S_alloc(nl, sizeof(double));
     indl = (int*) S_alloc(nl, sizeof(int));
     if (nc > 0) {
-	yp = (singl *) S_alloc(nc, sizeof(singl));
+	yp = (double *) S_alloc(nc, sizeof(double));
 	tab = (double*) S_alloc(nl*(1+nc), sizeof(double));
 	indr = (int*) S_alloc(nl, sizeof(int));
 	ty = (int *) S_alloc(nobs, sizeof(int));

@@ -15,12 +15,15 @@ tree.control(nobs, mincut = 5, minsize = 10, mindev = 0.01)
     of the root node for the node to be split.}
 }
 \description{
-  The produces default values of \code{mincut} and \code{minsize}, and
-  ensures that \code{mincut} is at most half \code{minsize}.
+  A utility function for use with the \code{control} argument of \code{tree}.
 }
 \details{ 
-  To produce a tree that perfectly fits the data, set \code{mindev = -1}
-  and \code{minsize = 2}.
+  This function produces default values of \code{mincut} and
+  \code{minsize}, and ensures that \code{mincut} is at most half
+  \code{minsize}.
+
+  To produce a tree that fits the data perfectly, set \code{mindev = 0}
+  and \code{minsize = 2}, if the limit on tree depth allows such a tree.
 }
 \value{
   A list:

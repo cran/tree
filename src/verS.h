@@ -4,5 +4,3 @@
 #  define Salloc(n, t) (t *)S_alloc(n, sizeof(t))
 #  define S_EVALUATOR
 
-typedef double singl;
-

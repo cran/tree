@@ -1,5 +1,5 @@
 /*
- *  treefix/treefix.c by B. D. Ripley  Copyright (C) 1994-2000
+ *  treefix/treefix.c by B. D. Ripley  Copyright (C) 1994-2002
  */
 
 #define True 1
@@ -255,16 +255,16 @@ VR_pred1(double *x, Sint *vars, char **lsplit, char **rsplit,
 }
 
 static int nobs, nnode, *left, *right;
-static float *lprob, *where;
+static double *lprob, *where;
 static double *x;
 static char **lsplit, **rsplit;
 static Sint *vars, *nlevels, *nodes;
 
 static void 
-downtree(int i, int cur, float prob)
+downtree(int i, int cur, double prob)
     {
 	int     k, ival, cnode, var;
-	float   goleft;
+	double   goleft;
 	double  val, sp;
 	if (cur >= nnode) PROBLEM "corrupt tree" RECOVER(NULL_ENTRY);
 	where[cur + nnode * i] += prob;
@@ -310,7 +310,7 @@ downtree(int i, int cur, float prob)
 void    
 VR_pred2(double *px, Sint *pvars, char **plsplit, char **prsplit,
 	 Sint *pnlevels, Sint *pnodes, Sint *fn, Sint *pnnode,
-	 Sint *nr, float *pwhere)
+	 Sint *nr, double *pwhere)
     {
 	int     cnode, i, k;
 
@@ -323,7 +323,7 @@ VR_pred2(double *px, Sint *pvars, char **plsplit, char **prsplit,
 	nlevels = pnlevels;
 	nodes = pnodes;
 	where = pwhere;
-	lprob = Salloc((long)nnode, float);
+	lprob = Salloc((long)nnode, double);
 	left = Salloc((long)nnode, int);
 	right = Salloc((long)nnode, int);
 	for (i = 0; i < nnode; i++)
@@ -333,7 +333,7 @@ VR_pred2(double *px, Sint *pvars, char **plsplit, char **prsplit,
 		    if (nodes[k] == 2 * cnode) left[i] = k;
 		    if (nodes[k] == 2 * cnode + 1) right[i] = k;
 		}
-		lprob[i] = (float)fn[left[i]] / (fn[left[i]] + fn[right[i]]);
+		lprob[i] = (double)fn[left[i]] / (fn[left[i]] + fn[right[i]]);
 	    }
 
 	for (i = 0; i < nobs; i++) {
