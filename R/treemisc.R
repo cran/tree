@@ -10,7 +10,7 @@
 
 cv.tree <- function(object, rand, FUN = prune.tree, K = 10, ...)
 {
-    if(!inherits(object, "tree")) stop("Not legitimate tree")
+    if(!inherits(object, "tree")) stop("not legitimate tree")
     m <- model.frame(object)
     extras <- match.call(expand.dots = FALSE)$...
     FUN <- deparse(substitute(FUN))
@@ -34,7 +34,7 @@ data.tree <- function(tree)
     while(oc[[1]] != "tree") oc <- eval(oc[[2]])$call
     if(is.null(oc$data)) NULL
     else {
-        warning(paste("Retrieving data from", oc$data))
+        warning("retrieving data from ", deparse(oc$data))
         eval(oc$data)
     }
 }
@@ -59,7 +59,7 @@ descendants <- function(nodes, include = TRUE)
 
 deviance.tree <- function(object, detail = FALSE, ...)
 {
-    if(!inherits(object, "tree")) stop("Not legitimate tree")
+    if(!inherits(object, "tree")) stop("not legitimate tree")
     frame <- object$frame
     if(detail) frame$dev
     else sum(frame$dev[frame$var == "<leaf>"])
@@ -67,7 +67,7 @@ deviance.tree <- function(object, detail = FALSE, ...)
 
 labels.tree <- function(object, pretty = TRUE, collapse = TRUE, ...)
 {
-    if(!inherits(object, "tree")) stop("Not legitimate tree")
+    if(!inherits(object, "tree")) stop("not legitimate tree")
     frame <- object$frame
     xlevels <- attr(object, "xlevels")
     var <- as.character(frame$var)
@@ -99,9 +99,9 @@ labels.tree <- function(object, pretty = TRUE, collapse = TRUE, ...)
 misclass.tree <- function(tree, detail = FALSE)
 {
     if(!inherits(tree, "tree"))
-        stop("Not legitimate tree")
+        stop("not legitimate tree")
     if(is.null(attr(tree, "ylevels")))
-        stop("Misclassification error rate is appropriate for factor responses only")
+        stop("misclassification error rate is appropriate for factor responses only")
     if(is.null(y <- tree$y))
         y <- model.extract(model.frame(tree), "response")
     if(is.null(wts <- tree$weights))
@@ -141,12 +141,12 @@ node.match <- function(nodes, nodelist, leaves, print.it = TRUE)
     node.index <- match(nodes, nodelist, nomatch = 0)
     bad <- nodes[node.index == 0]
     if(length(bad) > 0 & print.it)
-        warning(paste("supplied nodes", paste(bad, collapse = ","),
-                      "are not in this tree"))
+        warning("supplied nodes ", paste(bad, collapse = ","),
+                " are not in this tree")
     good <- nodes[node.index > 0]
     if(!missing(leaves) && any(leaves <- leaves[node.index])) {
-        warning(paste("supplied nodes",
-                      paste(good[leaves], collapse = ","), "are leaves"))
+        warning("supplied nodes ",
+                paste(good[leaves], collapse = ","), " are leaves")
         node.index[node.index > 0][!leaves]
     }
     else node.index[node.index > 0]
@@ -178,18 +178,18 @@ partition.tree <- function(tree, label = "yval", add = FALSE, ordvars, ...)
             xr[2] <- x[i]
             return(Recall(x, v, xr, ll2$xcoord, ll2$ycoord, tvar, ll2$i + 1))
         }
-        else stop("Wrong variable numbers in tree.")
+        else stop("wrong variable numbers in tree.")
     }
-    if(inherits(tree, "singlenode")) stop("Cannot plot singlenode tree")
-    if(!inherits(tree, "tree")) stop("Not legitimate tree")
+    if(inherits(tree, "singlenode")) stop("cannot plot singlenode tree")
+    if(!inherits(tree, "tree")) stop("not legitimate tree")
     frame <- tree$frame
     leaves <- frame$var == "<leaf>"
     var <- unique(as.character(frame$var[!leaves]))
     if(length(var) > 2 || length(var) < 1)
-        stop("Tree can only have one or two predictors")
+        stop("tree can only have one or two predictors")
     nlevels <- sapply(attr(tree, "xlevels"), length)
     if(any(nlevels[var] > 0))
-        stop("Tree can only have continuous predictors")
+        stop("tree can only have continuous predictors")
     x <- rep(NA, length(leaves))
     x[!leaves] <- as.double(substring(frame$splits[!leaves, "cutleft"], 2, 100))
     m <- model.frame(tree)
@@ -241,8 +241,8 @@ partition.tree <- function(tree, label = "yval", add = FALSE, ordvars, ...)
 plot.tree <- function (x, y = NULL,
                        type = c("proportional", "uniform"), ...)
 {
-    if(inherits(x, "singlenode")) stop("Cannot plot singlenode tree")
-    if(!inherits(x, "tree")) stop("Not legitimate tree")
+    if(inherits(x, "singlenode")) stop("cannot plot singlenode tree")
+    if(!inherits(x, "tree")) stop("not legitimate tree")
     type <- match.arg(type)
     uniform <- type == "uniform"
     dev <- dev.cur()
@@ -254,7 +254,7 @@ plot.tree <- function (x, y = NULL,
 print.tree <-
     function(x, pretty = 0, spaces = 2, digits = getOption("digits")-3, ...)
 {
-    if(!inherits(x, "tree")) stop("Not legitimate tree")
+    if(!inherits(x, "tree")) stop("not legitimate tree")
     is.prob <- !is.null(ylevels <- attr(x, "ylevels"))
     if(is.prob) cat("node), split, n, deviance, yval, (yprob)\n")
     else cat("node), split, n, deviance, yval\n")
@@ -289,7 +289,7 @@ print.tree <-
 residuals.tree <-
     function(object, type = c("usual", "pearson", "deviance"), ...)
 {
-    if(!inherits(object, "tree")) stop("Not legitimate tree")
+    if(!inherits(object, "tree")) stop("not legitimate tree")
     if(is.null(y <- object$y))
         y <- model.extract(model.frame(object), "response")
     frame <- object$frame
@@ -329,8 +329,8 @@ snip.tree <-
         tree
     }
 
-    if(inherits(tree, "singlenode")) stop("Cannot snip singlenode tree")
-    if(!inherits(tree, "tree")) stop("Not legitimate tree")
+    if(inherits(tree, "singlenode")) stop("cannot snip singlenode tree")
+    if(!inherits(tree, "tree")) stop("not legitimate tree")
     call <- match.call()
     node <- as.numeric(row.names(tree$frame))
     if(missing(nodes)) {
@@ -433,13 +433,13 @@ text.tree <-
 {
     oldxpd <- par(xpd=xpd)
     on.exit(par(oldxpd))
-    if(inherits(x, "singlenode")) stop("Cannot plot singlenode tree")
-    if(!inherits(x, "tree")) stop("Not legitimate tree")
+    if(inherits(x, "singlenode")) stop("cannot plot singlenode tree")
+    if(!inherits(x, "tree")) stop("not legitimate tree")
     frame <- x$frame
     column <- names(frame)
     if(!is.null(ylevels <- attr(x, "ylevels"))) column <- c(column, ylevels)
     if(!is.null(label) && is.na(match(label, column)))
-        stop("Label must be a column label of the frame component of the tree")
+        stop("label must be a column label of the frame component of the tree")
     charht <- par("cxy")[2]
     if(!is.null(srt <- list(...)$srt) && srt == 90) {
         if(missing(adj)) adj <- 0
@@ -475,8 +475,8 @@ text.tree <-
 
 tile.tree <- function(tree, var, screen.arg = ascr + 1, axes = TRUE)
 {
-    if(inherits(tree, "singlenode")) stop("Cannot tile singlenode tree")
-    if(!inherits(tree, "tree")) stop("Not legitimate tree")
+    if(inherits(tree, "singlenode")) stop("cannot tile singlenode tree")
+    if(!inherits(tree, "tree")) stop("not legitimate tree")
     where <- tree$where
     varname <- substitute(var)
     v <- match(deparse(varname), as.character(attr(tree$terms, "variables")),
@@ -490,7 +490,7 @@ tile.tree <- function(tree, var, screen.arg = ascr + 1, axes = TRUE)
         var <- var[names(where)]
     }
     if(length(var) != length(where))
-        stop("Variable length must match that of data used in fit")
+        stop("variable length must match that of data used in fit")
     if(any(is.na(var))) var <- na.tree.replace(list(var = var))$var
     if(!(levx <- length(levels(var)))) {
         var <- cut(var, quantile(var) - c(1, 0, 0, 0, 0))
@@ -510,7 +510,7 @@ tile.tree <- function(tree, var, screen.arg = ascr + 1, axes = TRUE)
     dx <- counts[as.logical(counts)]/(max(counts) * 2)
     x <- rbind(x, x - dx, x - dx, x, x, NA)
     y <- rbind(y, y, y + dy, y + dy, y, NA)
-    if(!(ascr <- screen())) stop("Need to use split.screen first")
+    if(!(ascr <- screen())) stop("need to use split.screen first")
     screen(screen.arg)
     xpd <- par(xpd = TRUE, mar=rep(0,4))
     on.exit(par(xpd))

@@ -3,6 +3,13 @@
  */
 #include <R.h>
 
+#ifdef ENABLE_NLS
+#include <libintl.h>
+#define _(String) dgettext ("tree", String)
+#else
+#define _(String) (String)
+#endif
+
 static double XLOGX(double x) 
 {
     return (x > 0)?x*log(x):0;
@@ -175,7 +182,7 @@ static void split_cont(int inode, int iv, double *bval)
 	    }
 	}
     if ( Gini && sdev > 0) 
-	error("Can't use Gini with missing values");
+	error(_("cannot use 'Gini' with missing values"));
     Printf(" count %d", ns);
     if ( ns < 2 || totw < EPS ) { Printf("\n"); return;}
     cntl = 0;
@@ -333,7 +340,7 @@ static void split_disc(int inode, int iv, double *bval)
 	    }
 	} else twhere[j] = -1;
     if ( Gini && sdev > 0) 
-	error("Can't use Gini with missing values");
+	error(_("cannot use 'Gini' with missing values"));
     ytot = y2 = 0.0;
     nll = 0;
     for (l = 0; l < nl; l++) {
@@ -612,7 +619,7 @@ static void divide_node(int inode)
     int     i, iv, j, k, shift, shifted = False;
     double  bval, tmp;
 
-    if (inode >= nmax) error("Tree is too big");
+    if (inode >= nmax) error(_("tree is too big"));
 
     fillin_node(inode);
     if ( n[inode] < minsize ) return;
@@ -646,7 +653,7 @@ static void divide_node(int inode)
     if (bval < devtarget) {
         Printf("..splitting\n");
 	if ( node[inode] >=  1073741824 ) {
-	    error("maximum depth reached\n");
+	    error(_("maximum depth reached\n"));
 	    return;
 	}
    

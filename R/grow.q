@@ -22,10 +22,10 @@ function(formula, data, weights, subset,
     split <- match.arg(split)
     Terms <- attr(m, "terms")
     if(any(attr(Terms, "order") > 1))
-        stop("Trees cannot handle interaction terms")
+        stop("trees cannot handle interaction terms")
     Y <- model.extract(m, "response")
     if(is.matrix(Y) && ncol(Y) > 1)
-        stop("Trees cannot handle multiple responses")
+        stop("trees cannot handle multiple responses")
     ylevels <- levels(Y)
     w <- model.extract(m, "weights")
     if(!length(w)) w <- rep(1, nrow(m))
@@ -36,7 +36,7 @@ function(formula, data, weights, subset,
     offset <- attr(Terms, "offset")
     if(!is.null(offset)) {
         if(length(ylevels))
-            stop("Offset not implemented for classification trees")
+            stop("offset not implemented for classification trees")
         offset <- m[[offset]]
         Y <- Y - offset
     }

@@ -1,7 +1,8 @@
 \name{snip.tree}
 \title{Snip Parts of Tree Objects}
 \usage{
-snip.tree(tree, nodes, xy.save = FALSE, digits = getOption("digits") - 3)
+snip.tree(tree, nodes, xy.save = FALSE,
+          digits = getOption("digits") - 3)
 }
 \alias{snip.tree}
 \arguments{

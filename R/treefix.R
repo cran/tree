@@ -5,8 +5,8 @@ prune.tree <-
              method = c("deviance", "misclass"),
              loss = 1-diag(nc), eps = 1e-3)
 {
-    if(inherits(tree, "singlenode")) stop("Can't prune singlenode tree")
-    if(!inherits(tree, "tree")) stop("Not legitimate tree")
+    if(inherits(tree, "singlenode")) stop("can not prune singlenode tree")
+    if(!inherits(tree, "tree")) stop("not legitimate tree")
     method <- match.arg(method)
     nc <- length(attr(tree, "ylevels"))
     if(method == "misclass" && !nc)
@@ -228,10 +228,10 @@ predict.tree <-
     }
 
     if(!inherits(object, "tree") && !inherits(object, "singlenode"))
-        stop("Not legitimate tree")
+        stop("not legitimate tree")
     type <- match.arg(type)
     if(type == "class" && is.null(attr(object, "ylevels")))
-        stop("type class only for classification trees")
+        stop("type \"class\" only for classification trees")
     if((missing(newdata) || is.null(newdata)) && type == "tree")
         return(object)                  #idiot proofing
     if(missing(newdata) || is.null(newdata)) {
@@ -378,8 +378,8 @@ na.tree.replace <- function(frame)
         pos <- is.na(x)
         if(any(pos)) {
             frame <- frame[!pos,  , drop = FALSE]
-            warning(paste(sum(pos),
-                          "observations omitted due to missing values in the response"))
+            warning(sum(pos),
+                    " observations omitted due to missing values in the response")
         }
     }
     if(!is.na(j <- match("(weights)", names(frame)))) {
@@ -387,8 +387,8 @@ na.tree.replace <- function(frame)
         pos <- is.na(x)
         if(any(pos)) {
             frame <- frame[!pos,  , drop = FALSE]
-            warning(paste(sum(pos),
-                          "observations omitted due to missing values in the supplied weights"))
+            warning(sum(pos),
+                    " observations omitted due to missing values in the supplied weights")
         }
     }
     vars <- names(frame)
@@ -398,7 +398,7 @@ na.tree.replace <- function(frame)
         pos <- is.na(x)
         if(any(pos)) {
             if(!length(levels(x)))
-                stop(paste("continuous variable", j, "contained NAs"))
+                stop("continuous variable ", j, " contained NAs")
             else {
                 cl <- class(x)
                 class(x) <- NULL

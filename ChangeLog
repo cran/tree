@@ -1,6 +1,10 @@
 Library tree
 ============
 
+Version 1.0-18  2005-02-01
+
+Improve error messages for possible translation.
+
 Version 1.0-18  2004-08-04
 
 Correct a couple of .Rd errors.
