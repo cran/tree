@@ -4,26 +4,21 @@
 #include <R.h>
 #include "verS.h"
 
-static void
-errmsg(char *string)
+static double XLOGX(double x) 
 {
-    error(string);
+    return (x > 0)?x*log(x):0;
 }
 
-#define xlogx(x) ((x > 0)?x*log((double)x):0)
 #define True 1
 #define False 0
 #define EPS 1e-4
 #define NALEVEL -99999
-#define max(a, b) ((a >b)?a:b)
+#undef max
+#define max(a, b) ((a>b)?a:b)
 
 
 #define DEBUG False
 #define Printf if (DEBUG) printf
-
-char *strcpy(char *, const char *);
-double log(double);
-
 
 static void scat(char *s, char c)
 {
@@ -181,7 +176,7 @@ static void split_cont(int inode, int iv, double *bval)
 	    }
 	}
     if ( Gini && sdev > 0) 
-	errmsg("Can't use Gini with missing values");
+	error("Can't use Gini with missing values");
     Printf(" count %d", ns);
     if ( ns < 2 || totw < EPS ) { Printf("\n"); return;}
     cntl = 0;
@@ -235,9 +230,10 @@ static void split_cont(int inode, int iv, double *bval)
 	    }
 	    ldev = (totw - cntl)*ysum;
 	} else {
-	    ldev = xlogx(cntl) + xlogx((totw - cntl));
-	    for (k = 0; k < nc; k++)
-		ldev -= xlogx(tab[k]) + xlogx(tab[k + nc]);
+	    ldev = XLOGX(cntl) + XLOGX((totw - cntl));
+	    for (k = 0; k < nc; k++) {
+		ldev -= XLOGX(tab[k]) + XLOGX(tab[k + nc]);
+	    }
 	}
 	ldev *= 2;
     } else {
@@ -281,9 +277,9 @@ static void split_cont(int inode, int iv, double *bval)
 		}
 		ldev -= (totw - cntl) * ysum;
 	    } else {
-		ldev = xlogx(cntl) + xlogx((totw - cntl));
+		ldev = XLOGX(cntl) + XLOGX((totw - cntl));
 		for (k = 0; k < nc; k++)
-		    ldev -= xlogx(tab[k]) + xlogx(tab[k + nc]);
+		    ldev -= XLOGX(tab[k]) + XLOGX(tab[k + nc]);
 	    }
 	    ldev *= 2;
 	} else {
@@ -338,7 +334,7 @@ static void split_disc(int inode, int iv, double *bval)
 	    }
 	} else twhere[j] = -1;
     if ( Gini && sdev > 0) 
-	errmsg("Can't use Gini with missing values");
+	error("Can't use Gini with missing values");
     ytot = y2 = 0.0;
     nll = 0;
     for (l = 0; l < nl; l++) {
@@ -390,8 +386,8 @@ static void split_disc(int inode, int iv, double *bval)
 		    }
 		    ldev += cnt[l]*(1 - ysum);
 		} else {
-		    for (k = 0; k < nc; k++) ldev -= xlogx(tab[k + nc * l]);
-		    ldev += xlogx(cnt[l]);
+		    for (k = 0; k < nc; k++) ldev -= XLOGX(tab[k + nc * l]);
+		    ldev += XLOGX(cnt[l]);
 		}
 	    } else {
 		ldev += ys[l]*ys[l]/cnt[l];
@@ -460,13 +456,13 @@ static void split_disc(int inode, int iv, double *bval)
 			    ldev -= cntl1*cntl1/cntl + cntr1*cntr1/cntr;
 			}
 		    } else {
-			ldev = xlogx(cntl) + xlogx(cntr);
+			ldev = XLOGX(cntl) + XLOGX(cntr);
 			for (k = 0; k < nc; k++) {
 			    cntl1 = cntr1 = 0;
 			    for (l = 0; l < nll; l++)
 				if (cprob[l] < fence) cntl1 += tab[k + nc * l];
 				else cntr1 += tab[k + nc * l];
-			    ldev -= xlogx(cntl1) + xlogx(cntr1);
+			    ldev -= XLOGX(cntl1) + XLOGX(cntr1);
 			}
 		    }
 		    ldev *= 2;
@@ -536,13 +532,13 @@ static void split_disc(int inode, int iv, double *bval)
 			ldev -= cntl1*cntl1/cntl + cntr1*cntr1/cntr;
 		    }
 		} else {
-		    ldev = xlogx(cntl) + xlogx(cntr);
+		    ldev = XLOGX(cntl) + XLOGX(cntr);
 		    for (k = 0; k < nc; k++) {
 			cntl1 = cntr1 = 0;
 			for (l = 0; l < nll; l++)
 			    if (indl[l]) cntl1 += tab[k + nc * l];
 			    else cntr1 += tab[k + nc * l];
-			ldev -= xlogx(cntl1) + xlogx(cntr1);
+			ldev -= XLOGX(cntl1) + XLOGX(cntr1);
 		    }
 		}
 		ldev *= 2;
@@ -617,7 +613,7 @@ static void divide_node(int inode)
     int     i, iv, j, k, shift, shifted = False;
     double  bval, tmp;
 
-    if (inode >= nmax) errmsg("Tree is too big");
+    if (inode >= nmax) error("Tree is too big");
 
     fillin_node(inode);
     if ( n[inode] < minsize ) return;
@@ -651,7 +647,7 @@ static void divide_node(int inode)
     if (bval < devtarget) {
         Printf("..splitting\n");
 	if ( inode >=  1073741824 ) {
-	    errmsg("maximum depth reached\n");
+	    error("maximum depth reached\n");
 	    return;
 	}
    

@@ -16,7 +16,7 @@ tree.control(nobs, mincut = 5, minsize = 10, mindev = 0.01)
 }
 \description{
   The produces default values of \code{mincut} and \code{minsize}, and
-  ensures that \code{mincut} is at least half \code{minsize}.
+  ensures that \code{mincut} is at most half \code{minsize}.
 }
 \details{ 
   To produce a tree that perfectly fits the data, set \code{mindev = -1}
@@ -30,7 +30,7 @@ tree.control(nobs, mincut = 5, minsize = 10, mindev = 0.01)
   \item{nobs}{The input \code{nobs}.}
 }
 \note{
-  The intepretation of \code{mindev} given here is that of Chambers and
+  The interpretation of \code{mindev} given here is that of Chambers and
   Hastie (1992, p. 415), and apparently not what is actually implemented
   in S.  It seems S uses an absolute bound.
 }
