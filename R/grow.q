@@ -2,7 +2,7 @@
 #  tree/grow.q by B. D. Ripley  Copyright (C) 1994-2000
 #
 tree <-
-function(formula = formula(data), data = sys.frame(sys.parent()),
+function(formula = formula(data), data = parent.frame(),
          weights, subset,
          na.action = na.pass, control = tree.control(nobs, ...),
          method = "recursive.partition",
@@ -15,7 +15,7 @@ function(formula = formula(data), data = sys.frame(sys.parent()),
             model$... <- model$x <- model$y <- model$wts <-
                 model$split <- NULL
         model[[1]] <- as.name("model.frame.default")
-        model <- eval(model, sys.parent())
+        model <- eval(model, parent.frame())
         if(method == "model.frame") return(model)
     }
     split <- match.arg(split)
@@ -93,7 +93,7 @@ function(formula = formula(data), data = sys.frame(sys.parent()),
     fit <- list(frame = frame, where = fit$where, terms = Terms,
                 call = match.call())
     attr(fit$where, "names") <- row.names(model)
-    if(n > 1) class(fit) <- "tree" else class(fit) <- "singlenode"
+    if(n > 1) class(fit) <- "tree" else class(fit) <- c("singlenode", "tree")
     attr(fit, "xlevels") <- xlevels
     if(length(ylevels)) attr(fit, "ylevels") <- ylevels
     if(x) fit$x <- X

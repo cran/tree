@@ -10,9 +10,14 @@ Cost-complexity Pruning of Tree Object
 }
 \usage{
 prune.tree(tree, k = NULL, best = NULL, newdata, nwts,
-        method = c("deviance", "misclass"), loss, eps = 1e-3)
+           method = c("deviance", "misclass"), loss, eps = 1e-3)
 prune.misclass(tree, k = NULL, best = NULL, newdata, 
-        nwts, loss, eps = 1e-3)
+               nwts, loss, eps = 1e-3)
+}
+\synopsis{
+prune.tree(tree, k = NULL, best = NULL, newdata, nwts,
+           method = c("deviance", "misclass"), loss, eps = 1e-3)
+prune.misclassfunction(tree, ...)
 }
 \arguments{
   \item{tree}{
@@ -51,7 +56,7 @@ prune.misclass(tree, k = NULL, best = NULL, newdata,
     a matrix giving for each true class (row) the numeric loss of
     predicting the class (column).  The classes should be in the order of
     the levels of the response.  It is conventional for a loss matrix to
-    have a zero diagonal.
+    have a zero diagonal.  The default is 0--1 loss.
   }
   \item{eps}{
     a lower bound for the probabilities, used to compute deviances if

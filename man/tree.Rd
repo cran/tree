@@ -1,7 +1,7 @@
 \name{tree}
 \title{Fit a Classification or Regression Tree}
 \usage{
-tree(formula = formula(data), data = sys.frame(sys.parent()),
+tree(formula = formula(data), data = parent.frame(),
      weights, subset,
      na.action = na.pass, control = tree.control(nobs, ...),
      method = "recursive.partition",
@@ -81,7 +81,7 @@ tree(formula = formula(data), data = sys.frame(sys.parent()),
     class for classification trees) and \code{split}, a two-column
     matrix of the labels for the left and right splits at the
     node. Classification trees also have \code{yprob}, a matrix of
-    fitted probabilities for each response level.
+    fitted probabilities for each response level.}
   \item{where}{An integer vector giving the row number of the frame
     detailing the node to which each case is assigned.}
   \item{terms}{The terms of the formula.}
@@ -89,7 +89,11 @@ tree(formula = formula(data), data = sys.frame(sys.parent()),
   \item{x}{If \code{x = TRUE}, the model matrix.}
   \item{y}{If \code{y = TRUE}, the response.}
   \item{wts}{If \code{wts = TRUE}, the weights.}
-and attributes \code{xlevels} and, for classification trees, \code{ylevels}.
+  and attributes \code{xlevels} and, for classification trees,
+  \code{ylevels}.
+
+  A tree with no splits is of class \code{"singlenode"} which inherits
+  from class \code{"tree"}.
 }
 \references{
   Breiman L., Friedman J. H., Olshen R. A., and  Stone,  C. J. (1984)
@@ -117,5 +121,21 @@ data(iris)
 ir.tr <- tree(Species ~., iris)
 ir.tr
 summary(ir.tr)
+\testonly{ ## tests of singlenode tree
+set.seed(1)
+Nvars <- 4;
+Nsamples <- 5
+N <- Nvars*Nsamples;
+dat <- matrix(sample(1:2, N, c(0.5,0.5), replace=TRUE), Nsamples, Nvars)
+dat <- as.data.frame(dat)
+for (i in 1:Nvars) {
+   dat[,i]<- factor(dat[,i], 1:2)
 }
+names(dat) <- c(paste("X", 1:3, sep=""), "Y")
+tr <- tree(Y ~ ., dat)
+tr
+summary(tr)
+deviance(tr)
+residuals(tr)
+}}
 \keyword{tree}

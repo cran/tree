@@ -7,9 +7,9 @@ Predictions from a Fitted Tree Object
   Returns a vector of predicted responses from a fitted tree object.
 }
 \usage{
-predict.tree(object, newdata = list(),
-             type = c("vector", "tree", "class", "where"), 
-             split = FALSE, nwts, eps = 1e-3)
+\method{predict}{tree}(object, newdata = list(),
+        type = c("vector", "tree", "class", "where"), 
+        split = FALSE, nwts, eps = 1e-3)
 }
 \arguments{
 \item{object}{

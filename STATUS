@@ -1,7 +1,20 @@
 Library tree
 ============
 
-Version 0.1-0  2000/02/19
+Version 1.0-3  2001/07/25
+
+Use parent.frame not sys.parent in eval calls.
+Add more support for singlenode trees (via inheritance from tree).
+Correct tree (missing brace) and tree.control docs.
+
+Version 1.0-2  2000/02/29
+
+header file changes in grow.c for Linux
+Remove errmsg.
+Use XLOG function rather than a define.
+Add maintainer field.
+
+Version 1.0-1  2000/02/21
 
 Re-release under GPL2. Better documentation, ...
 

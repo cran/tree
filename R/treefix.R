@@ -399,5 +399,5 @@ prune.misclass <- function(tree, ...)
     oc <- match.call()
     oc$method <- "misclass"
     oc[[1]] <- as.name("prune.tree")
-    eval(oc, sys.frame(sys.parent()))
+    eval(oc, parent.frame())
 }

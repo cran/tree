@@ -23,7 +23,6 @@ cv.tree <- function(object, rand, FUN = prune.tree, K = 10, ...)
     init
 }
 
-
 data.tree <- function(tree)
 {
     oc <- tree$call
@@ -53,7 +52,7 @@ descendants <- function(nodes, include = TRUE)
     return(desc)
 }
 
-deviance.tree <- function(object, detail = FALSE)
+deviance.tree <- function(object, detail = FALSE, ...)
 {
     if(!inherits(object, "tree")) stop("Not legitimate tree")
     frame <- object$frame
@@ -61,7 +60,7 @@ deviance.tree <- function(object, detail = FALSE)
     else sum(frame$dev[frame$var == "<leaf>"])
 }
 
-labels.tree <- function(object, pretty = TRUE, collapse = TRUE)
+labels.tree <- function(object, pretty = TRUE, collapse = TRUE, ...)
 {
     if(!inherits(object, "tree")) stop("Not legitimate tree")
     frame <- object$frame
@@ -177,11 +176,12 @@ partition.tree <- function(tree, label = "yval", add = FALSE, ordvars, ...)
         }
         else stop("Wrong variable numbers in tree.")
     }
+    if(inherits(tree, "singlenode")) stop("Cannot plot singlenode tree")
     if(!inherits(tree, "tree")) stop("Not legitimate tree")
     frame <- tree$frame
     leaves <- frame$var == "<leaf>"
     var <- unique(as.character(frame$var[!leaves]))
-    if(length(var) > 2)
+    if(length(var) > 2 || length(var) < 1)
         stop("Tree can only have one or two predictors")
     nlevels <- sapply(xlevels <- attr(tree, "xlevels"), length)
     if(any(nlevels[var] > 0))
@@ -236,6 +236,7 @@ partition.tree <- function(tree, label = "yval", add = FALSE, ordvars, ...)
 plot.tree <- function (x, y = NULL,
                        type = c("proportional", "uniform"), ...)
 {
+    if(inherits(x, "singlenode")) stop("Cannot plot singlenode tree")
     if(!inherits(x, "tree")) stop("Not legitimate tree")
     type <- match.arg(type)
     uniform <- type == "uniform"
@@ -289,7 +290,7 @@ residuals.tree <-
     frame <- object$frame
     if(is.null(ylevels <- attr(object, "ylevels")))
         return(y - frame$yval[object$where])
-    type <- match.args(type)
+    type <- match.arg(type)
     if(type == "usual") yhat <- frame$yval[object$where]
     else yhat <- frame$yprob[object$where,  ][cbind(seq(y), unclass(y))]
     r <- switch(type,
@@ -323,6 +324,8 @@ snip.tree <-
         tree$where <- structure(where, names = names(tree$where))
         tree
     }
+
+    if(inherits(tree, "singlenode")) stop("Cannot snip singlenode tree")
     if(!inherits(tree, "tree")) stop("Not legitimate tree")
     call <- match.call()
     node <- as.numeric(row.names(tree$frame))
@@ -372,7 +375,7 @@ snip.tree <-
     tree
 }
 
-summary.tree <- function(object)
+summary.tree <- function(object, ...)
 {
     obj <- list(call = object$call)
     frame <- object$frame
@@ -426,6 +429,7 @@ text.tree <-
 {
     oldxpd <- par(xpd=xpd)
     on.exit(par(oldxpd))
+    if(inherits(x, "singlenode")) stop("Cannot plot singlenode tree")
     if(!inherits(x, "tree")) stop("Not legitimate tree")
     frame <- x$frame
     column <- names(frame)
@@ -467,6 +471,7 @@ text.tree <-
 
 tile.tree <- function(tree, var, screen.arg = ascr + 1, axes = TRUE)
 {
+    if(inherits(tree, "singlenode")) stop("Cannot tile singlenode tree")
     if(!inherits(tree, "tree")) stop("Not legitimate tree")
     where <- tree$where
     varname <- substitute(var)
@@ -514,8 +519,7 @@ tile.tree <- function(tree, var, screen.arg = ascr + 1, axes = TRUE)
     invisible(counts)
 }
 
-tree.control <-
-    function(nobs, mincut = 5, minsize = 10, mindev = 0.01)
+tree.control <- function(nobs, mincut = 5, minsize = 10, mindev = 0.01)
 {
     mcut <- missing(mincut)
     msize <- missing(minsize)
@@ -616,3 +620,4 @@ treepl <- function(xy, node, erase = FALSE, ...)
     lines(c(xx[, -1]), c(yy[, -1]), ...)
     list(x = x, y = y)
 }
+

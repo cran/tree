@@ -7,7 +7,11 @@
   Allows the user to plot a tree sequence.
 }
 \usage{
-plot.tree.sequence(x,  \dots, order = c("increasing", "decreasing"))
+\method{plot}{tree.sequence}(x,  \dots, order = c("increasing", "decreasing"))
+}
+\synopsis{
+plot.tree.sequence(x, ..., type = "l", ylim = range(x$dev),
+    order. = c("increasing", "decreasing"))
 }
 \arguments{
   \item{x}{object of class \code{tree.sequence}.

@@ -5,7 +5,7 @@
   Plot a tree object on the current graphical device
 }
 \usage{
-plot.tree(x, y = NULL, type = c("proportional", "uniform"), ...)
+\method{plot}{tree}(x, y = NULL, type = c("proportional", "uniform"), ...)
 }
 \arguments{
  \item{x}{an object of class \code{"tree"}.}

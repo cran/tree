@@ -5,8 +5,13 @@
   Add text to a tree plot.
 }
 \usage{
-text.tree(x, splits = TRUE, label = "yval", all = FALSE, pretty = NULL,
-          digits = getOption("digits") - 3, ...)
+\method{text}{tree}(x, splits = TRUE, label = "yval", all = FALSE,
+     pretty = NULL, digits = getOption("digits") - 3, ...)
+}
+\synopsis{
+text.tree(x, splits = TRUE, label = "yval", all = FALSE,
+          pretty = NULL, digits = getOption("digits") - 3,
+          adj = par("adj"), xpd = TRUE, ...)
 }
 \arguments{
  \item{x}{an object of class \code{"tree"}}

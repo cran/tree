@@ -16,14 +16,14 @@
 \usage{
 data.tree(tree)
 descendants(nodes, include=TRUE)
-labels.tree(object, pretty = TRUE, collapse = TRUE)
+labels.tree(object, pretty = TRUE, collapse = TRUE, ...)
 model.frame.tree(formula, ...)
 node.match(nodes, nodelist, leaves, print.it = TRUE)
 pred1.tree(tree, x)
 tree.depth(nodes)
 tree.matrix(frame)
 treeco(tree, uniform = paste(".Tree.unif", dev.cur(), sep = "."))
-treepl(x, node, erase = FALSE, ...)
+treepl(xy, node, erase = FALSE, ...)
 }
 \note{These are not intended for use by end users.}
 \keyword{utilities}
