@@ -87,7 +87,7 @@ Cambridge University Press, Cambridge. Chapter 7.
   \code{\link{predict}}, \code{\link{tree}}.
 }
 \examples{
-data(shuttle)
+data(shuttle, package="MASS")
 shuttle.tr <- tree(use ~ ., shuttle, subset=1:253,
                    mindev=1e-6, minsize=2)
 shuttle.tr

@@ -1,4 +1,4 @@
-# file treefix.R copyright (C) 1994-2000 B. D. Ripley
+# file treefix.R copyright (C) 1994-2002 B. D. Ripley
 #
 prune.tree <-
     function(tree, k = NULL, best = NULL, newdata, nwts,
@@ -34,7 +34,8 @@ prune.tree <-
                 as.integer(frame$yval),
                 as.integer(tree$where),
                 as.double(w),
-                as.integer(nc), as.double(loss)
+                as.integer(nc), as.double(loss),
+                PACKAGE = "tree"
                 )
         dev <- Z$dev; sdev <- Z$sdev
     } else {
@@ -51,6 +52,7 @@ prune.tree <-
                        as.double(frame$yval),
                        as.integer(tree$where),
                        as.double(w),
+                       PACKAGE = "tree"
                        )$sdev
         } else  {
             sdev <- -2 * .C("VR_dev2",
@@ -64,6 +66,7 @@ prune.tree <-
                             as.double(frame$yprob),
                             as.integer(tree$where),
                             as.double(w),
+                            PACKAGE = "tree"
                             )$sdev
         }
     }
@@ -89,7 +92,8 @@ prune.tree <-
                     as.integer(frame$yval),
                     as.integer(where),
                     as.double(nwts),
-                    as.integer(nc), as.double(loss)
+                    as.integer(nc), as.double(loss),
+                    PACKAGE = "tree"
                     )
             ndev <- Z$dev; nsdev <- Z$sdev
         } else {
@@ -105,6 +109,7 @@ prune.tree <-
                         as.double(frame$yval),
                         as.integer(where),
                         as.double(nwts),
+                        PACKAGE = "tree"
                         )
                 ndev <- Z$dev; nsdev <- Z$sdev
             } else {
@@ -121,6 +126,7 @@ prune.tree <-
                         as.double(yp),
                         as.integer(where),
                         as.double(nwts),
+                        PACKAGE = "tree"
                         )
                 ndev <- -2 * Z$dev; nsdev <- -2 *Z$sdev
             }
@@ -141,7 +147,8 @@ prune.tree <-
              inode=integer(ndim),
              size=integer(ndim),
              deviance=double(ndim),
-             newdev=double(ndim)
+             newdev=double(ndim),
+             PACKAGE = "tree"
              )
     n <- zp$n
     alpha <- zp$alpha[1:n]
@@ -209,7 +216,8 @@ predict.tree <-
                     as.integer(nf <- dim(frame)[1]),
                     as.integer(dimx[1]),
                     where = double(nf*dimx[1]),
-                    NAOK = TRUE)
+                    NAOK = TRUE,
+                    PACKAGE = "tree")
         ypred <- matrix(ypred$where, nf)
         dimnames(ypred) <- list(row.names(frame),dimnames(x)[[1]])
         ypred
@@ -235,9 +243,9 @@ predict.tree <-
                 # test if response can be extracted from newdata
                 response.vars <- all.vars(formula(Terms)[[2]])
                 response.exists <-
-                    sapply(response.names, function(nm, newdata)
-                           eval(local = newdata,
-                                substitute(exists(nm), list(nm=nm))),
+                    sapply(response.vars, function(nm, newdata)
+                           eval(substitute(exists(nm), list(nm=nm)),
+                                envir = newdata),
                            newdata)
                 if(!all(response.exists)) Terms <- delete.response(Terms)
             } else Terms <- delete.response(Terms)
@@ -299,7 +307,8 @@ predict.tree <-
                       as.integer(length(y)),
                       as.double(frame$yval),
                       as.integer(where),
-                      as.double(nwts)
+                      as.double(nwts),
+                      PACKAGE = "tree"
                       )$dev
             dev[which %*% drp > 0] <- NA
         } else {
@@ -316,7 +325,8 @@ predict.tree <-
                            as.integer(length(y)),
                            as.double(yp),
                            as.integer(where),
-                           as.double(nwts)
+                           as.double(nwts),
+                           PACKAGE = "tree"
                            )$dev
             dev[which %*% drp > 0] <- NA
         }
@@ -345,7 +355,8 @@ pred1.tree <- function(tree, x)
                 as.integer(dimx[1]),
                 as.integer(dimx[2]),
                 where = integer(dimx[1]),
-                NAOK = TRUE)
+                NAOK = TRUE,
+                PACKAGE = "tree")
     ypred <- ypred$where
     names(ypred) <- dimnames(x)[[1]]
     ypred

@@ -1,5 +1,5 @@
 #
-#  tree/grow.q by B. D. Ripley  Copyright (C) 1994-2000
+#  tree/grow.q by B. D. Ripley  Copyright (C) 1994-2002
 #
 tree <-
 function(formula = formula(data), data = parent.frame(),
@@ -73,7 +73,8 @@ function(formula = formula(data), data = parent.frame(),
               as.integer(control$nmax),
               as.integer(split=="gini"),
               as.integer(sapply(model, is.ordered)),
-              NAOK = TRUE)
+              NAOK = TRUE,
+              PACKAGE = "tree")
     n <- fit$nnode
     frame <- data.frame(fit[c("var", "n", "dev", "yval")])[1:n,  ]
     frame$var <- factor(frame$var, 0:length(xlevels),

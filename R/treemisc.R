@@ -363,7 +363,7 @@ snip.tree <-
         if(length(i) == 0) return(tree)
         nodes <- node[i]
         which <- descendants(node, include = TRUE)
-        nodes <- nodes[apply(which[i,  ] %*% which[, i], 2, "sum") == 1]
+        nodes <- nodes[colSums(which[i,  ] %*% which[, i]) == 1]
         diag(which) <- FALSE
         tree$frame$which <- which
         tree <- .snip.tree(tree, nodes)
@@ -446,7 +446,7 @@ text.tree <-
         node <- as.numeric(row.names(frame))
         left.child <- match(2 * node, node)
         rows <- labels.tree(x, pretty = pretty)[left.child]
-        ind <- rows != "NA"
+        ind <- !is.na(rows)
         text(xy$x[ind], xy$y[ind] + 0.5 * charht, rows[ind], adj=adj,  ...)
     }
     if(!is.null(label)) {

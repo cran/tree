@@ -1,6 +1,12 @@
 Library tree
 ============
 
+Version 1.0-7  2002-03-18
+
+Register C routines.
+predict(type="tree") was not operational.
+Remove na.pass (included in 1.5.0), use colSums.
+
 Version 1.0-6  2002-02-23
 
 & has higher priority than || in R (but not S).
@@ -19,7 +25,7 @@ Version 1.0-3  2001/07/25
 
 Use parent.frame not sys.parent in eval calls.
 Add more support for singlenode trees (via inheritance from tree).
-Correct tree/Rd (missing brace) and tree.control.Rd docs.
+Correct tree.Rd (missing brace) and tree.control.Rd docs.
 
 Version 1.0-2  2000/02/29
 
