@@ -9,7 +9,7 @@ snip.tree(tree, nodes, xy.save = FALSE, digits = getOption("digits") - 3)
   \item{nodes}{An integer vector giving those nodes that are the roots of
     sub-trees to be snipped off. If missing, the user is invited to
     select a node at which to snip.}
-  \item{xy.save}{If true, the `x' and `y' coordinates selected
+  \item{xy.save}{If true, the \code{x} and \code{y} coordinates selected
     interactively are saved in the object \code{.xy} in the global
     environment.}
   \item{digits}{Precision used in printing statistics for selected nodes.}

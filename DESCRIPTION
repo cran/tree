@@ -1,8 +1,8 @@
 Package: tree
 Title: Classification and regression trees
-Version: 1.0-14
-Date: 2003-05-25
-Depends: R (>= 1.7.0)
+Version: 1.0-15
+Date: 2003-07-31
+Depends: R (>= 1.8.0)
 Author: Brian Ripley <ripley@stats.ox.ac.uk>.
 Maintainer: Brian Ripley <ripley@stats.ox.ac.uk>
 Description: Classification and regression trees.

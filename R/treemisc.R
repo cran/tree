@@ -1,3 +1,6 @@
+.onUnload <- function(libpath)
+    library.dynam.unload("tree", libpath)
+
 #
 #  tree/R/treemisc.R by B. D. Ripley
 #  miscellaneous support routines for tree.
@@ -183,7 +186,7 @@ partition.tree <- function(tree, label = "yval", add = FALSE, ordvars, ...)
     var <- unique(as.character(frame$var[!leaves]))
     if(length(var) > 2 || length(var) < 1)
         stop("Tree can only have one or two predictors")
-    nlevels <- sapply(xlevels <- attr(tree, "xlevels"), length)
+    nlevels <- sapply(attr(tree, "xlevels"), length)
     if(any(nlevels[var] > 0))
         stop("Tree can only have continuous predictors")
     x <- rep(NA, length(leaves))
@@ -289,8 +292,7 @@ residuals.tree <-
     if(is.null(y <- object$y))
         y <- model.extract(model.frame(object), "response")
     frame <- object$frame
-    if(is.null(ylevels <- attr(object, "ylevels")))
-        return(y - frame$yval[object$where])
+    if(is.null(attr(object, "ylevels"))) return(y - frame$yval[object$where])
     type <- match.arg(type)
     if(type == "usual") yhat <- frame$yval[object$where]
     else yhat <- frame$yprob[object$where,  ][cbind(seq(y), unclass(y))]
@@ -483,7 +485,7 @@ tile.tree <- function(tree, var, screen.arg = ascr + 1, axes = TRUE)
         if(!is.null(data <- data.tree(tree))) {
             var <- eval(varname, data)
             names(var) <- row.names(data)
-        } else names(var) <- database.attr("row.names")
+        } # else names(var) <- database.attr("row.names")
         var <- var[names(where)]
     }
     if(length(var) != length(where))

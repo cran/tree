@@ -1,7 +1,7 @@
 \name{na.tree.replace}
 \alias{na.tree.replace}
 \title{
-  Replace `NA's in Predictor Variables
+  Replace 'NA's in Predictor Variables
 }
 \description{
   Adds a new level called \code{"NA"} to any discrete predictor in

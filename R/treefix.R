@@ -233,7 +233,7 @@ predict.tree <-
     if(missing(newdata) || is.null(newdata)) {
         where <- object$where
         newdata <- model.frame.tree(object)
-        if(!is.null(w <- object$call$weights))
+        if(!is.null(object$call$weights))
             nwts <- model.extract(model.frame.tree(object), "weights")
     } else {
         if(is.null(attr(newdata, "terms"))) {
@@ -351,7 +351,7 @@ pred1.tree <- function(tree, x)
                 as.integer(sapply(attr(tree, "xlevels"), length)),
                 as.integer(row.names(frame)),
                 as.integer(frame$n),
-                as.integer(nf <- dim(frame)[1]),
+                as.integer(dim(frame)[1]),
                 as.integer(dimx[1]),
                 as.integer(dimx[2]),
                 where = integer(dimx[1]),

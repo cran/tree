@@ -8,7 +8,7 @@ tree.control(nobs, mincut = 5, minsize = 10, mindev = 0.01)
   \item{nobs}{The number of observations in the training set.}
   \item{mincut}{The minimum number of observations to include in either
     child node. This is a weighted quantity; the observational weights are used
-    to compute the `number'. The default is 5.}
+    to compute the \sQuote{number}. The default is 5.}
   \item{minsize}{The smallest allowed node size: a weighted quantity. The
     default is 10.}
   \item{mindev}{The within-node deviance must be at least this times that

@@ -113,7 +113,7 @@ static void fillin_node(int inode)
 
 /* Check split. If best so far, write splits, var, left partition */
 
-/* corrected from R. Sedgewick `Algorithms in C' */
+/* corrected from R. Sedgewick 'Algorithms in C' */
 static void shellsort(double *a, int *b, double *w, int N)
 {
     int     i, j, h, at;
