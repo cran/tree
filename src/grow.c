@@ -646,7 +646,7 @@ static void divide_node(int inode)
    
     if (bval < devtarget) {
         Printf("..splitting\n");
-	if ( inode >=  1073741824 ) {
+	if ( node[inode] >=  1073741824 ) {
 	    error("maximum depth reached\n");
 	    return;
 	}

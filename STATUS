@@ -1,6 +1,10 @@
 Library tree
 ============
 
+Version 1.0-10  2002-06-26
+
+Check on tree depth was failing.
+
 Version 1.0-9  2002-06-20
 
 Remove use of registration fiasco.
