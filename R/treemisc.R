@@ -155,7 +155,7 @@ partition.tree <- function(tree, label = "yval", add = FALSE, ordvars, ...)
         if(v[i] == "<leaf>") {
             y1 <- (xrange[1] + xrange[3])/2
             y2 <- (xrange[2] + xrange[4])/2
-            return(xcoord, ycoord = c(ycoord, y1, y2), i = i)
+            return(list(xcoord = xcoord, ycoord = c(ycoord, y1, y2), i = i))
         }
         if(v[i] == tvar[1]) {
             xcoord <- c(xcoord, x[i], xrange[2], x[i], xrange[4])
