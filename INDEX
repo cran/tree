@@ -3,13 +3,13 @@ tree library
 
 This incorporates the treefix library from Venables & Ripley (2nd edition)
 
-cv.tree			 Cross-validatory Choice of Tree Complexity
-deviance.tree
-misclass.tree            Report Numbers of Misclassifications by a
-                         Classification Tree
+cv.tree                  Cross-validation for Choosing Tree Complexity
+deviance.tree            Extract Deviance from a Tree Object
+misclass.tree            Misclassifications by a Classification Tree
+na.pass                  Pass through missing values
 na.tree.replace          Replace `NA's in Predictor Variables
 partition.tree           Plot the Partitions of a simple Tree Model
-plot.tree
+plot.tree                Plot a Tree Object
 plot.tree.sequence       Plot a Tree Sequence
 predict.tree             Predictions from a Fitted Tree Object
 print.tree
@@ -18,7 +18,8 @@ prune.misclass		 Cost-complexity Pruning of Tree by error rate
 residuals.tree
 snip.tree                Snip Parts of Tree Objects
 summary.tree
-text.tree
+text.tree                Annotate a Tree Plot
+tile.tree                Add Class Barplots to a Classification Tree Plot
 tree                     Fit a Classification or Regression Tree
 tree.control             Select Parameters for Tree
 tree.screens             Split Screen for Plotting Trees

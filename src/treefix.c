@@ -1,30 +1,18 @@
 /*
- *  treefix/treefix.c by B. D. Ripley  Copyright (C) 1994-9
+ *  treefix/treefix.c by B. D. Ripley  Copyright (C) 1994-2000
  */
 
 #define True 1
 #define False 0
 #define EPS 1e-4
 #include <math.h>
-#include <S.h>
+#include <R.h>
 #include "verS.h"
-#ifdef USING_R
-# include <Rversion.h>
-# if (defined(R_VERSION) && R_VERSION >= R_Version(0,99,0))
-#  include <R_ext/Arith.h>    /* for NA handling */
-# else
-#  include <Arith.h>
-# endif
-#endif
+#include <string.h> /* for strchr */
 
-char *strchr(const char *s, int c);
 
-/* workaround for log(0) on S-PLUS for Windows */
-#if defined(SPLUS_VERSION)
-#define safe_log(result, x) if ((x)<=0.0) inf_set(&result,DOUBLE,-1); else result = log(x)
-#else
+/* workaround for log(0) */
 #define safe_log(result, x) result = log(x + 1e-200)
-#endif
 
 static int mysum(Sint *vec, int n)
 {
@@ -120,7 +108,7 @@ VR_prune2(Sint *nnode, Sint *nodes, Sint *leaf, double *dev, double *sdev,
 	  double *tdev, double *ntdev)
 {
     int     i, in, ir, j, k, cur, nr = *nnode, sz, First, na = 0;
-    double  alpha, rt, sum;
+    double  alpha = 0.0, rt, sum;
 
     for (i = 0; i < nr; i++) keep[i] = True;
     /* start with full tree */
@@ -206,19 +194,6 @@ VR_prune2(Sint *nnode, Sint *nodes, Sint *leaf, double *dev, double *sdev,
 }
 
 /* Take each case and drop it down the tree as needed */
-
-#if defined(SPLUS_VERSION)
-#  if defined(IBMRS6000)
-   extern double atof(const char *nptr);
-   extern char *strchr(const char *s, int c);
-#  else
-#    if !defined (__STDC__)
-     extern double atof( /* const char *nptr */ );
-     extern char *strchr( /* const char *s, int c */ );
-#    endif
-#  endif
-#endif
-
 
 void    
 VR_pred1(double *x, Sint *vars, char **lsplit, char **rsplit,

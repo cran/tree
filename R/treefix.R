@@ -1,8 +1,9 @@
-# file treefix.R copyright (C) 1994-9 B. D. Ripley
+# file treefix.R copyright (C) 1994-2000 B. D. Ripley
 #
-prune.tree <- function(tree, k = NULL, best = NULL, newdata, nwts,
-		       method = c("deviance", "misclass"),
-		       loss = 1-diag(nc), eps = 1e-3)
+prune.tree <-
+    function(tree, k = NULL, best = NULL, newdata, nwts,
+             method = c("deviance", "misclass"),
+             loss = 1-diag(nc), eps = 1e-3)
 {
     if(inherits(tree, "singlenode")) stop("Can't prune singlenode tree")
     if(!inherits(tree, "tree")) stop("Not legitimate tree")
@@ -284,8 +285,6 @@ predict.tree <-
         y <- model.extract(newdata, "response")
         if(missing(nwts)) nwts <- rep(1, length(y))
         if(!length(attr(object, "ylevels"))) {
-#            dev <- outer(frame$yval, y, "-") * which
-#            dev <- (dev * dev) %*% rep(1, length(y))
 #
 #  handle NAs in y separately.
 #
@@ -304,7 +303,6 @@ predict.tree <-
                       )$dev
             dev[which %*% drp > 0] <- NA
         } else {
-#           dev <- -2 * log(1 + which * (frame$yprob[, y, drop = FALSE] - 1)) %*% rep(1, length(y))
             yp <- frame$yprob
             yp[yp==0] <- max(0,eps)
             drp <- is.na(y); nwts[drp] <- 0; y[drp] <- levels(y)[1]
@@ -396,8 +394,6 @@ na.tree.replace <- function(frame)
     frame
 }
 
-na.pass <- function(x) x
-
 prune.misclass <- function(tree, ...)
 {
     oc <- match.call()
@@ -405,4 +401,3 @@ prune.misclass <- function(tree, ...)
     oc[[1]] <- as.name("prune.tree")
     eval(oc, sys.frame(sys.parent()))
 }
-

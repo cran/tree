@@ -1,25 +1,25 @@
 \name{tile.tree}
 \title{Add Class Barplots to a Classification Tree Plot}
 \usage{
-tile.tree(tree, var, screen.arg=ascr + 1, axes=TRUE)
+tile.tree(tree, var, screen.arg = ascr + 1, axes = TRUE)
 }
 \alias{tile.tree}
 \arguments{
- \item{tree}{fitted object of class \code{"tree"}.}
- \item{var}{a factor variable to be displayed: by default it is the
-   repsonse factor of the tree.}
- \item{screen.arg}{The screen to be used: default the next after the
-   currently active screen.}
- \item{axes}{logical flag for drawing of axes for the barplots.}
+  \item{tree}{fitted object of class \code{"tree"}.}
+  \item{var}{a factor variable to be displayed: by default it is the
+    repsonse factor of the tree.}
+  \item{screen.arg}{The screen to be used: default the next after the
+    currently active screen.}
+  \item{axes}{logical flag for drawing of axes for the barplots.}
 }
 \description{
- The computes a the frequencies of level of \code{var} for cases
- reaching each leaf of the tree, and pltos of barchart of the set of
- frequencies underneath each leaf.
+  The computes a the frequencies of level of \code{var} for cases
+  reaching each leaf of the tree, and pltos of barchart of the set of
+  frequencies underneath each leaf.
 }
 \value{
- A matrix of counts of categories (rows) fora each  leaf (columns). The
- principal effect is the plot.
+  A matrix of counts of categories (rows) for each leaf (columns). The
+  principal effect is the plot.
 }
 \author{B. D. Ripley}
 

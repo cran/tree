@@ -1,23 +1,13 @@
 /*
- *  tree/grow.c by B. D. Ripley  Copyright (C) 1994-9
+ *  tree/grow.c by B. D. Ripley  Copyright (C) 1994-2000
  */
-#include <S.h>
+#include <R.h>
 #include "verS.h"
-#ifdef USING_R
-# include <Rversion.h>
-# if (defined(R_VERSION) && R_VERSION >= R_Version(0,99,0))
-#  include <R_ext/Arith.h>    /* for NA handling */
-# else
-#  include <Arith.h>
-# endif
-#else
-# define ISNA(val) is_na(&val, DOUBLE)
-#endif
 
 static void
 errmsg(char *string)
 {
-    PROBLEM "%s\n", string RECOVER(NULL_ENTRY);
+    error(string);
 }
 
 #define xlogx(x) ((x > 0)?x*log((double)x):0)
@@ -166,8 +156,8 @@ static void shelldsort(double *a, double *b, double *w, int N)
 static void split_cont(int inode, int iv, double *bval)
 {
     int     i,j, js, k, ns, lo, hi;
-    double  ldev, bdev, sdev, tmp, split, bsplit, cntl, totw, ysum,
-	    ytot, y2, psum;
+    double  ldev, bdev, sdev, tmp, split, bsplit, cntl, totw, ysum = 0.0,
+	    ytot = 0.0, y2 = 0.0, psum;
 
     Printf("..trying split on var %d ", iv);
     ns = 0;
