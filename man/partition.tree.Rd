@@ -46,6 +46,11 @@ plot(iris[, 3],iris[, 4], type="n",
      xlab="petal length", ylab="petal width")
 text(iris[, 3], iris[, 4], c("s", "c", "v")[iris[, 5]])
 partition.tree(ir.tr1, add = TRUE, cex = 1.5)
+
+# 1D example
+ir.tr <- tree(Petal.Width ~ Petal.Length, iris)
+plot(iris[,3], iris[,4], type="n", xlab="Length", ylab="Width")
+partition.tree(ir.tr, add = TRUE, cex = 1.5)
 }
 \keyword{tree}
 \keyword{hplot}

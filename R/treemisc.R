@@ -194,6 +194,7 @@ partition.tree <- function(tree, label = "yval", add = FALSE, ordvars, ...)
         x <- sort(c(range(m[[var]]), x[!leaves]))
         if(is.null(attr(tree, "ylevels"))) y <- frame$yval[leaves]
         else y <- frame$yprob[, 1]
+        y <- c(y, y[length(y)])
         if(add) lines(x, y, type = "s", ...)
         else {
             a <- attributes(attr(m, "terms"))
