@@ -76,7 +76,7 @@ and attributes \code{xlevels} and, for classification trees, \code{ylevels}.
 \references{
 Breiman L., Friedman J.H., Olshen R.A., and  Stone,  C.J. (1984).
   \emph{Classification  and Regression Trees.}  Wadsworth.
-  
+
 Ripley, B.D. (1996).
 \emph{Pattern Recognition and Neural Networks.}
 Cambridge University Press, Cambridge.
@@ -84,10 +84,10 @@ Cambridge University Press, Cambridge.
 \author{B.D. Ripley}
 
 
- \seealso{\code{\link{tree.control}}, \code{\link{prune.tree}},
+\seealso{\code{\link{tree.control}}, \code{\link{prune.tree}},
    \code{\link{predict.tree}}, \code{\link{snip.tree}}}
 
- \examples{
+\examples{
 library(MASS)
 data(cpus)
 cpus.ltr <- tree(log10(perf) ~ syct+mmin+mmax+cach+chmin+chmax, cpus)

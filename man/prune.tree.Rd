@@ -5,19 +5,14 @@
 Cost-complexity Pruning of Tree Object
 }
 \description{
-Determines a nested sequence of subtrees of the supplied tree by recursively
-"snipping" off the least important splits, based upon the cost-complexity
-measure.  \code{prune.misclass} is an abbreviation for
-\code{prune.tree(method = "misclass")} for use with \code{cv.tree}.
-
-
-If \code{k} is supplied, the optimal subtree is returned.
+    Determines a nested sequence of subtrees of the supplied tree by
+    recursively "snipping" off the least important splits.
 }
 \usage{
 prune.tree(tree, k = NULL, best = NULL, newdata, nwts,
-        method = c("deviance", "misclass")[1], loss, eps=1e-3)
+        method = c("deviance", "misclass")[1], loss, eps = 1e-3)
 prune.misclass(tree, k = NULL, best = NULL, newdata, 
-        nwts, loss, eps=1e-3)
+        nwts, loss, eps = 1e-3)
 }
 \arguments{
 \item{tree}{
@@ -61,7 +56,16 @@ have a zero diagonal.
 \item{eps}{
 a lower bound for the probabilities, used to compute deviances if
 events of predicted probability zero occur in \code{newdata}.
-}}
+}
+}
+\details{
+    Determines a nested sequence of subtrees of the supplied tree by
+    recursively "snipping" off the least important splits, based upon
+    the cost-complexity measure.  \code{prune.misclass} is an abbreviation for
+    \code{prune.tree(method = "misclass")} for use with \code{cv.tree}.
+
+    If \code{k} is supplied, the optimal subtree is returned.
+}
 \value{
 If \code{k} is supplied and is a scalar, a \code{tree} object is returned that
 minimizes the cost-complexity measure for that \code{k}.  If \code{best} is
@@ -92,11 +96,14 @@ subtree in the cost-complexity sequence.  An additional axis displays
 the values of the cost-complexity parameter at each subtree.
 }
 \examples{
-#determine the cost complexity pruning sequence
-zp <- prune.tree(z.auto)
-plot(zp)          #plot it
-#select the best 5 node subtree
-z5.auto <- prune.tree(z.auto, best = 5)   
+library(MASS)
+data(fgl)
+fgl.tr <- tree(type ~ ., fgl)
+plot(print(fgl.tr))
+fgl.cv <- cv.tree(fgl.tr,, prune.tree)
+for(i in 2:5)  fgl.cv$dev <- fgl.cv$dev +
+   cv.tree(fgl.tr,, prune.tree)$dev
+fgl.cv$dev <- fgl.cv$dev/5
+plot(fgl.cv)
 }
 \keyword{tree}
-% Converted by Sd2Rd version 0.3-1.

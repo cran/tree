@@ -32,14 +32,10 @@ object \code{x} of the appropriate class, or directly by
 calling \code{plot.tree.sequence(x)} regardless of the
 class of the object.
 }
-\seealso{
-\code{\link{plot.tree}}.
-}
 \examples{
-zp <- prune.tree(z)
-plot(zp, type="s")
-zs <- shrink.tree(z)
-lines(zs$size, zs$dev)
+library(MASS)
+data(cpus)
+cpus.ltr <- tree(log(perf) ~ syct+mmin+mmax+cach+chmin+chmax, cpus)
+plot(prune.tree(cpus.ltr))
 }
 \keyword{tree}
-% Converted by Sd2Rd version 0.3-1.

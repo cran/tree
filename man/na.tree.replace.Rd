@@ -24,8 +24,4 @@ This function is used via the \code{na.action} argument to \code{tree}.
 \seealso{
 \code{\link{tree}}, \code{\link{na.omit}}.
 }
-\examples{
-z <- tree(market.survey, na.action=na.tree.replace)
-}
 \keyword{tree}
-% Converted by Sd2Rd version 0.3-1.

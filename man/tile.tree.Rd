@@ -27,7 +27,6 @@ tile.tree(tree, var, screen.arg=ascr + 1, axes=TRUE)
 
 \examples{
 library(MASS)
-library(tree)
 data(fgl)
 fgl.tr <- tree(type ~ ., fgl)
 summary(fgl.tr)

@@ -22,7 +22,6 @@ tree.screens(figs, screen.arg=0, ...)
 
 \examples{
 library(MASS)
-library(tree)
 data(fgl)
 fgl.tr <- tree(type ~ ., fgl)
 summary(fgl.tr)
