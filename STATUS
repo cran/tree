@@ -1,0 +1,33 @@
+Library tree
+============
+
+Version 0.3, 1998/11/14
+
+Formulae of the form  use ~ . - estperf - name  are now accepted.
+
+Explicitly enforces a maximum tree depth of 31 (forced by the way
+integers are used to number nodes).
+
+New functions tree.screen and tile.tree.
+
+
+Version 0.2, 1998/07/08
+
+More documentation added.
+
+There is enhanced support for weighted tree fits.
+
+snip.tree works around the limited identify in R.
+
+
+Version 0.1, 1998/06/16
+
+This is an experimental `clone' of the S tree function and a port
+of my treefix library.  Function tree() behaves as the S version is
+documented: in particular it will stop growing earlier than the S
+version under some circumstances.
+
+There is only documentation from treefix.
+
+
+B.D. Ripley <ripley@stats.ox.ac.uk>.

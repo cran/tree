@@ -1,0 +1,22 @@
+tree library
+============
+
+This incorporates the treefix library from Venables & Ripley (2nd edition)
+
+cv.tree			 Cross-validatory Choice of Tree Complexity
+deviance.tree
+misclass.tree
+na.tree.replace          Replace `NA's in Predictor Variables
+partition.tree           Plot the Partitions of a simple Tree Model
+plot.tree
+plot.tree.sequence       Plot a Tree Sequence
+predict.tree             Predictions from a Fitted Tree Object
+print.tree
+prune.tree               Cost-complexity Pruning of Tree Object
+prune.misclass		 Cost-complexity Pruning of Tree by error rate
+residuals.tree
+snip.tree                Snip Parts of Tree Objects
+summary.tree
+test.tree
+tree                     Fit a Classification or Regression Tree
+tree.control             Select Parameters for Tree
