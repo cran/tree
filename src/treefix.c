@@ -9,7 +9,12 @@
 #include <S.h>
 #include "verS.h"
 #ifdef USING_R
-# include <Arith.h>    /* for NA handling */
+# include <Rversion.h>
+# if (defined(R_VERSION) && R_VERSION >= R_Version(0,99,0))
+#  include <R_ext/Arith.h>    /* for NA handling */
+# else
+#  include <Arith.h>
+# endif
 #endif
 
 char *strchr(const char *s, int c);

@@ -1,7 +1,7 @@
 \name{tree.control}
 \title{Select Parameters for Tree}
 \usage{
-tree.control(nobs, mincut=5, minsize=10, mindev=0.01)
+tree.control(nobs, mincut = 5, minsize = 10, mindev = 0.01)
 }
 \alias{tree.control}
 \arguments{
@@ -12,7 +12,7 @@ tree.control(nobs, mincut=5, minsize=10, mindev=0.01)
  \item{minsize}{The smallest allowed node node: a weighted quantity. The
    default is 10.}
  \item{mindev}{The within-node deviance must be at least this times that
- of the root node for the node to be split.}
+   of the root node for the node to be split.}
 }
 \description{
   The produces default values of \code{mincut} and \code{minsize}, and
@@ -27,6 +27,11 @@ tree.control(nobs, mincut=5, minsize=10, mindev=0.01)
   \item{minsize}{The maximum of the input or default minsize and 2.}
   \item{nmax}{A estimate of the maximum number of nodes that might be grown.}
   \item{nobs}{The input \code{nobs}.}
+}
+\note{
+  The intepretation of \code{mindev} given here is that of Chambers and
+  Hastie (1992, p. 415), and apparently not what is actually implemented
+  in S.  It seems S uses an absolute bound.
 }
 \author{B.D. Ripley}
 
