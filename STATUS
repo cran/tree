@@ -1,6 +1,11 @@
 Library tree
 ============
 
+Version 1.0-11  2002-08-26
+
+Add protection against corrupted tree (from Petr.Savicky@cuni.cz).
+Test of parent when frequencies were equal might have been wrong.
+
 Version 1.0-10  2002-06-26
 
 Check on tree depth was failing.

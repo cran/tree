@@ -63,7 +63,7 @@ static void fillin_node(int inode)
 	yparent = -1;
 	if (inode > 0) {
 	    for(j = 0; j < inode; j++) 
-		if(node[j] == node[inode]/2) yparent = j;
+		if(node[j] == node[inode]/2) yparent = y[j] - 1;
 	}
 	nl = 0;
 	yl = -1.0;

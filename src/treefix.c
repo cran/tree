@@ -208,6 +208,8 @@ VR_pred1(double *x, Sint *vars, char **lsplit, char **rsplit,
     for (i = 0; i < *nnode; i++)
 	if (vars[i] > 0) {
 	    cnode = nodes[i];
+            left[i] = *nnode; /* protect against corrupted tree */
+            right[i] = *nnode;
 	    for (k = i + 1; k < *nnode; k++) {
 		if (nodes[k] == 2 * cnode) left[i] = k;
 		if (nodes[k] == 2 * cnode + 1) right[i] = k;
