@@ -26,4 +26,4 @@ treeco(tree, uniform = paste(".Tree.unif", dev.cur(), sep = "."))
 treepl(xy, node, erase = FALSE, ...)
 }
 \note{These are not intended for use by end users.}
-\keyword{utilities}
+\keyword{internal}

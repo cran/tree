@@ -1,11 +1,13 @@
 Library tree
 ============
 
+tree.Rd changed to reflect that ordered factors are not special (as in S).
+
 Version 1.0-3  2001/07/25
 
 Use parent.frame not sys.parent in eval calls.
 Add more support for singlenode trees (via inheritance from tree).
-Correct tree (missing brace) and tree.control docs.
+Correct tree/Rd (missing brace) and tree.control.Rd docs.
 
 Version 1.0-2  2000/02/29
 

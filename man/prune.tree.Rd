@@ -17,7 +17,7 @@ prune.misclass(tree, k = NULL, best = NULL, newdata,
 \synopsis{
 prune.tree(tree, k = NULL, best = NULL, newdata, nwts,
            method = c("deviance", "misclass"), loss, eps = 1e-3)
-prune.misclassfunction(tree, ...)
+prune.misclass(tree, ...)
 }
 \arguments{
   \item{tree}{

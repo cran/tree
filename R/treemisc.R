@@ -364,7 +364,7 @@ snip.tree <-
         nodes <- node[i]
         which <- descendants(node, include = TRUE)
         nodes <- nodes[apply(which[i,  ] %*% which[, i], 2, "sum") == 1]
-        diag(which) <- F
+        diag(which) <- FALSE
         tree$frame$which <- which
         tree <- .snip.tree(tree, nodes)
     }

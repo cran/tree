@@ -7,7 +7,7 @@
   Allows the user to plot a tree sequence.
 }
 \usage{
-\method{plot}{tree.sequence}(x,  \dots, order = c("increasing", "decreasing"))
+\method{plot}{tree.sequence}(x, \dots, order = c("increasing", "decreasing"))
 }
 \synopsis{
 plot.tree.sequence(x, ..., type = "l", ylim = range(x$dev),
@@ -23,6 +23,7 @@ plot.tree.sequence(x, ..., type = "l", ylim = range(x$dev),
     of \code{size} on the plot.  Use \code{"decreasing"} for
     the natural ordering of \code{k}
     and the amount of pruning. Only the first character is needed.
+    }
   \item{\dots}{graphical parameters.}
   }
 }

@@ -22,7 +22,7 @@ tree(formula = formula(data), data = parent.frame(),
   \item{formula}{A formula expression. The left-hand-side (response)
     should be either a numerical vector when a regression tree will be
     fitted or a factor, when a classification tree is produced. The
-    right-hand-side should be a series of numeric or factor or ordered
+    right-hand-side should be a series of numeric or factor
     variables separated by \code{+}; there should be no interaction
     terms. Both \code{.} and \code{-} are allowed: regression trees can
     have \code{offset} terms.}
@@ -53,7 +53,7 @@ tree(formula = formula(data), data = parent.frame(),
 \details{
   A tree is grown by binary recursive partitioning using the response in
   the specified formula and choosing splits from the terms of the
-  right-hand-side. Numeric variables and ordered factors are divided into
+  right-hand-side. Numeric variables are divided into
   \eqn{X < a} and \eqn{X > a}; the levels of an unordered factor
   are divided into
   two non-empty groups. The split which maximizes the reduction in

@@ -28,6 +28,6 @@ misclass.tree(tree, detail = FALSE)
 data(iris)
 ir.tr <- tree(Species ~., iris)
 misclass.tree(ir.tr)
-misclass.tree(ir.tr, detail=T)
+misclass.tree(ir.tr, detail=TRUE)
 }
 \keyword{tree}
