@@ -118,8 +118,7 @@ misclass.tree <- function(tree, detail = FALSE)
 
 model.frame.tree <- function(formula, ...)
 {
-    m <- formula$model
-    if(!is.null(m)) return(m)
+    if(!is.null(m <- formula$model)) return(m)
     oc <- formula$call
     if(substring(deparse(oc[[1]]), 1, 7) == "predict") {
         m <- eval(oc$newdata)

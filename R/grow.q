@@ -1,33 +1,34 @@
 #
-#  tree/grow.q by B. D. Ripley  Copyright (C) 1994-2002
+#  tree/grow.q by B. D. Ripley  Copyright (C) 1994-2003
 #
 tree <-
-function(formula = formula(data), data = parent.frame(),
-         weights, subset,
+function(formula, data, weights, subset,
          na.action = na.pass, control = tree.control(nobs, ...),
          method = "recursive.partition",
          split = c("deviance", "gini"),
-         model = NULL, x = FALSE, y = TRUE, wts = TRUE, ...)
+         model = FALSE, x = FALSE, y = TRUE, wts = TRUE, ...)
 {
-    if(is.null(model)) {
-        model <- match.call(expand = FALSE)
-        model$method <- model$model <- model$control <-
-            model$... <- model$x <- model$y <- model$wts <-
-                model$split <- NULL
-        model[[1]] <- as.name("model.frame.default")
-        model <- eval(model, parent.frame())
-        if(method == "model.frame") return(model)
+    if (is.data.frame(model)) {
+	m <- model
+	model <- FALSE
+    } else {
+        m <- match.call(expand = FALSE)
+        m$method <- m$model <- m$control <- m$... <- m$x <- m$y <- m$wts <-
+            m$split <- NULL
+        m[[1]] <- as.name("model.frame.default")
+        m <- eval.parent(m)
+        if(method == "model.frame") return(m)
     }
     split <- match.arg(split)
-    Terms <- attr(model, "terms")
+    Terms <- attr(m, "terms")
     if(any(attr(Terms, "order") > 1))
         stop("Trees cannot handle interaction terms")
-    Y <- model.extract(model, "response")
+    Y <- model.extract(m, "response")
     if(is.matrix(Y) && ncol(Y) > 1)
         stop("Trees cannot handle multiple responses")
     ylevels <- levels(Y)
-    w <- model.extract(model, "weights")
-    if(!length(w)) w <- rep(1, nrow(model))
+    w <- model.extract(m, "weights")
+    if(!length(w)) w <- rep(1, nrow(m))
     if(any(yna <- is.na(Y))) {
         Y[yna] <- 1                     # an innocent value
         w[yna] <- 0
@@ -36,10 +37,10 @@ function(formula = formula(data), data = parent.frame(),
     if(!is.null(offset)) {
         if(length(ylevels))
             stop("Offset not implemented for classification trees")
-        offset <- model[[offset]]
+        offset <- m[[offset]]
         Y <- Y - offset
     }
-    X <- tree.matrix(model)
+    X <- tree.matrix(m)
     xlevels <- attr(X, "column.levels")
     if(is.null(xlevels)) {
         xlevels <- rep(list(NULL), ncol(X))
@@ -72,7 +73,7 @@ function(formula = formula(data), data = parent.frame(),
               where = integer(nobs),
               as.integer(control$nmax),
               as.integer(split=="gini"),
-              as.integer(sapply(model, is.ordered)),
+              as.integer(sapply(m, is.ordered)),
               NAOK = TRUE,
               PACKAGE = "tree")
     n <- fit$nnode
@@ -93,10 +94,11 @@ function(formula = formula(data), data = parent.frame(),
     row.names(frame) <- fit$node[1:n]
     fit <- list(frame = frame, where = fit$where, terms = Terms,
                 call = match.call())
-    attr(fit$where, "names") <- row.names(model)
+    attr(fit$where, "names") <- row.names(m)
     if(n > 1) class(fit) <- "tree" else class(fit) <- c("singlenode", "tree")
     attr(fit, "xlevels") <- xlevels
     if(length(ylevels)) attr(fit, "ylevels") <- ylevels
+    if(is.logical(model) && model) fit$model <- m
     if(x) fit$x <- X
     if(y) fit$y <- Y
     if(wts) fit$weights <- w

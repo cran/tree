@@ -1,12 +1,11 @@
 \name{tree}
 \title{Fit a Classification or Regression Tree}
 \usage{
-tree(formula = formula(data), data = parent.frame(),
-     weights, subset,
+tree(formula, data, weights, subset,
      na.action = na.pass, control = tree.control(nobs, ...),
      method = "recursive.partition",
      split = c("deviance", "gini"),
-     model = NULL, x = FALSE, y = TRUE, wts = TRUE, ...)
+     model = FALSE, x = FALSE, y = TRUE, wts = TRUE, ...)
 }
 \alias{tree}
 \alias{print.tree}
@@ -41,7 +40,9 @@ tree(formula = formula(data), data = parent.frame(),
   \item{split}{Splitting criterion to use.}
   \item{model}{If this argument is itself a model frame, then the
     \code{formula} and \code{data} arguments are ignored, and
-    \code{model} is used to define the model.}
+    \code{model} is used to define the model.  If the argument is
+    logical and true, the model frame is stored as component
+    \code{model} in the result.}
   \item{x}{logical. If true, the matrix of variables for each case
     is returned.}
   \item{y}{logical. If true, the response variable is returned.}
@@ -86,6 +87,7 @@ tree(formula = formula(data), data = parent.frame(),
     detailing the node to which each case is assigned.}
   \item{terms}{The terms of the formula.}
   \item{call}{The matched call to \code{Tree}.}
+  \item{model}{If \code{model = TRUE}, the model frame.}
   \item{x}{If \code{x = TRUE}, the model matrix.}
   \item{y}{If \code{y = TRUE}, the response.}
   \item{wts}{If \code{wts = TRUE}, the weights.}
@@ -121,7 +123,8 @@ data(iris)
 ir.tr <- tree(Species ~., iris)
 ir.tr
 summary(ir.tr)
-\testonly{ ## tests of singlenode tree
+\dontshow{
+## tests of singlenode tree
 set.seed(1)
 Nvars <- 4;
 Nsamples <- 5

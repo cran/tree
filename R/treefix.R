@@ -1,4 +1,4 @@
-# file treefix.R copyright (C) 1994-2002 B. D. Ripley
+# file treefix.R copyright (C) 1994-2003 B. D. Ripley
 #
 prune.tree <-
     function(tree, k = NULL, best = NULL, newdata, nwts,
@@ -18,9 +18,9 @@ prune.tree <-
     ndim <- ceiling(nnode/2)
 
     if(is.null(y <- tree$y))
-        y <- model.extract(model.frame.tree(tree), "response")
+        y <- model.extract(model.frame(tree), "response")
     if(is.null(w <- tree$weights))
-        w <- model.extract(model.frame.tree(tree), "weights")
+        w <- model.extract(model.frame(tree), "weights")
     if(is.null(w)) w <- rep(1, length(y))
     if(method == "misclass") {
         Z <- .C("VR_dev1",
@@ -75,8 +75,12 @@ prune.tree <-
         nsdev <- sdev
     } else {
         if(is.null(attr(newdata, "terms")))
-            nd <- model.frame(tree$terms, newdata, na.action=na.pass)
+            nd <- model.frame(tree$terms, newdata, na.action=na.pass,
+                              xlev = tree$xlevels)
         else nd <- newdata
+        if (!is.null(cl <- attr(tree$terms, "dataClasses")) &&
+            exists(".checkMFClasses", envir=NULL))
+            .checkMFClasses(cl, nd)
         y <- model.extract(nd, "response")
         if(missing(nwts)) nwts <- rep(1, length(y))
         where <- pred1.tree(tree, tree.matrix(nd))
@@ -232,9 +236,9 @@ predict.tree <-
         return(object)                  #idiot proofing
     if(missing(newdata) || is.null(newdata)) {
         where <- object$where
-        newdata <- model.frame.tree(object)
+        newdata <- model.frame(object)
         if(!is.null(object$call$weights))
-            nwts <- model.extract(model.frame.tree(object), "weights")
+            nwts <- model.extract(model.frame(object), "weights")
     } else {
         if(is.null(attr(newdata, "terms"))) {
             # newdata is not a model frame.
@@ -249,7 +253,11 @@ predict.tree <-
                            newdata)
                 if(!all(response.exists)) Terms <- delete.response(Terms)
             } else Terms <- delete.response(Terms)
-            newdata <- model.frame(Terms, newdata, na.action = na.pass)
+            newdata <- model.frame(Terms, newdata, na.action = na.pass,
+                                   xlev = object$xlevels)
+            if (!is.null(cl <- attr(Terms, "dataClasses")) &&
+                exists(".checkMFClasses", envir=NULL))
+                .checkMFClasses(cl, newdata)
         }
         where <- pred1.tree(object, tree.matrix(newdata))
     }
