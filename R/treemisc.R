@@ -282,7 +282,7 @@ print.tree <-
 }
 
 residuals.tree <-
-    function(object, type = c("usual", "pearson", "deviance"))
+    function(object, type = c("usual", "pearson", "deviance"), ...)
 {
     if(!inherits(object, "tree")) stop("Not legitimate tree")
     if(is.null(y <- object$y))

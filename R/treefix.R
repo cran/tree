@@ -184,7 +184,7 @@ prune.tree <-
 predict.tree <-
     function(object, newdata = list(),
              type = c("vector", "tree", "class", "where"),
-             split = FALSE, nwts, eps = 1e-3)
+             split = FALSE, nwts, eps = 1e-3, ...)
 {
     which.is.max <- function(x)
     {

@@ -9,7 +9,7 @@ Predictions from a Fitted Tree Object
 \usage{
 \method{predict}{tree}(object, newdata = list(),
         type = c("vector", "tree", "class", "where"), 
-        split = FALSE, nwts, eps = 1e-3)
+        split = FALSE, nwts, eps = 1e-3, ...)
 }
 \arguments{
 \item{object}{
@@ -42,7 +42,9 @@ Predictions from a Fitted Tree Object
 \item{eps}{
   a lower bound for the probabilities, used if events of predicted
   probability zero occur in \code{newdata} when predicting a tree.
-}}
+}
+\item{\dots}{further arguments passed to or from other methods.}
+}
 \value{
   If \code{type = "vector"}:
   vector of predicted responses or, if the response is a factor, matrix
