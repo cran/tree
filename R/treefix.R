@@ -9,7 +9,7 @@ prune.tree <-
     if(!inherits(tree, "tree")) stop("Not legitimate tree")
     method <- match.arg(method)
     nc <- length(attr(tree, "ylevels"))
-    if(method == "misclass" & !nc)
+    if(method == "misclass" && !nc)
         stop("misclass only for classification trees")
     frame <- tree$frame
     node <- row.names(frame)
@@ -220,7 +220,7 @@ predict.tree <-
     type <- match.arg(type)
     if(type == "class" && is.null(attr(object, "ylevels")))
         stop("type class only for classification trees")
-    if(missing(newdata) || is.null(newdata) & type == "tree")
+    if((missing(newdata) || is.null(newdata)) && type == "tree")
         return(object)                  #idiot proofing
     if(missing(newdata) || is.null(newdata)) {
         where <- object$where

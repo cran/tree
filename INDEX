@@ -6,7 +6,6 @@ This incorporates the treefix library from Venables & Ripley (2nd edition)
 cv.tree                  Cross-validation for Choosing Tree Complexity
 deviance.tree            Extract Deviance from a Tree Object
 misclass.tree            Misclassifications by a Classification Tree
-na.pass                  Pass through missing values
 na.tree.replace          Replace `NA's in Predictor Variables
 partition.tree           Plot the Partitions of a simple Tree Model
 plot.tree                Plot a Tree Object

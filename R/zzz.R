@@ -1,4 +1,4 @@
 .First.lib <- function(lib, pkg) library.dynam("tree", pkg, lib)
 
-na.pass <- function(x) x
+if(!exists("na.pass", envir=NULL)) na.pass <- function(x) x
 
