@@ -78,8 +78,7 @@ prune.tree <-
             nd <- model.frame(tree$terms, newdata, na.action=na.pass,
                               xlev = tree$xlevels)
         else nd <- newdata
-        if (!is.null(cl <- attr(tree$terms, "dataClasses")) &&
-            exists(".checkMFClasses", envir=NULL))
+        if (!is.null(cl <- attr(tree$terms, "dataClasses")))
             .checkMFClasses(cl, nd)
         y <- model.extract(nd, "response")
         if(missing(nwts)) nwts <- rep(1, length(y))

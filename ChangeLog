@@ -1,7 +1,13 @@
 Library tree
 ============
 
-Version 1.0-18  2005-02-01
+Version 1.0-20  2005-12-08
+
+Remove test for existence of .checkMFClasses.
+Register C routines again.
+Remove \synopsis in text.tree.Rd.
+
+Version 1.0-19  2005-02-01
 
 Improve error messages for possible translation.
 

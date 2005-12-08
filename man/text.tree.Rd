@@ -6,12 +6,8 @@
 }
 \usage{
 \method{text}{tree}(x, splits = TRUE, label = "yval", all = FALSE,
-     pretty = NULL, digits = getOption("digits") - 3, ...)
-}
-\synopsis{
-text.tree(x, splits = TRUE, label = "yval", all = FALSE,
-          pretty = NULL, digits = getOption("digits") - 3,
-          adj = par("adj"), xpd = TRUE, ...)
+     pretty = NULL, digits = getOption("digits") - 3, 
+     adj = par("adj"), xpd = TRUE, ...)
 }
 \arguments{
  \item{x}{an object of class \code{"tree"}}
@@ -24,7 +20,7 @@ text.tree(x, splits = TRUE, label = "yval", all = FALSE,
  \item{pretty}{the manipulation used for split labels involving
    attributes. See Details.}
  \item{digits}{significant digits for numerical labels.}
- \item{\dots}{graphical parameters such as \code{cex} and \code{font}.}
+ \item{adj, xpd, \dots}{graphical parameters such as \code{cex} and \code{font}.}
 }
 \details{
   If \code{pretty = 0} then the level names of a factor split attributes
