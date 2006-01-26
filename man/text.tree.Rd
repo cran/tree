@@ -38,8 +38,7 @@
 \author{B. D. Ripley}
 
 \seealso{\code{\link{plot.tree}}}
-\example{
-data(iris)
+\examples{
 ir.tr <- tree(Species ~., iris)
 plot(ir.tr)
 text(ir.tr)

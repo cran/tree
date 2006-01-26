@@ -23,7 +23,7 @@ prune.tree <-
         w <- model.extract(model.frame(tree), "weights")
     if(is.null(w)) w <- rep(1, length(y))
     if(method == "misclass") {
-        Z <- .C("VR_dev1",
+        Z <- .C(VR_dev1,
                 as.integer(nnode),
                 as.integer(nodes),
                 integer(nnode),
@@ -34,14 +34,12 @@ prune.tree <-
                 as.integer(frame$yval),
                 as.integer(tree$where),
                 as.double(w),
-                as.integer(nc), as.double(loss),
-                PACKAGE = "tree"
-                )
+                as.integer(nc), as.double(loss))
         dev <- Z$dev; sdev <- Z$sdev
     } else {
         dev <- tree$frame$dev
         if(!nc) {
-            sdev <- .C("VR_dev3",
+            sdev <- .C(VR_dev3,
                        as.integer(nnode),
                        as.integer(nodes),
                        integer(nnode),
@@ -51,11 +49,9 @@ prune.tree <-
                        as.integer(length(y)),
                        as.double(frame$yval),
                        as.integer(tree$where),
-                       as.double(w),
-                       PACKAGE = "tree"
-                       )$sdev
+                       as.double(w))$sdev
         } else  {
-            sdev <- -2 * .C("VR_dev2",
+            sdev <- -2 * .C(VR_dev2,
                             as.integer(nnode),
                             as.integer(nodes),
                             integer(nnode),
@@ -65,9 +61,7 @@ prune.tree <-
                             as.integer(length(y)),
                             as.double(frame$yprob),
                             as.integer(tree$where),
-                            as.double(w),
-                            PACKAGE = "tree"
-                            )$sdev
+                            as.double(w))$sdev
         }
     }
     if(missing(newdata) || is.null(newdata)) {
@@ -84,7 +78,7 @@ prune.tree <-
         if(missing(nwts)) nwts <- rep(1, length(y))
         where <- pred1.tree(tree, tree.matrix(nd))
         if(method == "misclass") {
-            Z <- .C("VR_dev1",
+            Z <- .C(VR_dev1,
                     as.integer(nnode),
                     as.integer(nodes),
                     integer(nnode),
@@ -95,13 +89,11 @@ prune.tree <-
                     as.integer(frame$yval),
                     as.integer(where),
                     as.double(nwts),
-                    as.integer(nc), as.double(loss),
-                    PACKAGE = "tree"
-                    )
+                    as.integer(nc), as.double(loss))
             ndev <- Z$dev; nsdev <- Z$sdev
         } else {
             if(!nc) {
-                Z <- .C("VR_dev3",
+                Z <- .C(VR_dev3,
                         as.integer(nnode),
                         as.integer(nodes),
                         integer(nnode),
@@ -111,14 +103,12 @@ prune.tree <-
                         as.integer(length(y)),
                         as.double(frame$yval),
                         as.integer(where),
-                        as.double(nwts),
-                        PACKAGE = "tree"
-                        )
+                        as.double(nwts))
                 ndev <- Z$dev; nsdev <- Z$sdev
             } else {
                 yp <- frame$yprob
                 yp[yp==0] <- max(0,eps)
-                Z <- .C("VR_dev2",
+                Z <- .C(VR_dev2,
                         as.integer(nnode),
                         as.integer(nodes),
                         integer(nnode),
@@ -128,14 +118,12 @@ prune.tree <-
                         as.integer(length(y)),
                         as.double(yp),
                         as.integer(where),
-                        as.double(nwts),
-                        PACKAGE = "tree"
-                        )
+                        as.double(nwts))
                 ndev <- -2 * Z$dev; nsdev <- -2 *Z$sdev
             }
         }
     }
-    zp <- .C("VR_prune2",
+    zp <- .C(VR_prune2,
              n=as.integer(nnode),
              as.integer(nodes),
              as.integer(frame$var == "<leaf>"),
@@ -150,9 +138,7 @@ prune.tree <-
              inode=integer(ndim),
              size=integer(ndim),
              deviance=double(ndim),
-             newdev=double(ndim),
-             PACKAGE = "tree"
-             )
+             newdev=double(ndim))
     n <- zp$n
     alpha <- zp$alpha[1:n]
     size <- zp$size[1:n]
@@ -208,7 +194,7 @@ predict.tree <-
         frame <- tree$frame
         if(!length(frame$yprob)) stop("only for classification trees")
         dimx <- dim(x)
-        ypred <- .C("VR_pred2",
+        ypred <- .C(VR_pred2,
                     as.double(x),
                     as.integer(unclass(frame$var) - 1),#0 denotes leaf node
                     as.character(frame$splits[, "cutleft"]),
@@ -219,8 +205,7 @@ predict.tree <-
                     as.integer(nf <- dim(frame)[1]),
                     as.integer(dimx[1]),
                     where = double(nf*dimx[1]),
-                    NAOK = TRUE,
-                    PACKAGE = "tree")
+                    NAOK = TRUE)
         ypred <- matrix(ypred$where, nf)
         dimnames(ypred) <- list(row.names(frame),dimnames(x)[[1]])
         ypred
@@ -304,7 +289,7 @@ predict.tree <-
 #  handle NAs in y separately.
 #
             drp <- is.na(y); nwts[drp] <- 0; y[drp] <- 0
-            dev <- .C("VR_dev3",
+            dev <- .C(VR_dev3,
                       as.integer(nnode),
                       as.integer(nodes),
                       integer(nnode),
@@ -314,15 +299,13 @@ predict.tree <-
                       as.integer(length(y)),
                       as.double(frame$yval),
                       as.integer(where),
-                      as.double(nwts),
-                      PACKAGE = "tree"
-                      )$dev
+                      as.double(nwts))$dev
             dev[which %*% drp > 0] <- NA
         } else {
             yp <- frame$yprob
             yp[yp==0] <- max(0,eps)
             drp <- is.na(y); nwts[drp] <- 0; y[drp] <- levels(y)[1]
-            dev <- -2 * .C("VR_dev2",
+            dev <- -2 * .C(VR_dev2,
                            as.integer(nnode),
                            as.integer(nodes),
                            integer(nnode),
@@ -332,9 +315,7 @@ predict.tree <-
                            as.integer(length(y)),
                            as.double(yp),
                            as.integer(where),
-                           as.double(nwts),
-                           PACKAGE = "tree"
-                           )$dev
+                           as.double(nwts))$dev
             dev[which %*% drp > 0] <- NA
         }
     }
@@ -350,7 +331,7 @@ pred1.tree <- function(tree, x)
 {
     frame <- tree$frame
     dimx <- dim(x)
-    ypred <- .C("VR_pred1",
+    ypred <- .C(VR_pred1,
                 as.double(x),
                 as.integer(unclass(frame$var) - 1),#0 denotes leaf node
                 as.character(frame$splits[, "cutleft"]),
@@ -362,8 +343,7 @@ pred1.tree <- function(tree, x)
                 as.integer(dimx[1]),
                 as.integer(dimx[2]),
                 where = integer(dimx[1]),
-                NAOK = TRUE,
-                PACKAGE = "tree")
+                NAOK = TRUE)
     ypred <- ypred$where
     names(ypred) <- dimnames(x)[[1]]
     ypred

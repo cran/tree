@@ -50,7 +50,7 @@ function(formula, data, weights, subset,
     if(!is.null(control$nobs) && control$nobs < nobs) {
         stop("control$nobs < number of observations in data")
     }
-    fit <- .C("BDRgrow1",
+    fit <- .C(BDRgrow1,
               as.double(X),
               as.double(unclass(Y)),
               as.double(w),
@@ -74,8 +74,7 @@ function(formula, data, weights, subset,
               as.integer(control$nmax),
               as.integer(split=="gini"),
               as.integer(sapply(m, is.ordered)),
-              NAOK = TRUE,
-              PACKAGE = "tree")
+              NAOK = TRUE)
     n <- fit$nnode
     frame <- data.frame(fit[c("var", "n", "dev", "yval")])[1:n,  ]
     frame$var <- factor(frame$var, 0:length(xlevels),

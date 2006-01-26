@@ -1,4 +1,4 @@
-useDynLib(tree)
+useDynLib(tree, .registration = TRUE)
 
 export(cv.tree, deviance.tree, labels.tree,
        misclass.tree, model.frame.tree, na.tree.replace,

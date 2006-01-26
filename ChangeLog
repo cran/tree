@@ -1,6 +1,11 @@
 Library tree
 ============
 
+Version 1.0-21  2006-01-26
+
+Typo in text.tree.Rd, remove data() statement.
+Use R-level registered symbols.
+
 Version 1.0-20  2005-12-08
 
 Remove test for existence of .checkMFClasses.
