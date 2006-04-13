@@ -26,8 +26,7 @@ tile.tree(tree, var, screen.arg = ascr + 1, axes = TRUE)
 \seealso{\code{\link{tree.screens}}}
 
 \examples{
-library(MASS)
-data(fgl)
+data(fgl, package="MASS")
 fgl.tr <- tree(type ~ ., fgl)
 summary(fgl.tr)
 plot(fgl.tr);  text(fgl.tr, all=TRUE, cex=0.5)

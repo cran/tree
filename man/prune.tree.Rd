@@ -103,8 +103,7 @@ prune.misclass(tree, ...)
   }
 }
 \examples{
-library(MASS)
-data(fgl)
+data(fgl, package="MASS")
 fgl.tr <- tree(type ~ ., fgl)
 plot(print(fgl.tr))
 fgl.cv <- cv.tree(fgl.tr,, prune.tree)

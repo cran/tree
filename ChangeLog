@@ -1,6 +1,10 @@
 Library tree
 ============
 
+Version 1.0-22  2006-03-27
+
+Use data(foo, package="MASS") throughout
+
 Version 1.0-21  2006-01-26
 
 Typo in text.tree.Rd, remove data() statement.

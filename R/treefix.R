@@ -239,8 +239,7 @@ predict.tree <-
             } else Terms <- delete.response(Terms)
             newdata <- model.frame(Terms, newdata, na.action = na.pass,
                                    xlev = object$xlevels)
-            if (!is.null(cl <- attr(Terms, "dataClasses")) &&
-                exists(".checkMFClasses", envir=NULL))
+            if (!is.null(cl <- attr(Terms, "dataClasses")))
                 .checkMFClasses(cl, newdata)
         }
         where <- pred1.tree(object, tree.matrix(newdata))

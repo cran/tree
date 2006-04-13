@@ -21,8 +21,7 @@ tree.screens(figs, screen.arg = 0, ...)
 \seealso{\code{\link{tile.tree}}, \code{\link{split.screen}}}
 
 \examples{
-library(MASS)
-data(fgl)
+data(fgl, package="MASS")
 fgl.tr <- tree(type ~ ., fgl)
 summary(fgl.tr)
 plot(fgl.tr);  text(fgl.tr, all=TRUE, cex=0.5)

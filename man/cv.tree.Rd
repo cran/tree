@@ -28,8 +28,7 @@ cv.tree(object, rand, FUN = prune.tree, K = 10, ...)
 \seealso{\code{\link{tree}}, \code{\link{prune.tree}}}
 
 \examples{
-library(MASS)
-data(cpus)
+data(cpus, package="MASS")
 cpus.ltr <- tree(log10(perf) ~ syct + mmin + mmax + cach
      + chmin + chmax, data=cpus)
 cv.tree(cpus.ltr, , prune.tree)

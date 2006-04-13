@@ -36,7 +36,6 @@ partition.tree(tree, label = "yval", add = FALSE, ordvars, ...)
 \seealso{\code{\link{tree}}}
 
 \examples{
-data(iris)
 ir.tr <- tree(Species ~., iris)
 ir.tr
 ir.tr1 <- snip.tree(ir.tr, nodes = c(12, 7))
