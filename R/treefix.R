@@ -391,10 +391,11 @@ na.tree.replace <- function(frame)
     frame
 }
 
-prune.misclass <- function(tree, ...)
+prune.misclass <- function(tree, k = NULL, best = NULL, newdata,
+                           nwts, loss, eps = 1e-3)
 {
     oc <- match.call()
     oc$method <- "misclass"
     oc[[1]] <- as.name("prune.tree")
-    eval(oc, parent.frame())
+    eval.parent(oc)
 }

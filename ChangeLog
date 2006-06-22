@@ -1,6 +1,10 @@
 Library tree
 ============
 
+Version 1.0-22  2006-06-23
+
+Remove remaining usages of \synopsis.
+
 Version 1.0-22  2006-03-27
 
 Use data(foo, package="MASS") throughout

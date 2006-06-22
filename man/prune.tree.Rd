@@ -6,18 +6,14 @@ Cost-complexity Pruning of Tree Object
 }
 \description{
   Determines a nested sequence of subtrees of the supplied tree by
-  recursively "snipping" off the least important splits.
+  recursively \dQuote{snipping} off the least important splits.
 }
 \usage{
 prune.tree(tree, k = NULL, best = NULL, newdata, nwts,
            method = c("deviance", "misclass"), loss, eps = 1e-3)
+
 prune.misclass(tree, k = NULL, best = NULL, newdata, 
                nwts, loss, eps = 1e-3)
-}
-\synopsis{
-prune.tree(tree, k = NULL, best = NULL, newdata, nwts,
-           method = c("deviance", "misclass"), loss, eps = 1e-3)
-prune.misclass(tree, ...)
 }
 \arguments{
   \item{tree}{

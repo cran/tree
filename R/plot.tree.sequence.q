@@ -1,12 +1,12 @@
 # file treefix/plot.tree.sequence.q copyright (C) 1994-2000 B. D. Ripley
 #
 plot.tree.sequence <- function(x, ..., type = "l", ylim = range(x$dev),
-    order. = c("increasing", "decreasing"))
+    order = c("increasing", "decreasing"))
 {
     if(missing(type) && inherits(x, "prune")) type <- "S"
     if(is.null(x$method)) x$method <- "deviance"
-    order. <-  match.arg(order.)
-    if(order. == "increasing")
+    order <-  match.arg(order)
+    if(order == "increasing")
         sign <- +1 else sign <- -1
     plot(sign*x$size, x$dev, axes = FALSE,
          xlab = "size", ylab = x$method,
