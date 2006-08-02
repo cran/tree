@@ -1,7 +1,11 @@
 Library tree
 ============
 
-Version 1.0-22  2006-06-23
+Version 1.0-24  2006-08-02
+
+Add a test for nobs == 0 in tree().
+
+Version 1.0-23  2006-06-23
 
 Remove remaining usages of \synopsis.
 

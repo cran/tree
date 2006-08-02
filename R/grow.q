@@ -47,6 +47,8 @@ function(formula, data, weights, subset,
         names(xlevels) <- dimnames(X)[[2]]
     }
     nobs <- length(Y)
+    if(nobs == 0)
+	stop("no observations from which to fit a model")
     if(!is.null(control$nobs) && control$nobs < nobs) {
         stop("control$nobs < number of observations in data")
     }
