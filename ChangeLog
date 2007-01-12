@@ -1,6 +1,10 @@
 Library tree
 ============
 
+Version 1.0-25  2007-01-12
+
+add dependence on standard packages.
+
 Version 1.0-24  2006-08-02
 
 Add a test for nobs == 0 in tree().
