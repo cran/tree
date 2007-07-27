@@ -1,3 +1,7 @@
+% This file is part of the 'tree' package for R
+% Copyright (C) B. D. Ripley 1998-2007
+% It is distributed under the GPL version 2 or 3
+
 \name{tile.tree}
 \title{Add Class Barplots to a Classification Tree Plot}
 \usage{
@@ -7,7 +11,7 @@ tile.tree(tree, var, screen.arg = ascr + 1, axes = TRUE)
 \arguments{
   \item{tree}{fitted object of class \code{"tree"}.}
   \item{var}{a factor variable to be displayed: by default it is the
-    repsonse factor of the tree.}
+    response factor of the tree.}
   \item{screen.arg}{The screen to be used: default the next after the
     currently active screen.}
   \item{axes}{logical flag for drawing of axes for the barplots.}

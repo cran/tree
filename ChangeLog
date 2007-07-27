@@ -1,6 +1,11 @@
 Library tree
 ============
 
+Version 1.0-26  2007-07-27
+
+Typos in man/deviance.tree.Rd and man/tile.tree.Rd.
+Clarify licence to be GPL-2 | GPL-3, add licence statements to source files.
+
 Version 1.0-25  2007-01-12
 
 add dependence on standard packages.

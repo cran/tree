@@ -1,3 +1,7 @@
+% This file is part of the 'tree' package for R
+% Copyright (C) B. D. Ripley 1998-2007
+% It is distributed under the GPL version 2 or 3
+
 \name{misclass.tree}
 \title{Misclassifications by a Classification Tree}
 \usage{
