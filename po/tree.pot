@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: bugs@R-project.org\n"
-"POT-Creation-Date: 2005-12-08 20:39+0000\n"
+"POT-Creation-Date: 2009-05-27 11:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,14 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: grow.c:185 grow.c:343
+#: grow.c:198 grow.c:356
 msgid "cannot use 'Gini' with missing values"
 msgstr ""
 
-#: grow.c:622
+#: grow.c:635
 msgid "tree is too big"
 msgstr ""
 
-#: grow.c:656
+#: grow.c:669
 msgid "maximum depth reached\n"
 msgstr ""

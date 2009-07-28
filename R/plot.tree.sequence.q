@@ -26,14 +26,14 @@ plot.tree.sequence <- function(x, ..., type = "l", ylim = range(x$dev),
          xlab = "size", ylab = x$method,
          type = type, ylim = ylim, ...)
     box()
-    axis(2, ...)
+    axis(2L, ...)
     xaxp <- par("xaxp")
-    pos <- sign*seq(xaxp[1], xaxp[2], diff(xaxp[-3])/xaxp[3])
-    if(pos[1] == 0) pos[1] <- 1
+    pos <- sign*seq(xaxp[1L], xaxp[2L], diff(xaxp[-3])/xaxp[3L])
+    if(pos[1L] == 0) pos[1L] <- 1
     n <- length(pos)
     maxsize <- max(x$size)
     if(pos[n] > maxsize) pos[n] <- maxsize
-    axis(1, at = sign*pos, lab = pos, ...)
-    axis(3, at = sign * x$size, lab = format(signif(x$k, 2)), ...)
+    axis(1L, at = sign*pos, lab = pos, ...)
+    axis(3L, at = sign * x$size, lab = format(signif(x$k, 2)), ...)
     invisible()
 }

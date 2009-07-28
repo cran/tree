@@ -1,11 +1,11 @@
 % This file is part of the 'tree' package for R
-% Copyright (C) B. D. Ripley 1998-2007
+% Copyright (C) B. D. Ripley 1998-2009
 % It is distributed under the GPL version 2 or 3
 
 \name{na.tree.replace}
 \alias{na.tree.replace}
 \title{
-  Replace 'NA's in Predictor Variables
+  Replace NAs in Predictor Variables
 }
 \description{
   Adds a new level called \code{"NA"} to any discrete predictor in

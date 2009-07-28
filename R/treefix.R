@@ -154,20 +154,20 @@ prune.tree <-
              deviance=double(ndim),
              newdev=double(ndim))
     n <- zp$n
-    alpha <- zp$alpha[1:n]
-    size <- zp$size[1:n]
-    index <- 0
+    alpha <- zp$alpha[1L:n]
+    size <- zp$size[1L:n]
+    index <- 0L
     if(missing(k) || is.null(k)) {
-        ind <- drop(outer(unique(alpha), alpha, ">=") %*% rep(1, length(alpha)))
+        ind <- drop(outer(unique(alpha), alpha, ">=") %*% rep(1L, length(alpha)))
         k <- alpha[ind]
-        k[1] <- -Inf
+        k[1L] <- -Inf
         deviance <- zp$newdev[ind]
         size <- size[ind]
         if(!missing(best) && !is.null(best)) {
             index <- ind[sum(best <= size)]
-            if(length(index) == 0) {
+            if(length(index) == 0L) {
                 warning("best is bigger than tree size")
-                index <- 1
+                index <- 1L
             }
         }
     } else {
@@ -179,9 +179,9 @@ prune.tree <-
             size <- size[ind]
         }
     }
-    if(index == 1) return(tree)
-    if(index > 1) {
-        pnodes <- zp$inode[-1]
+    if(index == 1L) return(tree)
+    if(index > 1L) {
+        pnodes <- zp$inode[-1L]
         tree <- snip.tree(tree, pnodes[seq(index-1)])
         tree$call$tree <- match.call()$tree
         return(tree)
@@ -199,7 +199,7 @@ predict.tree <-
     which.is.max <- function(x)
     {
         y <- seq(length(x))[x == max(x)]
-        if(length(y) > 1) sample(y,1)
+        if(length(y) > 1L) sample(y, 1)
         else y
     }
 
@@ -216,12 +216,12 @@ predict.tree <-
                     as.integer(sapply(attr(tree, "xlevels"), length)),
                     as.integer(row.names(frame)),
                     as.integer(frame$n),
-                    as.integer(nf <- dim(frame)[1]),
-                    as.integer(dimx[1]),
-                    where = double(nf*dimx[1]),
+                    as.integer(nf <- dim(frame)[1L]),
+                    as.integer(dimx[1L]),
+                    where = double(nf*dimx[1L]),
                     NAOK = TRUE)
         ypred <- matrix(ypred$where, nf)
-        dimnames(ypred) <- list(row.names(frame),dimnames(x)[[1]])
+        dimnames(ypred) <- list(row.names(frame),dimnames(x)[[1L]])
         ypred
     }
 
@@ -243,7 +243,7 @@ predict.tree <-
             Terms <- object$terms
             if(type == "tree") {
                 # test if response can be extracted from newdata
-                response.vars <- all.vars(formula(Terms)[[2]])
+                response.vars <- all.vars(formula(Terms)[[2L]])
                 response.exists <-
                     sapply(response.vars, function(nm, newdata)
                            eval(substitute(exists(nm), list(nm=nm)),
@@ -279,7 +279,7 @@ predict.tree <-
         } else {
             if(!split) {
                 pr <- frame$yprob[where,  , drop = FALSE]
-                dimnames(pr)[[1]] <- names(where)
+                dimnames(pr)[[1L]] <- names(where)
             } else {
                 where <- pred2.tree(object, tree.matrix(newdata))
                 leaf <- frame$var=="<leaf>"
@@ -287,7 +287,7 @@ predict.tree <-
                 dimnames(pr) <- list(names(where), lev)
             }
             if(type=="class") {
-                cl <- apply(pr, 1, which.is.max)
+                cl <- apply(pr, 1L, which.is.max)
                 return(factor(lev[cl], levels=lev))
             } else return(pr)
         }
@@ -317,7 +317,7 @@ predict.tree <-
         } else {
             yp <- frame$yprob
             yp[yp==0] <- max(0,eps)
-            drp <- is.na(y); nwts[drp] <- 0; y[drp] <- levels(y)[1]
+            drp <- is.na(y); nwts[drp] <- 0; y[drp] <- levels(y)[1L]
             dev <- -2 * .C(VR_dev2,
                            as.integer(nnode),
                            as.integer(nodes),
@@ -352,13 +352,13 @@ pred1.tree <- function(tree, x)
                 as.integer(sapply(attr(tree, "xlevels"), length)),
                 as.integer(row.names(frame)),
                 as.integer(frame$n),
-                as.integer(dim(frame)[1]),
-                as.integer(dimx[1]),
-                as.integer(dimx[2]),
-                where = integer(dimx[1]),
+                as.integer(dim(frame)[1L]),
+                as.integer(dimx[1L]),
+                as.integer(dimx[2L]),
+                where = integer(dimx[1L]),
                 NAOK = TRUE)
     ypred <- ypred$where
-    names(ypred) <- dimnames(x)[[1]]
+    names(ypred) <- dimnames(x)[[1L]]
     ypred
 }
 
@@ -410,6 +410,6 @@ prune.misclass <- function(tree, k = NULL, best = NULL, newdata,
 {
     oc <- match.call()
     oc$method <- "misclass"
-    oc[[1]] <- as.name("prune.tree")
+    oc[[1L]] <- as.name("prune.tree")
     eval.parent(oc)
 }

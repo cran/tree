@@ -1,5 +1,5 @@
 /*
- *  treefix/treefix.c by B. D. Ripley  Copyright (C) 1994-2004
+ *  treefix/treefix.c by B. D. Ripley  Copyright (C) 1994-2009
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,6 +21,8 @@
 #include <math.h>
 #include <R.h>
 #include <string.h> /* for strchr */
+
+# include <R_ext/Utils.h>
 
 #ifndef Salloc
 #  define Salloc(n, t) (t *)S_alloc(n, sizeof(t))
@@ -251,7 +253,7 @@ VR_pred1(double *x, Sint *vars, char **lsplit, char **rsplit,
 		break;
 	    }
 	    if (nlevels[var] == 0) {
-		sp = atof(lsplit[cur] + 1);
+		sp = R_atof(lsplit[cur] + 1);
 		goleft = (val < sp);
 	    }
 	    else {
@@ -297,7 +299,7 @@ downtree(int i, int cur, double prob)
 	    goleft = lprob[cur];
 	}
 	else if (nlevels[var] == 0) {
-	    sp = atof(lsplit[cur] + 1);
+	    sp = R_atof(lsplit[cur] + 1);
 	    goleft = (val < sp);
 	}
 	else {

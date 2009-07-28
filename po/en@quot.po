@@ -1,7 +1,7 @@
 # English translations for R package.
-# Copyright (C) 2005 The R Foundation
+# Copyright (C) 2009 The R Foundation
 # This file is distributed under the same license as the R package.
-# Automatically generated, 2005.
+# Automatically generated, 2009.
 #
 # All this catalog "translates" are quotation characters.
 # The msgids must be ASCII and therefore cannot contain real quotation
@@ -27,10 +27,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: R 2.3.0\n"
+"Project-Id-Version: R 2.10.0\n"
 "Report-Msgid-Bugs-To: bugs@R-project.org\n"
-"POT-Creation-Date: 2005-12-08 20:39+0000\n"
-"PO-Revision-Date: 2005-12-08 20:39+0000\n"
+"POT-Creation-Date: 2009-05-27 11:11+0100\n"
+"PO-Revision-Date: 2009-05-27 11:11+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -38,14 +38,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: grow.c:185 grow.c:343
+#: grow.c:198 grow.c:356
 msgid "cannot use 'Gini' with missing values"
 msgstr "cannot use ‘Gini’ with missing values"
 
-#: grow.c:622
+#: grow.c:635
 msgid "tree is too big"
 msgstr "tree is too big"
 
-#: grow.c:656
+#: grow.c:669
 msgid "maximum depth reached\n"
 msgstr "maximum depth reached\n"

@@ -1,9 +1,9 @@
 % This file is part of the 'tree' package for R
-% Copyright (C) B. D. Ripley 1998-2007
+% Copyright (C) B. D. Ripley 1998-2009
 % It is distributed under the GPL version 2 or 3
 
 \name{tile.tree}
-\title{Add Class Barplots to a Classification Tree Plot}
+\title{Add Class Barcharts to a Classification Tree Plot}
 \usage{
 tile.tree(tree, var, screen.arg = ascr + 1, axes = TRUE)
 }
@@ -14,11 +14,11 @@ tile.tree(tree, var, screen.arg = ascr + 1, axes = TRUE)
     response factor of the tree.}
   \item{screen.arg}{The screen to be used: default the next after the
     currently active screen.}
-  \item{axes}{logical flag for drawing of axes for the barplots.}
+  \item{axes}{logical flag for drawing of axes for the barcharts.}
 }
 \description{
-  The computes a the frequencies of level of \code{var} for cases
-  reaching each leaf of the tree, and plots of barchart of the set of
+  This computes the frequencies of level of \code{var} for cases
+  reaching each leaf of the tree, and plots barcharts of the set of
   frequencies underneath each leaf.
 }
 \value{

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: R 2.1.0\n"
+"Project-Id-Version: R 2.10.0\n"
 "Report-Msgid-Bugs-To: bugs@r-project.org\n"
-"POT-Creation-Date: 2005-02-01 09:46\n"
+"POT-Creation-Date: 2009-05-27 11:11\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,9 @@ msgid "trees cannot handle multiple responses"
 msgstr ""
 
 msgid "offset not implemented for classification trees"
+msgstr ""
+
+msgid "no observations from which to fit a model"
 msgstr ""
 
 msgid "control$nobs < number of observations in data"
@@ -60,6 +63,9 @@ msgid "misclassification error rate is appropriate for factor responses only"
 msgstr ""
 
 msgid "supplied nodes"
+msgstr ""
+
+msgid ","
 msgstr ""
 
 msgid "are not in this tree"

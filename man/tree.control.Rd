@@ -1,5 +1,5 @@
 % This file is part of the 'tree' package for R
-% Copyright (C) B. D. Ripley 1998-2007
+% Copyright (C) B. D. Ripley 1998-2009
 % It is distributed under the GPL version 2 or 3
 
 \name{tree.control}
@@ -31,8 +31,8 @@ tree.control(nobs, mincut = 5, minsize = 10, mindev = 0.01)
 }
 \value{
   A list:
-  \item{mincut}{The maximum of the input or default mincut and 1}
-  \item{minsize}{The maximum of the input or default minsize and 2.}
+  \item{mincut}{The maximum of the input or default \code{mincut} and 1}
+  \item{minsize}{The maximum of the input or default \code{minsize} and 2.}
   \item{nmax}{A estimate of the maximum number of nodes that might be grown.}
   \item{nobs}{The input \code{nobs}.}
 }

@@ -22,10 +22,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: R 2.3.0\n"
+"Project-Id-Version: R 2.10.0\n"
 "Report-Msgid-Bugs-To: bugs@r-project.org\n"
-"POT-Creation-Date: 2005-12-08 20:39\n"
-"PO-Revision-Date: 2005-12-08 20:39\n"
+"POT-Creation-Date: 2009-05-27 11:11\n"
+"PO-Revision-Date: 2009-05-27 11:11\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -41,6 +41,9 @@ msgstr "trees cannot handle multiple responses"
 
 msgid "offset not implemented for classification trees"
 msgstr "offset not implemented for classification trees"
+
+msgid "no observations from which to fit a model"
+msgstr "no observations from which to fit a model"
 
 msgid "control$nobs < number of observations in data"
 msgstr "control$nobs < number of observations in data"
