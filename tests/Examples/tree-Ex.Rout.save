@@ -1,6 +1,6 @@
 
-R version 2.9.1 beta (2009-06-16 r48788)
-Copyright (C) 2009 The R Foundation for Statistical Computing
+R version 2.12.0 Under development (unstable) (2010-05-11 r51975)
+Copyright (C) 2010 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -17,79 +17,14 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
-> ### * <HEADER>
-> ###
-> attach(NULL, name = "CheckExEnv")
-> assign("nameEx",
-+        local({
-+ 	   s <- "__{must remake R-ex/*.R}__"
-+            function(new) {
-+                if(!missing(new)) s <<- new else s
-+            }
-+        }),
-+        pos = "CheckExEnv")
-> ## Add some hooks to label plot pages for base and grid graphics
-> assign("base_plot_hook",
-+        function() {
-+            pp <- par(c("mfg","mfcol","oma","mar"))
-+            if(all(pp$mfg[1:2] == c(1, pp$mfcol[2]))) {
-+                outer <- (oma4 <- pp$oma[4]) > 0; mar4 <- pp$mar[4]
-+                mtext(sprintf("help(\"%s\")", nameEx()), side = 4,
-+                      line = if(outer)max(1, oma4 - 1) else min(1, mar4 - 1),
-+                outer = outer, adj = 1, cex = .8, col = "orchid", las=3)
-+            }
-+        },
-+        pos = "CheckExEnv")
-> assign("grid_plot_hook",
-+        function() {
-+            grid::pushViewport(grid::viewport(width=grid::unit(1, "npc") -
-+                               grid::unit(1, "lines"), x=0, just="left"))
-+            grid::grid.text(sprintf("help(\"%s\")", nameEx()),
-+                            x=grid::unit(1, "npc") + grid::unit(0.5, "lines"),
-+                            y=grid::unit(0.8, "npc"), rot=90,
-+                            gp=grid::gpar(col="orchid"))
-+        },
-+        pos = "CheckExEnv")
-> setHook("plot.new",     get("base_plot_hook", pos = "CheckExEnv"))
-> setHook("persp",        get("base_plot_hook", pos = "CheckExEnv"))
-> setHook("grid.newpage", get("grid_plot_hook", pos = "CheckExEnv"))
-> assign("cleanEx",
-+        function(env = .GlobalEnv) {
-+ 	   rm(list = ls(envir = env, all.names = TRUE), envir = env)
-+            RNGkind("default", "default")
-+ 	   set.seed(1)
-+    	   options(warn = 1)
-+ 	   .CheckExEnv <- as.environment("CheckExEnv")
-+ 	   delayedAssign("T", stop("T used instead of TRUE"),
-+ 		  assign.env = .CheckExEnv)
-+ 	   delayedAssign("F", stop("F used instead of FALSE"),
-+ 		  assign.env = .CheckExEnv)
-+ 	   sch <- search()
-+ 	   newitems <- sch[! sch %in% .oldSearch]
-+ 	   for(item in rev(newitems))
-+                eval(substitute(detach(item), list(item=item)))
-+ 	   missitems <- .oldSearch[! .oldSearch %in% sch]
-+ 	   if(length(missitems))
-+ 	       warning("items ", paste(missitems, collapse=", "),
-+ 		       " have been removed from the search path")
-+        },
-+        pos = "CheckExEnv")
-> assign("ptime", proc.time(), pos = "CheckExEnv")
-> ## at least one package changes these via ps.options(), so do this
-> ## before loading the package.
-> ## Use postscript as incomplete files may be viewable, unlike PDF.
-> ## Choose a size that is close to on-screen devices, fix paper
-> grDevices::ps.options(width = 7, height = 7, paper = "a4", reset = TRUE)
-> grDevices::postscript("tree-Ex.ps")
-> 
-> assign("par.postscript", graphics::par(no.readonly = TRUE), pos = "CheckExEnv")
-> options(contrasts = c(unordered = "contr.treatment", ordered = "contr.poly"))
+> pkgname <- "tree"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
 > options(warn = 1)
 > library('tree')
 > 
 > assign(".oldSearch", search(), pos = 'CheckExEnv')
-> assign(".oldNS", loadedNamespaces(), pos = 'CheckExEnv')
-> cleanEx(); nameEx("cv.tree")
+> cleanEx()
+> nameEx("cv.tree")
 > ### * cv.tree
 > 
 > flush(stderr()); flush(stdout())
@@ -124,7 +59,8 @@ attr(,"class")
 > 
 > 
 > 
-> cleanEx(); nameEx("misclass.tree")
+> cleanEx()
+> nameEx("misclass.tree")
 > ### * misclass.tree
 > 
 > flush(stderr()); flush(stdout())
@@ -145,7 +81,8 @@ attr(,"class")
 > 
 > 
 > 
-> cleanEx(); nameEx("partition.tree")
+> cleanEx()
+> nameEx("partition.tree")
 > ### * partition.tree
 > 
 > flush(stderr()); flush(stdout())
@@ -197,7 +134,8 @@ Misclassification error rate: 0.02667 = 4 / 150
 > 
 > 
 > graphics::par(get("par.postscript", pos = 'CheckExEnv'))
-> cleanEx(); nameEx("plot.tree.sequence")
+> cleanEx()
+> nameEx("plot.tree.sequence")
 > ### * plot.tree.sequence
 > 
 > flush(stderr()); flush(stdout())
@@ -216,7 +154,8 @@ Misclassification error rate: 0.02667 = 4 / 150
 > 
 > 
 > 
-> cleanEx(); nameEx("predict.tree")
+> cleanEx()
+> nameEx("predict.tree")
 > ### * predict.tree
 > 
 > flush(stderr()); flush(stdout())
@@ -261,7 +200,8 @@ node), split, n, deviance, yval, (yprob)
 > 
 > 
 > 
-> cleanEx(); nameEx("prune.tree")
+> cleanEx()
+> nameEx("prune.tree")
 > ### * prune.tree
 > 
 > flush(stderr()); flush(stdout())
@@ -326,7 +266,8 @@ node), split, n, deviance, yval, (yprob)
 > 
 > 
 > 
-> cleanEx(); nameEx("text.tree")
+> cleanEx()
+> nameEx("text.tree")
 > ### * text.tree
 > 
 > flush(stderr()); flush(stdout())
@@ -344,7 +285,8 @@ node), split, n, deviance, yval, (yprob)
 > 
 > 
 > 
-> cleanEx(); nameEx("tile.tree")
+> cleanEx()
+> nameEx("tile.tree")
 > ### * tile.tree
 > 
 > flush(stderr()); flush(stdout())
@@ -377,7 +319,8 @@ Warning in data.tree(tree) : retrieving data from fgl
 > 
 > 
 > 
-> cleanEx(); nameEx("tree")
+> cleanEx()
+> nameEx("tree")
 > ### * tree
 > 
 > flush(stderr()); flush(stdout())
@@ -425,7 +368,7 @@ Number of terminal nodes:  10
 Residual mean deviance:  0.03187 = 6.342 / 199 
 Distribution of residuals:
       Min.    1st Qu.     Median       Mean    3rd Qu.       Max. 
--4.945e-01 -1.191e-01  3.571e-04  2.895e-16  1.141e-01  4.680e-01 
+-0.4945000 -0.1191000  0.0003571  0.0000000  0.1141000  0.4680000 
 > plot(cpus.ltr);  text(cpus.ltr)
 > 
 > ir.tr <- tree(Species ~., iris)
@@ -488,7 +431,8 @@ Misclassification error rate: 0.4 = 2 / 5
 > ## End Don't show
 > 
 > 
-> cleanEx(); nameEx("tree.screens")
+> cleanEx()
+> nameEx("tree.screens")
 > ### * tree.screens
 > 
 > flush(stderr()); flush(stdout())
@@ -523,7 +467,7 @@ Warning in data.tree(tree) : retrieving data from fgl
 > ### * <FOOTER>
 > ###
 > cat("Time elapsed: ", proc.time() - get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  1.181 0.037 1.477 0 0 
+Time elapsed:  0.856 0.007 0.863 0 0 
 > grDevices::dev.off()
 null device 
           1 
