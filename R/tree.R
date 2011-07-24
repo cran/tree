@@ -1,5 +1,5 @@
 #
-#  tree/R/grow.q by B. D. Ripley  Copyright (C) 1994-2006
+#  tree/R/tree.R by B. D. Ripley  Copyright (C) 1994-2011
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ function(formula, data, weights, subset,
 	m <- model
 	model <- FALSE
     } else {
-        m <- match.call(expand = FALSE)
+        m <- match.call(expand.dots = FALSE)
         m$method <- m$model <- m$control <- m$... <- m$x <- m$y <- m$wts <-
             m$split <- NULL
         m[[1L]] <- as.name("model.frame.default")
