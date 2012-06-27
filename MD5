@@ -1,5 +1,5 @@
 3154c4b18d08bc5f20f23b239886459a *ChangeLog
-466c4dda91c89bd83cb507c448348992 *DESCRIPTION
+d2fa8858473c25cdcd00387eb75e789f *DESCRIPTION
 eb723b61539feef013de476e68b5c50a *GPL-2
 5fb21b975afd6c50c1ed91d91dcabfb9 *NAMESPACE
 cf708d60d645a51b4bcd6c42a0702a08 *R/plot.tree.sequence.R
@@ -7,8 +7,10 @@ cf708d60d645a51b4bcd6c42a0702a08 *R/plot.tree.sequence.R
 635aa69efc6e0835c22e1db3432739ad *R/treefix.R
 48df47bf8902b11719b87f11daeda7a3 *R/treemisc.R
 e939f0b310630eb16cabc697aecaed25 *inst/LICENCE
-76ab35e9a08aff89099e55148061cadd *inst/po/en@quot/LC_MESSAGES/R-tree.mo
-94a554a4273e38a0348b0d005d497995 *inst/po/en@quot/LC_MESSAGES/tree.mo
+b02ab267afdcdbdf1fdb35b20894ac39 *inst/po/en@quot/LC_MESSAGES/R-tree.mo
+a5388174609eeda862035368791fe799 *inst/po/en@quot/LC_MESSAGES/tree.mo
+21246407f01b5fc632eba93aeadf41aa *inst/po/pl/LC_MESSAGES/R-tree.mo
+10675da22b2dc7ade481c84440c3af8c *inst/po/pl/LC_MESSAGES/tree.mo
 f65393df552db283090120d05b6244f1 *man/cv.tree.Rd
 85f68f88b6759f2d32d358134b80ec1e *man/deviance.tree.Rd
 db15749f3ddc42b483e32f2b6ecce79d *man/misclass.tree.Rd
@@ -25,10 +27,12 @@ aef53764e7b60e13487c5127aa268e1a *man/text.tree.Rd
 19f182330e0965b0436119aeae17dc0c *man/tree.Rd
 71822236d92bd9cbcc2f0ed8fb24eb81 *man/tree.control.Rd
 1360171ffdbfa9a9dbbf779c370cbfcb *man/tree.screens.Rd
-a83e56701b0e2a8cd7c02979b73348be *po/R-en@quot.po
-086ed4acb730708940c7da00e0ab645e *po/R-tree.pot
-23d5ad7f10df98670b5d1c26c9a55068 *po/en@quot.po
-2e1da31c53aa082adb38f9fe83f4a53f *po/tree.pot
+228da1cb758f3abc146b2ba8fb35bc69 *po/R-en@quot.po
+3c5a1e624afc99fa7880d7d4676e7235 *po/R-pl.po
+74ff1518c8a45b598085bc0a27ddb373 *po/R-tree.pot
+03d1aacc6c820fd7722ba67acfac9fb6 *po/en@quot.po
+c268e4e6c68835aa6a7da5c2a4178343 *po/pl.po
+f7e9f12f42a7498f4f0162f0459bbeac *po/tree.pot
 f0a2b311267fa5c2001b0ac0e2a026f5 *src/grow.c
 d1faeec59ca93b8fe6fbef5df146f5b1 *src/init.c
 fbf1b1a1d665eb6cb86d58c294abd332 *src/tree.h
