@@ -85,14 +85,15 @@ labels.tree <- function(object, pretty = TRUE, collapse = TRUE, ...)
     xlevels <- attr(object, "xlevels")
     var <- as.character(frame$var)
     splits <- matrix(sub("^>", " > ", sub("^<", " < ", frame$splits)),, 2)
+    lt <- c(letters, 0:5) # max 32 levels
     if(!is.null(pretty)) {
         if(pretty) xlevels <- lapply(xlevels, abbreviate, minlength=pretty)
-        for(i in grep("^:", splits[, 1]))
+        for(i in grep("^:", splits[, 1],))
             for(j in 1L:2L) {
                 sh <- splits[i, j]
                 nc <- nchar(sh)
                 sh <- substring(sh, 2L:nc, 2L:nc)
-                xl <- xlevels[[var[i]]][match(sh, letters)]
+                xl <- xlevels[[var[i]]][match(sh, lt)]
                 splits[i, j] <- paste(": ",
                                       paste(as.vector(xl), collapse=","),
                                       sep="")

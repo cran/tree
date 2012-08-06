@@ -1,5 +1,5 @@
 /*
- *  tree/src/grow.c by B. D. Ripley  Copyright (C) 1994-2005
+ *  tree/src/grow.c by B. D. Ripley  Copyright (C) 1994-2012
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -326,6 +326,10 @@ static void split_cont(int inode, int iv, double *bval)
 	} else ttw[j] = -1;
 }
 
+static char lb[32] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 
+		      'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 
+		      'u', 'v', 'w', 'x', 'y', 'z', 
+		      '0', '1', '2', '3', '4', '5'};
 
 static void split_disc(int inode, int iv, double *bval)
 {
@@ -423,8 +427,9 @@ static void split_disc(int inode, int iv, double *bval)
 	labr = cutright[inode];
 	strcpy(labl, ":");
 	strcpy(labr, ":");
-	scat(labl, 'a' + ind[0]);
-	scat(labr, 'a' + ind[1]);
+	// need a shorthand: a-z0-5 as max 32 levels.
+	scat(labl, lb[ind[0]]);
+	scat(labr, lb[ind[1]]);
 	for (j = 0; j < nobs; j++)
 	    if (twhere[j] < 0) ttw[j] = twhere[j];
 	    else ttw[j] = (twhere[j] != ind[0]);
@@ -507,8 +512,8 @@ static void split_disc(int inode, int iv, double *bval)
 	    strcpy(labl, ":");
 	    strcpy(labr, ":");
 	    for (l = 0; l < nll; l++)
-		if (cprob[l] < bfence) scat(labl, 'a' + ind[l]);
-		else scat(labr, 'a' + ind[l]);
+		if (cprob[l] < bfence) scat(labl, lb[ind[l]]);
+		else scat(labr, lb[ind[l]]);
 /* Printf("%s %s\n", labl, labr); */
 	    for (l = 0; l < nl; l++) indl[l] = False;
 	    for (l = 0; l < nll; l++)
@@ -582,8 +587,8 @@ static void split_disc(int inode, int iv, double *bval)
 	    strcpy(labl, ":");
 	    strcpy(labr, ":");
 	    for (l = 0; l < nll; l++)
-		if (indl[l]) scat(labl, 'a' + ind[l]);
-		else scat(labr, 'a' + ind[l]);
+		if (indl[l]) scat(labl, lb[ind[l]]);
+		else scat(labr, lb[ind[l]]);
 	    for (l = 0; l < nl; l++) indr[l] = False;
 	    for (l = 0; l < nll; l++) indr[ind[l]] = indl[l];
 	    for (j = 0; j < nobs; j++)
@@ -726,6 +731,7 @@ BDRgrow1(double *pX, double *pY, double *pw, Sint *plevels, Sint *junk1,
     for(i = 0; i <= nvar; i++)
 	if (levels[i] > nl) nl = levels[i];
     maxnl = max(nl, 10);
+    if (maxnl > 32) error("factor predictors must have at most 32 levels");
     twhere = (int *) S_alloc(nobs, sizeof(int));
     ttw = (int *) S_alloc(nobs, sizeof(int));
     tvar = (double *) S_alloc(nobs, sizeof(double));

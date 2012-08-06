@@ -1,6 +1,22 @@
 Library tree
 ============
-	
+
+Version 1.0-31  2012-08-06
+
+Tweaks for printing factors with 27-32 levels.
+Update en@quot translation.
+
+Version 1.0-30  2012-06-27
+
+Move from .q to .R.
+Add Polish translation, update en@quot translation.
+
+Version 1.0-29  2011-07-24
+Remove INDEX file.
+COPYING -> GPL2.
+partial matches.
+label positions in plot.tree.sequence.
+
 Version 1.0-28  2010-05-11
 
 Update reference output
