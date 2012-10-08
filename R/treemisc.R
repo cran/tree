@@ -1,5 +1,5 @@
 #
-#  tree/R/treemisc.R Copyright (C) 1994-2005 B. D. Ripley
+#  tree/R/treemisc.R Copyright (C) 1994-2012 B. D. Ripley
 #  miscellaneous support routines for tree.
 #
 #  This program is free software; you can redistribute it and/or modify
@@ -20,6 +20,8 @@
 .noGenerics <- TRUE
 
 .onUnload <- function(libpath) library.dynam.unload("tree", libpath)
+
+tree_env <- new.env()
 
 cv.tree <- function(object, rand, FUN = prune.tree, K = 10, ...)
 {
@@ -262,8 +264,9 @@ plot.tree <- function (x, y = NULL,
     uniform <- type == "uniform"
     dev <- dev.cur()
     if (dev == 1L) dev <- 2L # as device will be opened.
-    assign(paste(".Tree.unif", dev, sep = "."), uniform, envir=.GlobalEnv)
-    invisible(treepl(treeco(x), node=as.numeric(row.names(x$frame)), ...))
+    assign(paste("device", dev, sep = "."), uniform, envir = tree_env)
+    invisible(treepl(treeco(x, uniform),
+                     node = as.numeric(row.names(x$frame)), ...))
 }
 
 print.tree <-
@@ -596,14 +599,19 @@ tree.screens <- function(figs, screen.arg = 0, ...)
 }
 
 treeco <-
-    function(tree, uniform = paste(".Tree.unif", dev.cur(), sep = "."))
+    function(tree, uniform)
 {
+    if(missing(uniform)) {
+        pn <- paste("device", dev.cur(), sep = ".")
+        uniform <- if(exists(pn, envir = tree_env, inherits = FALSE))
+            get(pn, envir = tree_env, inherits = FALSE)
+        else FALSE
+    }
+
     frame <- tree$frame
     node <- as.numeric(row.names(frame))
     depth <- tree.depth(node)
     x <-  -depth
-    if(exists(uniform)) uniform <- get(uniform)
-    else uniform <- 0
     if(uniform) y <- x
     else {
         y <- dev <- frame$dev

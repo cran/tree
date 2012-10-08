@@ -1,5 +1,5 @@
 % This file is part of the 'tree' package for R
-% Copyright (C) B. D. Ripley 1998-2007
+% Copyright (C) B. D. Ripley 1998-2012
 % It is distributed under the GPL version 2 or 3
 
 \name{text.tree}
@@ -22,16 +22,17 @@
  \item{all}{logical. By default, only the leaves are labelled, but if
    true interior nodes are also labelled.}
  \item{pretty}{the manipulation used for split labels involving
-   attributes. See Details.}
+   attributes.  See Details.}
  \item{digits}{significant digits for numerical labels.}
  \item{adj, xpd, \dots}{graphical parameters such as \code{cex} and \code{font}.}
 }
 \details{
   If \code{pretty = 0} then the level names of a factor split attributes
   are used unchanged.  If \code{pretty = NULL}, the levels are presented
-  by \code{a}, \code{b}, \dots.  If \code{pretty} is a positive integer,
-  \code{\link{abbreviate}} is applied to the labels with that value
-  for its argument \code{minlength}.
+  by \code{a}, \code{b}, \dots \code{z}, \code{0} \dots \code{5}.  If
+  \code{pretty} is a positive integer, \code{\link{abbreviate}} is
+  applied to the labels with that value for its argument
+  \code{minlength}.
 
   If the lettering is vertical (par \code{srt = 90}) and \code{adj} is
   not supplied it is adjusted appropriately.

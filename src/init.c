@@ -1,5 +1,5 @@
 /*
- * tree/src/init.c Copyright (C) 2002-5 B. D. Ripley
+ * tree/src/init.c Copyright (C) 2002-12 B. D. Ripley
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 
 #include "tree.h"
 #include <R_ext/Rdynload.h>
+#include <Rversion.h>
 
 #define CDEF(name, n)  {#name, (DL_FUNC) &name, n}
 
@@ -38,4 +39,7 @@ void R_init_tree(DllInfo *dll)
 {
     R_registerRoutines(dll, CEntries, NULL, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
+#if defined(R_VERSION) && R_VERSION >= R_Version(2, 16, 0)
+    R_forceSymbols(dll, TRUE);
+#endif
 }
