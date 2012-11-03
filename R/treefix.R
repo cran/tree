@@ -17,7 +17,7 @@
 prune.tree <-
     function(tree, k = NULL, best = NULL, newdata, nwts,
              method = c("deviance", "misclass"),
-             loss = 1-diag(nc), eps = 1e-3)
+             loss = 1 - diag(nc), eps = 1e-3)
 {
     if(inherits(tree, "singlenode")) stop("can not prune singlenode tree")
     if(!inherits(tree, "tree")) stop("not legitimate tree")
@@ -52,30 +52,30 @@ prune.tree <-
         dev <- Z$dev; sdev <- Z$sdev
     } else {
         dev <- tree$frame$dev
-        if(!nc) {
-            sdev <- .C(VR_dev3,
-                       as.integer(nnode),
-                       as.integer(nodes),
-                       integer(nnode),
-                       dev = double(nnode),
-                       sdev = double(nnode),
-                       as.double(y),
-                       as.integer(length(y)),
-                       as.double(frame$yval),
-                       as.integer(tree$where),
-                       as.double(w))$sdev
+        sdev <- if(!nc) {
+            .C(VR_dev3,
+               as.integer(nnode),
+               as.integer(nodes),
+               integer(nnode),
+               dev = double(nnode),
+               sdev = double(nnode),
+               as.double(y),
+               as.integer(length(y)),
+               as.double(frame$yval),
+               as.integer(tree$where),
+               as.double(w))$sdev
         } else  {
-            sdev <- -2 * .C(VR_dev2,
-                            as.integer(nnode),
-                            as.integer(nodes),
-                            integer(nnode),
-                            dev = double(nnode),
-                            sdev = double(nnode),
-                            as.integer(y),
-                            as.integer(length(y)),
-                            as.double(frame$yprob),
-                            as.integer(tree$where),
-                            as.double(w))$sdev
+            -2 * .C(VR_dev2,
+                    as.integer(nnode),
+                    as.integer(nodes),
+                    integer(nnode),
+                    dev = double(nnode),
+                    sdev = double(nnode),
+                    as.integer(y),
+                    as.integer(length(y)),
+                    as.double(frame$yprob),
+                    as.integer(tree$where),
+                    as.double(w))$sdev
         }
     }
     if(missing(newdata) || is.null(newdata)) {

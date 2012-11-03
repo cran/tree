@@ -35,7 +35,7 @@ cv.tree <- function(object, rand, FUN = prune.tree, K = 10, ...)
     for(i in unique(rand)) {
         tlearn <- tree(model = m[rand != i,  , drop = FALSE])
         plearn <- do.call(FUN, c(list(tlearn, newdata =
-                                      m[rand ==i, , drop = FALSE],
+                                      m[rand == i, , drop = FALSE],
                                       k = init$k), extras))
         cvdev <- cvdev + plearn$dev
     }
@@ -61,15 +61,15 @@ descendants <- function(nodes, include = TRUE)
     ind <- 1L:n
     desc <- matrix(FALSE, n, n)
     if(include) diag(desc) <- TRUE
-    parents <- match((nodes %/% 2), nodes)
+    parents <- match((nodes %/% 2L), nodes)
     lev <- floor(log(nodes, base = 2))
     desc[1L, 2L:n] <- TRUE
-    for(i in max(lev):2) {
+    for(i in max(lev):2L) {
         desc[cbind(ind[parents[lev == i]], ind[lev == i])] <- TRUE
         parents[lev == i] <- parents[parents[lev == i]]
         lev[lev == i] <- i - 1L
     }
-    return(desc)
+    desc
 }
 
 deviance.tree <- function(object, detail = FALSE, ...)
@@ -86,46 +86,41 @@ labels.tree <- function(object, pretty = TRUE, collapse = TRUE, ...)
     frame <- object$frame
     xlevels <- attr(object, "xlevels")
     var <- as.character(frame$var)
-    splits <- matrix(sub("^>", " > ", sub("^<", " < ", frame$splits)),, 2)
+    splits <- matrix(sub("^>", " > ", sub("^<", " < ", frame$splits)),, 2L)
     lt <- c(letters, 0:5) # max 32 levels
     if(!is.null(pretty)) {
         if(pretty) xlevels <- lapply(xlevels, abbreviate, minlength=pretty)
-        for(i in grep("^:", splits[, 1],))
+        for(i in grep("^:", splits[, 1L],))
             for(j in 1L:2L) {
                 sh <- splits[i, j]
                 nc <- nchar(sh)
                 sh <- substring(sh, 2L:nc, 2L:nc)
                 xl <- xlevels[[var[i]]][match(sh, lt)]
-                splits[i, j] <- paste(": ",
-                                      paste(as.vector(xl), collapse=","),
-                                      sep="")
+                splits[i, j] <- paste0(": ", paste(as.vector(xl), collapse=","))
+
             }
     }
-    if(!collapse)
-        return(array(paste(var, splits, sep = ""), dim(splits)))
-    node <- as.numeric(row.names(frame))
-    parent <- match((node %/% 2), node)
-    odd <- as.logical(node %% 2)
-    node[odd] <- paste(var[parent[odd]], splits[parent[odd], 2L], sep = "")
-    node[!odd] <- paste(var[parent[!odd]], splits[parent[!odd], 1L], sep = "")
+    if(!collapse) return(array(paste0(var, splits), dim(splits)))
+    node <- as.integer(row.names(frame))
+    parent <- match((node %/% 2L), node)
+    odd <- as.logical(node %% 2L)
+    node[odd] <- paste0(var[parent[odd]], splits[parent[odd], 2L])
+    node[!odd] <- paste0(var[parent[!odd]], splits[parent[!odd], 1L])
     node[1L] <- "root"
     node
 }
 
 misclass.tree <- function(tree, detail = FALSE)
 {
-    if(!inherits(tree, "tree"))
-        stop("not legitimate tree")
+    if(!inherits(tree, "tree")) stop("not legitimate tree")
     if(is.null(attr(tree, "ylevels")))
         stop("misclassification error rate is appropriate for factor responses only")
-    if(is.null(y <- tree$y))
-        y <- model.extract(model.frame(tree), "response")
-    if(is.null(wts <- tree$weights))
-        wts <- model.weights(model.frame(tree))
+    if(is.null(y <- tree$y)) y <- model.response(model.frame(tree))
+    if(is.null(wts <- tree$weights)) wts <- model.weights(model.frame(tree))
     if(is.null(wts)) wts <- rep(1, length(y))
     frame <- tree$frame
     if(detail) {
-        which <- descendants(as.numeric(row.names(frame)))
+        which <- descendants(as.integer(row.names(frame)))
         tmp <- as.vector((which[, tree$where] *
                           outer(frame$yval, y, "!=")) %*% wts)
         names(tmp) <- row.names(tree$frame)
@@ -264,9 +259,9 @@ plot.tree <- function (x, y = NULL,
     uniform <- type == "uniform"
     dev <- dev.cur()
     if (dev == 1L) dev <- 2L # as device will be opened.
-    assign(paste("device", dev, sep = "."), uniform, envir = tree_env)
+    assign(paste0("device", dev), uniform, envir = tree_env)
     invisible(treepl(treeco(x, uniform),
-                     node = as.numeric(row.names(x$frame)), ...))
+                     node = as.integer(row.names(x$frame)), ...))
 }
 
 print.tree <-
@@ -278,17 +273,17 @@ print.tree <-
     else cat("node), split, n, deviance, yval\n")
     cat("      * denotes terminal node\n\n")
     frame <- x$frame
-    node <- as.numeric(row.names(frame))
+    node <- as.integer(row.names(frame))
     depth <- tree.depth(node)
     indent <- paste(rep(" ", spaces * 32), collapse = "")
                                      #32 is the maximal depth
     if(length(node) > 1L) {
         indent <- substring(indent, 1L, spaces * seq(depth))
-        indent <- paste(c("", indent[depth]), format(node), ")", sep = "")
+        indent <- paste0(c("", indent[depth]), format(node), ")")
     } else
-    indent <- paste(format(node), ")", sep = "")
+    indent <- paste0(format(node), ")")
     if(is.prob) {
-        yval <- paste(as.character(frame$yval), " (", sep = "")
+        yval <- paste0(as.character(frame$yval), " (")
         yprob <- format(frame$yprob, digits = digits)
         for(i in seq(ylevels)) yval <- paste(yval, yprob[, i])
         yval <- paste(yval, ")")
@@ -330,7 +325,7 @@ snip.tree <-
     {
         where <- tree$where
         frame <- tree$frame
-        node <- as.numeric(row.names(frame))
+        node <- as.integer(row.names(frame))
         if(is.null(frame$which)) frame$which <- descendants(node, FALSE)
         i <- match(nodes, node)
         frame$var[i] <- "<leaf>"
@@ -350,7 +345,7 @@ snip.tree <-
     if(inherits(tree, "singlenode")) stop("cannot snip singlenode tree")
     if(!inherits(tree, "tree")) stop("not legitimate tree")
     call <- match.call()
-    node <- as.numeric(row.names(tree$frame))
+    node <- as.integer(row.names(tree$frame))
     if(missing(nodes)) {
         iprev <- i <- 0L
         nodes <- NULL
@@ -367,7 +362,7 @@ snip.tree <-
             if(i != iprev) {
                 frame <- tree$frame
                 dev <- frame$dev
-                node <- as.numeric(row.names(frame))
+                node <- as.integer(row.names(frame))
                 newdev <- totdev - sum(dev[ii & (frame$var == "<leaf>")]) + dev[i]
                 stats <- c(node[i], format(signif(c(totdev, newdev), digits)))
                 cat(paste(labs, stats, "\n"))
@@ -465,7 +460,7 @@ text.tree <-
     } else ladj <- adj
     xy <- treeco(x)
     if(splits) {
-        node <- as.numeric(row.names(frame))
+        node <- as.integer(row.names(frame))
         left.child <- match(2 * node, node)
         rows <- labels.tree(x, pretty = pretty)[left.child]
         ind <- !is.na(rows)
@@ -480,10 +475,9 @@ text.tree <-
         else stat <- format(signif(frame[leaves, label], digits = digits))
         if(!is.null(dim(stat)) && dim(stat)[2L] > 1) {
             if(length(dimnames(stat)[[2L]]))
-                stat[1,  ] <- paste(sep = ":", dimnames(stat)[[2L]], stat[1,  ])
+                stat[1L,  ] <- paste(sep = ":", dimnames(stat)[[2L]], stat[1L,  ])
             stat <- do.call("paste",
-                            c(list(sep = "\n"), split(stat, col(stat)))
-                            )
+                            c(list(sep = "\n"), split(stat, col(stat))))
         }
         text(xy$x[leaves], xy$y[leaves] - 0.5 * charht, labels = stat,
              adj = ladj, ...)
@@ -602,26 +596,26 @@ treeco <-
     function(tree, uniform)
 {
     if(missing(uniform)) {
-        pn <- paste("device", dev.cur(), sep = ".")
+        pn <- paste0("device", dev.cur())
         uniform <- if(exists(pn, envir = tree_env, inherits = FALSE))
             get(pn, envir = tree_env, inherits = FALSE)
         else FALSE
     }
 
     frame <- tree$frame
-    node <- as.numeric(row.names(frame))
+    node <- as.integer(row.names(frame))
     depth <- tree.depth(node)
-    x <-  -depth
+    x <- -depth
     if(uniform) y <- x
     else {
         y <- dev <- frame$dev
         depth <- split(seq(node), depth)
-        parent <- match(node %/% 2, node)
-        sibling <- match(ifelse(node %% 2, node - 1L, node + 1L), node)
+        parent <- match(node %/% 2L, node)
+        sibling <- match(ifelse(node %% 2L, node - 1L, node + 1L), node)
         for(i in depth[-1L])
             y[i] <- y[parent[i]] - dev[parent[i]] + dev[i] + dev[sibling[i]]
     }
-    depth <-  -x
+    depth <- -x # seems unneeded
     leaves <- frame$var == "<leaf>"
     x[leaves] <- seq(sum(leaves))
     depth <- split(seq(node)[!leaves], depth[!leaves])
@@ -634,8 +628,8 @@ treeco <-
 treepl <- function(xy, node, erase = FALSE, ...)
 {
     x <- xy$x; y <- xy$y
-    parent <- match((node %/% 2), node)
-    sibling <- match(ifelse(node %% 2, node - 1L, node + 1L), node)
+    parent <- match((node %/% 2L), node)
+    sibling <- match(ifelse(node %% 2L, node - 1L, node + 1L), node)
     xx <- rbind(x, x, x[sibling], x[sibling], NA)
     yy <- rbind(y, y[parent], y[parent], y[sibling], NA)
     if(any(erase)) {
@@ -644,7 +638,6 @@ treepl <- function(xy, node, erase = FALSE, ...)
     }
     plot(range(x), range(y), type = "n", axes = FALSE, xlab = "", ylab = "")
     text(x[1L], y[1L], "|", ...)
-    lines(c(xx[, -1]), c(yy[, -1]), ...)
+    lines(c(xx[, -1L]), c(yy[, -1L]), ...)
     list(x = x, y = y)
 }
-

@@ -1,7 +1,8 @@
 
-R version 2.12.0 Under development (unstable) (2010-05-11 r51975)
-Copyright (C) 2010 The R Foundation for Statistical Computing
+R version 3.0.0 alpha (2013-03-16 r62278) -- "Unsuffered Consequences"
+Copyright (C) 2013 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
+Platform: x86_64-apple-darwin12.3.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -22,7 +23,7 @@ Type 'q()' to quit R.
 > options(warn = 1)
 > library('tree')
 > 
-> assign(".oldSearch", search(), pos = 'CheckExEnv')
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
 > cleanEx()
 > nameEx("cv.tree")
 > ### * cv.tree
@@ -114,7 +115,7 @@ node), split, n, deviance, yval, (yprob)
 > summary(ir.tr1)
 
 Classification tree:
-snip.tree(tree = ir.tr, nodes = c(12, 7))
+snip.tree(tree = ir.tr, nodes = c(12L, 7L))
 Variables actually used in tree construction:
 [1] "Petal.Length" "Petal.Width" 
 Number of terminal nodes:  4 
@@ -466,8 +467,8 @@ Warning in data.tree(tree) : retrieving data from fgl
 > 
 > ### * <FOOTER>
 > ###
-> cat("Time elapsed: ", proc.time() - get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.856 0.007 0.863 0 0 
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.756 0.02 0.792 0 0 
 > grDevices::dev.off()
 null device 
           1 

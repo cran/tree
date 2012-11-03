@@ -1,11 +1,13 @@
 useDynLib(tree, .registration = TRUE)
 
-export(cv.tree, deviance.tree, labels.tree,
-       misclass.tree, model.frame.tree, na.tree.replace,
-       partition.tree, plot.tree, plot.tree.sequence,
-       predict.tree, print.summary.tree, print.tree, prune.misclass,
-       prune.tree, residuals.tree, snip.tree, summary.tree, text.tree,
-       tile.tree, tree, tree.control, tree.screens)
+export(cv.tree, misclass.tree, na.tree.replace, partition.tree,
+       plot.tree.sequence, prune.misclass, prune.tree, snip.tree, tile.tree,
+       tree, tree.control, tree.screens)
+
+## Formerly
+## export(deviance.tree, labels.tree, model.frame.tree,
+##        plot.tree, predict.tree, print.summary.tree, print.tree,
+##        residuals.tree, summary.tree, text.tree)
 
 S3method(deviance, tree)
 S3method(labels, tree)

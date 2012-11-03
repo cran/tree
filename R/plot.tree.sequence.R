@@ -1,5 +1,5 @@
 #
-# file tree/R/plot.tree.sequence.R copyright (C) 1994-2006 B. D. Ripley
+# file tree/R/plot.tree.sequence.R copyright (C) 1994-2012 B. D. Ripley
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -34,6 +34,6 @@ plot.tree.sequence <- function(x, ..., type = "l", ylim = range(x$dev),
     maxsize <- max(x$size)
     if(pos[n] > maxsize) pos[n] <- maxsize
     axis(1L, at = sign*pos, labels = pos, ...)
-    axis(3L, at = sign * x$size, labels = format(signif(x$k, 2)), ...)
+    axis(3L, at = sign * x$size, labels = format(signif(x$k, 2L)), ...)
     invisible()
 }
