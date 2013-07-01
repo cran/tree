@@ -41,8 +41,7 @@ static double XLOGX(double x)
 
 static void scat(char *s, char c)
 {
-    int i;
-    i = strlen(s);
+    size_t i = strlen(s);
     s[i++] = c;
     s[i] = '\0';
 }
@@ -82,7 +81,7 @@ static void fillin_node(int inode)
 	yparent = -1;
 	if (inode > 0) {
 	    for(j = 0; j < inode; j++) 
-		if(node[j] == node[inode]/2) yparent = y[j] - 1;
+		if(node[j] == node[inode]/2) yparent = (int)(y[j] - 1);
 	}
 	nl = 0;
 	yl = -1.0;
@@ -181,7 +180,7 @@ static void split_cont(int inode, int iv, double *bval)
 	if (where[j] == inode) {
 	    tmp = X[j + nobs * iv]; 
 	    if (!ISNA(tmp)) {
-		if (nc) ty[ns] = y[j] - 1;
+		if (nc) ty[ns] = (int)(y[j] - 1);
 		else tyc[ns] = y[j];
 		w1[ns] = w[j];
 		tvar[ns++] = tmp;

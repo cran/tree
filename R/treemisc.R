@@ -1,6 +1,6 @@
 #
-#  tree/R/treemisc.R Copyright (C) 1994-2012 B. D. Ripley
-#  miscellaneous support routines for tree.
+#  tree/R/treemisc.R Copyright (C) 1994-2013 B. D. Ripley
+#  miscellaneous support routines for package 'tree'.
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -374,7 +374,7 @@ snip.tree <-
                 totdev <- newdev
             }
         }
-        if(xy.save) assign(".xy", xy, envir=.GlobalEnv)
+        if(xy.save) attr(tree, ".xy") <- xy
     } else {
         i <- node.match(nodes, node, tree$frame$var == "<leaf>")
         if(length(i) == 0L) return(tree)
