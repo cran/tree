@@ -1,6 +1,18 @@
 Library tree
 ============
 
+Version 1.0-35  2014-03-03
+
+model.frame method failed if the recorded call was tree::tree.
+DESCRIPTION uses Authors@R.
+treepl() had a remaining multi-argument return()
+
+Version 1.0-34  2013-07-01
+
+Tweaks to remove pedantic warnings when compiling under clang.
+snip.tree() no longer assigns in workspace (even if asked to).
+LICENCE renamed to LICENCE.note.
+
 Version 1.0-33  2012-11-03
 
 Code cleanup, including not exporting registered methods.

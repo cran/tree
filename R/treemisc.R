@@ -141,7 +141,8 @@ model.frame.tree <- function(formula, ...)
         }
         return(m)
     }
-    while(deparse(oc[[1L]]) != "tree")  oc <- eval(oc[[2L]])$call
+    while(!deparse(oc[[1L]]) %in% c("tree", "tree::tree", "tree:::tree"))
+        oc <- eval(oc[[2L]])$call
     oc$subset <- names(formula$where)
     oc$method <- "model.frame"
     eval(oc)
@@ -634,7 +635,7 @@ treepl <- function(xy, node, erase = FALSE, ...)
     yy <- rbind(y, y[parent], y[parent], y[sibling], NA)
     if(any(erase)) {
         lines(c(xx[, erase]), c(yy[, erase]), col = par("bg"))
-        return(x = x[!erase], y = y[!erase])
+        return(list(x = x[!erase], y = y[!erase]))
     }
     plot(range(x), range(y), type = "n", axes = FALSE, xlab = "", ylab = "")
     text(x[1L], y[1L], "|", ...)
