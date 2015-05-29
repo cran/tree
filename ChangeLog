@@ -1,6 +1,12 @@
 Library tree
 ============
 
+Version 1.0-36  2015-06-29
+
+Add tests/deparse.R .
+Update reference output.
+Tweak NAMESPACE imports.
+
 Version 1.0-35  2014-03-03
 
 model.frame method failed if the recorded call was tree::tree.

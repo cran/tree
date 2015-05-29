@@ -1,5 +1,10 @@
 useDynLib(tree, .registration = TRUE)
 
+importFrom(grDevices, dev.cur)
+importFrom(graphics, abline, axis, box, identify, lines, par, plot,
+           screen, segments, split.screen, text)
+import(stats)
+
 export(cv.tree, misclass.tree, na.tree.replace, partition.tree,
        plot.tree.sequence, prune.misclass, prune.tree, snip.tree, tile.tree,
        tree, tree.control, tree.screens)
