@@ -20,6 +20,7 @@
 #define EPS 1e-4
 #include <math.h>
 #include <R.h>
+#include <stdio.h>
 #include <string.h> /* for strchr */
 
 # include <R_ext/Utils.h>

@@ -1,6 +1,10 @@
 Library tree
 ============
 
+Version 1.0-37  2016-01-20
+
+Include <stdio.h>, not relying on R.h
+
 Version 1.0-36  2015-06-29
 
 Add tests/deparse.R .
