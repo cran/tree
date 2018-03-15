@@ -1,5 +1,5 @@
 #
-#  tree/R/treemisc.R Copyright (C) 1994-2013 B. D. Ripley
+#  tree/R/treemisc.R Copyright (C) 1994-2018 B. D. Ripley
 #  miscellaneous support routines for package 'tree'.
 #
 #  This program is free software; you can redistribute it and/or modify
@@ -32,6 +32,8 @@ cv.tree <- function(object, rand, FUN = prune.tree, K = 10, ...)
     init <- do.call(FUN, c(list(object), extras))
     if(missing(rand)) rand <- sample(K, length(m[[1L]]), replace = TRUE)
     cvdev <- 0
+    ## need to drop 'k' from extras
+    extras$k <- NULL
     for(i in unique(rand)) {
         tlearn <- tree(model = m[rand != i,  , drop = FALSE])
         plearn <- do.call(FUN, c(list(tlearn, newdata =

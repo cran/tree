@@ -19,6 +19,7 @@
 #define False 0
 #define EPS 1e-4
 #include <math.h>
+#include <stddef.h>
 #include <R.h>
 #include <stdio.h>
 #include <string.h> /* for strchr */

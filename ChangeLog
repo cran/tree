@@ -1,6 +1,10 @@
 Library tree
 ============
 
+Version 1.0-38  2018-03-14
+
+Tweak to cv.tree.
+
 Version 1.0-37  2016-01-20
 
 Include <stdio.h>, not relying on R.h

@@ -1,5 +1,5 @@
 % This file is part of the 'tree' package for R
-% Copyright (C) B. D. Ripley 1998-2009
+% Copyright (C) B. D. Ripley 1998-2016
 % It is distributed under the GPL version 2 or 3
 
 \name{tree.control}
@@ -11,9 +11,9 @@ tree.control(nobs, mincut = 5, minsize = 10, mindev = 0.01)
 \arguments{
   \item{nobs}{The number of observations in the training set.}
   \item{mincut}{The minimum number of observations to include in either
-    child node. This is a weighted quantity; the observational weights are used
+    child node.  This is a weighted quantity; the observational weights are used
     to compute the \sQuote{number}. The default is 5.}
-  \item{minsize}{The smallest allowed node size: a weighted quantity. The
+  \item{minsize}{The smallest allowed node size: a weighted quantity.  The
     default is 10.}
   \item{mindev}{The within-node deviance must be at least this times that
     of the root node for the node to be split.}
@@ -42,6 +42,12 @@ tree.control(nobs, mincut = 5, minsize = 10, mindev = 0.01)
   in S.  It seems S uses an absolute bound.
 }
 \author{B. D. Ripley}
+
+\references{
+  Chambers, J. M. and Hastie, T. J. (1992)
+  \emph{Statistical Models in S}. Wadsworth & Brooks/Cole.
+}
+
 
 \seealso{\code{\link{tree}}}
 
