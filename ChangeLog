@@ -1,6 +1,10 @@
 Library tree
 ============
 
+Version 1.0-39  2018-03-17
+
+Allow more C-level space for labels
+
 Version 1.0-38  2018-03-14
 
 Tweak to cv.tree.

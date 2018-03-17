@@ -1,5 +1,5 @@
-8a82077d8ed4de8bbdbe4877346d6d7b *ChangeLog
-2b4e12f285364e6eef60538895561466 *DESCRIPTION
+7952a440b1438323ef9fa35afefb3d6d *ChangeLog
+5feca3296dd7756d4e692cb5d9a86561 *DESCRIPTION
 eb723b61539feef013de476e68b5c50a *GPL-2
 e939f0b310630eb16cabc697aecaed25 *LICENCE.note
 00cdaa72f09db936b5b41756684624d2 *NAMESPACE
@@ -30,7 +30,7 @@ c95e3718b1be2f0d8d0ca1465711a914 *man/text.tree.Rd
 185bd6412a6205f8bd6d62bbbf176c46 *po/R-tree.pot
 ce47b1be7e6002351f45c777cb99a9c1 *po/pl.po
 6cc08caa5f9951904b95e07d9b2b2b08 *po/tree.pot
-b11feeb3f2eaed8d2398fc1d479730a1 *src/grow.c
+be9952a39abbe2cf2af6d7cbddce0b6d *src/grow.c
 126cd3f142169a55dcb46f556e77f69b *src/init.c
 fbf1b1a1d665eb6cb86d58c294abd332 *src/tree.h
 73ef20e566e74f35e1532d407b80a85e *src/treefix.c

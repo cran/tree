@@ -1,5 +1,5 @@
 /*
- *  tree/src/grow.c by B. D. Ripley  Copyright (C) 1994-2016
+ *  tree/src/grow.c by B. D. Ripley  Copyright (C) 1994-2018
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -68,8 +68,8 @@ static void fillin_node(int inode)
     double  yl, sum, t, n1;
     char   *labl, *labr;
 
-    labl = (char *) S_alloc(maxnl, sizeof(char));
-    labr = (char *) S_alloc(maxnl, sizeof(char));
+    labl = (char *) S_alloc(100, sizeof(char));
+    labr = (char *) S_alloc(100, sizeof(char));
     *labl = *labr = '\0';
     cutleft[inode] = labl;
     cutright[inode] = labr;
@@ -320,8 +320,8 @@ static void split_cont(int inode, int iv, double *bval)
     if (bdev >= devtarget) return;
     *bval = bdev;
     var[inode] = iv + 1;
-    sprintf(cutleft[inode], "<%g", bsplit);
-    sprintf(cutright[inode], ">%g", bsplit);
+    snprintf(cutleft[inode], 100, "<%g", bsplit);
+    snprintf(cutright[inode], 100, ">%g", bsplit);
     for (j = 0; j < nobs; j++)
 	if (where[j] == inode) {
 	    tmp = X[j + nobs * iv];
