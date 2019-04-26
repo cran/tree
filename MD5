@@ -1,5 +1,5 @@
 7952a440b1438323ef9fa35afefb3d6d *ChangeLog
-5feca3296dd7756d4e692cb5d9a86561 *DESCRIPTION
+62ed2a67401d45d708d352666ede3863 *DESCRIPTION
 eb723b61539feef013de476e68b5c50a *GPL-2
 e939f0b310630eb16cabc697aecaed25 *LICENCE.note
 00cdaa72f09db936b5b41756684624d2 *NAMESPACE
@@ -34,7 +34,7 @@ be9952a39abbe2cf2af6d7cbddce0b6d *src/grow.c
 126cd3f142169a55dcb46f556e77f69b *src/init.c
 fbf1b1a1d665eb6cb86d58c294abd332 *src/tree.h
 73ef20e566e74f35e1532d407b80a85e *src/treefix.c
-7464cdf8a3f0d8be0add90a84ddaa68c *tests/Examples/tree-Ex.Rout.save
+025358e8e6a1e4e4fa2349fa4341fc21 *tests/Examples/tree-Ex.Rout.save
 9862047f2cc81653d1f0918c59daff83 *tests/cv.tree.R
 fe25a08a0a0b50336629cf9e918c225f *tests/deparse.R
 1772d5b9db87591fa0630cf3253b84d6 *tests/no_obs.R

@@ -1,7 +1,7 @@
 
-R version 3.2.0 alpha (2015-03-23 r68070)
-Copyright (C) 2015 The R Foundation for Statistical Computing
-Platform: x86_64-unknown-linux-gnu (64-bit)
+R Under development (unstable) (2019-03-01 r76184) -- "Unsuffered Consequences"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -23,6 +23,7 @@ Type 'q()' to quit R.
 > library('tree')
 > 
 > base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
 > cleanEx()
 > nameEx("cv.tree")
 > ### * cv.tree
@@ -44,8 +45,8 @@ $size
 [1] 10  8  7  6  5  4  3  2  1
 
 $dev
-[1] 10.68810 12.37266 12.42372 12.53046 13.79215 13.96116 21.12216 21.12216
-[9] 43.44125
+[1] 11.27628 12.34909 12.57794 13.14463 13.81045 14.36277 20.23408 20.64463
+[9] 43.43387
 
 $k
 [1]       -Inf  0.6808309  0.7243056  0.8000558  1.1607588  1.4148749  3.7783549
@@ -466,9 +467,10 @@ Warning in data.tree(tree) : retrieving data from fgl
 > 
 > ### * <FOOTER>
 > ###
+> cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.348 0.002 0.352 0 0 
+Time elapsed:  0.947 0.026 0.98 0 0 
 > grDevices::dev.off()
 null device 
           1 
