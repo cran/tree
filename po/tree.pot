@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the tree package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: tree 1.0-30\n"
+"Project-Id-Version: tree 1.0-39\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-14 16:29+0100\n"
+"POT-Creation-Date: 2018-04-07 21:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: grow.c:198 grow.c:356
+#: grow.c:202 grow.c:364
 msgid "cannot use 'Gini' with missing values"
 msgstr ""
 
-#: grow.c:635
+#: grow.c:644
 msgid "tree is too big"
 msgstr ""
 
-#: grow.c:669
+#: grow.c:678
 msgid "maximum depth reached\n"
 msgstr ""

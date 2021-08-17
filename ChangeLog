@@ -1,6 +1,17 @@
 Library tree
 ============
 
+Version 1.0-41  2021-08-16
+
+src/treefix.c: replace PROBLEM by Rf_error
+
+Version 1.0-40  2019-04-26
+
+Require R >= 3.6.0
+Update .Rout.save for R 3.6.0
+Add tests/cv.tree.R
+Update .pot files
+
 Version 1.0-39  2018-03-17
 
 Allow more C-level space for labels

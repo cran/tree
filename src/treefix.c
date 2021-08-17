@@ -1,5 +1,5 @@
 /*
- *  treefix/treefix.c by B. D. Ripley  Copyright (C) 1994-2009
+ *  treefix/treefix.c by B. D. Ripley  Copyright (C) 1994-2021
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -239,7 +239,7 @@ VR_pred1(double *x, Sint *vars, char **lsplit, char **rsplit,
 	cur = 0;			/* current node, C indexed */
 	while (True) {
 	    if (cur >= *nnode)
-		PROBLEM "corrupt tree" RECOVER(NULL_ENTRY);
+		Rf_error("corrupt tree");
 	    if (vars[cur] == 0) {	/* at a leaf */
 		where[i] = cur + 1;
 		break;
@@ -287,7 +287,7 @@ downtree(int i, int cur, double prob)
 	int     k, ival, cnode, var;
 	double   goleft;
 	double  val, sp;
-	if (cur >= nnode) PROBLEM "corrupt tree" RECOVER(NULL_ENTRY);
+	if (cur >= nnode) Rf_error("corrupt tree");
 	where[cur + nnode * i] += prob;
 	if (vars[cur] == 0)		/* at a leaf */
 	    return;

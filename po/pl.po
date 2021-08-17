@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tree 1.0-29\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-14 16:29+0100\n"
+"POT-Creation-Date: 2018-04-07 21:32+0100\n"
 "PO-Revision-Date: 2012-06-26 19:40+0100\n"
 "Last-Translator: Łukasz Daniel <lukasz.daniel@gmail.com>\n"
 "Language-Team: Łukasz Daniel <lukasz.daniel@gmail.com>\n"
@@ -21,14 +21,14 @@ msgstr ""
 "X-Poedit-Country: POLAND\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
-#: grow.c:198 grow.c:356
+#: grow.c:202 grow.c:364
 msgid "cannot use 'Gini' with missing values"
 msgstr "nie można użyć 'Gini' z brakującymi wartościami"
 
-#: grow.c:635
+#: grow.c:644
 msgid "tree is too big"
 msgstr "drzewo jest zbyt duże"
 
-#: grow.c:669
+#: grow.c:678
 msgid "maximum depth reached\n"
 msgstr "osiągnięto maksymalną głębokość\n"
