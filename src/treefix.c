@@ -1,5 +1,5 @@
 /*
- *  treefix/treefix.c by B. D. Ripley  Copyright (C) 1994-2021
+ *  treefix/treefix.c by B. D. Ripley  Copyright (C) 1994-2022
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -33,17 +33,17 @@
 /* workaround for log(0) */
 #define safe_log(result, x) result = log(x + 1e-200)
 
-static int mysum(Sint *vec, int n)
+static int mysum(int *vec, int n)
 {
     int     i, s = 0;
     for (i = 0; i < n; i++) s += vec[i];
     return (s);
 }
 
-void VR_dev1(Sint *nnode, Sint *nodes, Sint *parent, 
+void VR_dev1(int *nnode, int *nodes, int *parent, 
 	     double *dev, double *sdev,
-	     Sint *y, Sint *ny, Sint *yf, Sint *where, double *wt,
-	     Sint *nc, double *loss)
+	     int *y, int *ny, int *yf, int *where, double *wt,
+	     int *nc, double *loss)
 {
     int i, j, wh, nn, nr = *nnode, nclass = *nc;
 	
@@ -65,9 +65,9 @@ void VR_dev1(Sint *nnode, Sint *nodes, Sint *parent,
     }
 }
 
-void VR_dev2(Sint *nnode, Sint *nodes, Sint *parent, 
+void VR_dev2(int *nnode, int *nodes, int *parent, 
 	     double *dev, double *sdev,
-	     Sint *y, Sint *ny, double *yprob, Sint* where, double *wt)
+	     int *y, int *ny, double *yprob, int* where, double *wt)
 {
     int i, j, wh, nn, nr = *nnode;
     double tmp;
@@ -95,9 +95,9 @@ void VR_dev2(Sint *nnode, Sint *nodes, Sint *parent,
 }
 
 # define sqr(x) (x) * (x)
-void VR_dev3(Sint *nnode, Sint *nodes, Sint *parent, 
+void VR_dev3(int *nnode, int *nodes, int *parent, 
 	     double *dev, double *sdev,
-	     double *y, Sint *ny, double *yf, Sint* where, double *wt)
+	     double *y, int *ny, double *yf, int* where, double *wt)
 {
     int i, j, wh, nn, nr = *nnode;
 	
@@ -121,9 +121,9 @@ void VR_dev3(Sint *nnode, Sint *nodes, Sint *parent,
 }
 
 void    
-VR_prune2(Sint *nnode, Sint *nodes, Sint *leaf, double *dev, double *sdev,
-	  double *ndev, double *nsdev, Sint *keep, Sint *ord, double *g,
-	  Sint *size, double *cdev, double *alph, Sint *inodes, Sint *tsize,
+VR_prune2(int *nnode, int *nodes, int *leaf, double *dev, double *sdev,
+	  double *ndev, double *nsdev, int *keep, int *ord, double *g,
+	  int *size, double *cdev, double *alph, int *inodes, int *tsize,
 	  double *tdev, double *ntdev)
 {
     int     i, in, ir, j, k, cur, nr = *nnode, sz, First, na = 0;
@@ -215,9 +215,9 @@ VR_prune2(Sint *nnode, Sint *nodes, Sint *leaf, double *dev, double *sdev,
 /* Take each case and drop it down the tree as needed */
 
 void    
-VR_pred1(double *x, Sint *vars, char **lsplit, char **rsplit,
-	 Sint *nlevels, Sint *nodes, Sint *fn, Sint *nnode,
-	 Sint *nr, Sint *nc, Sint *where)
+VR_pred1(double *x, int *vars, char **lsplit, char **rsplit,
+	 int *nlevels, int *nodes, int *fn, int *nnode,
+	 int *nr, int *nc, int *where)
 {
     int     nobs = *nr, cur, i, k, goleft, ival, cnode, var, *left, *right;
     double  val, sp;
@@ -279,7 +279,7 @@ static int nobs, nnode, *left, *right;
 static double *lprob, *where;
 static double *x;
 static char **lsplit, **rsplit;
-static Sint *vars, *nlevels, *nodes;
+static int *vars, *nlevels, *nodes;
 
 static void 
 downtree(int i, int cur, double prob)
@@ -329,9 +329,9 @@ downtree(int i, int cur, double prob)
     }
 
 void    
-VR_pred2(double *px, Sint *pvars, char **plsplit, char **prsplit,
-	 Sint *pnlevels, Sint *pnodes, Sint *fn, Sint *pnnode,
-	 Sint *nr, double *pwhere)
+VR_pred2(double *px, int *pvars, char **plsplit, char **prsplit,
+	 int *pnlevels, int *pnodes, int *fn, int *pnnode,
+	 int *nr, double *pwhere)
     {
 	int     cnode, i, k;
 

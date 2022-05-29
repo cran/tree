@@ -1,5 +1,5 @@
 509cfe2dfaa78f4ef5a344de2ecfea64 *ChangeLog
-b6a0f5639ecf58cb770770e15adf199a *DESCRIPTION
+cdb9e9c5eb3600cf96644412137c2f33 *DESCRIPTION
 eb723b61539feef013de476e68b5c50a *GPL-2
 e939f0b310630eb16cabc697aecaed25 *LICENCE.note
 00cdaa72f09db936b5b41756684624d2 *NAMESPACE
@@ -30,10 +30,10 @@ c95e3718b1be2f0d8d0ca1465711a914 *man/text.tree.Rd
 ca74a84b8a6fc39ec50c036f8eeaab33 *po/R-tree.pot
 7d1b05fd137481f8c6fc1c5bced16cb9 *po/pl.po
 92c56c462369c8459528122c94651424 *po/tree.pot
-be9952a39abbe2cf2af6d7cbddce0b6d *src/grow.c
+74d1d42a15f857461343410b3340bdfc *src/grow.c
 126cd3f142169a55dcb46f556e77f69b *src/init.c
-fbf1b1a1d665eb6cb86d58c294abd332 *src/tree.h
-d5dae2bf6eea57253994ffdc5d7dcc06 *src/treefix.c
+966e10b9e9fdbd4bcd87cfcb0baa91fd *src/tree.h
+5c459affd59c706e404c7239fee50dab *src/treefix.c
 025358e8e6a1e4e4fa2349fa4341fc21 *tests/Examples/tree-Ex.Rout.save
 9862047f2cc81653d1f0918c59daff83 *tests/cv.tree.R
 fe25a08a0a0b50336629cf9e918c225f *tests/deparse.R

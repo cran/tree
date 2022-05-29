@@ -1,5 +1,5 @@
 /*
- *  tree/src/grow.c by B. D. Ripley  Copyright (C) 1994-2018
+ *  tree/src/grow.c by B. D. Ripley  Copyright (C) 1994-2022
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ static void scat(char *s, char c)
 static double *X, *y, *w, *dev, *yval, *yprob, mindev,  devtarget,
     *tvar, *cprob, *scprob, *tyc, *w1;
 static int  nobs, nvar, minsize, mincut, nnode, nmax,*twhere, *ttw, *ty, Gini;
-static Sint *levels, *node, *var, *where, *ordered;
+static int *levels, *node, *var, *where, *ordered;
 
 static char **cutleft, **cutright;
 static int nc, *indl, *indr, *ind, exists, offset, maxnl;
@@ -711,11 +711,11 @@ static void divide_node(int inode)
 }
 
 void 
-BDRgrow1(double *pX, double *pY, double *pw, Sint *plevels, Sint *junk1, 
-	 Sint *pnobs, Sint *pncol, Sint *pnode, Sint *pvar, char **pcutleft, 
+BDRgrow1(double *pX, double *pY, double *pw, int *plevels, int *junk1, 
+	 int *pnobs, int *pncol, int *pnode, int *pvar, char **pcutleft, 
 	 char **pcutright, double *pn, double *pdev, double *pyval, 
-	 double *pyprob, Sint *pminsize, Sint *pmincut, double *pmindev, 
-	 Sint *pnnode, Sint *pwhere, Sint *pnmax, Sint *stype, Sint *pordered)
+	 double *pyprob, int *pminsize, int *pmincut, double *pmindev, 
+	 int *pnnode, int *pwhere, int *pnmax, int *stype, int *pordered)
 {
     int i, nl;
 

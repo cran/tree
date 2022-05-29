@@ -1,5 +1,5 @@
 /*
- * tree/src/tree.h  Copyright (C) 2005 B. D. Ripley
+ * tree/src/tree.h  Copyright (C) 2005-2022 B. D. Ripley
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,41 +17,41 @@
 
 #include <R.h>
 void 
-BDRgrow1(double *pX, double *pY, double *pw, Sint *plevels, Sint *junk1, 
-	 Sint *pnobs, Sint *pncol, Sint *pnode, Sint *pvar, char **pcutleft, 
+BDRgrow1(double *pX, double *pY, double *pw, int *plevels, int *junk1, 
+	 int *pnobs, int *pncol, int *pnode, int *pvar, char **pcutleft, 
 	 char **pcutright, double *pn, double *pdev, double *pyval, 
-	 double *pyprob, Sint *pminsize, Sint *pmincut, double *pmindev, 
-	 Sint *pnnode, Sint *pwhere, Sint *pnmax, Sint *stype, Sint *pordered);
+	 double *pyprob, int *pminsize, int *pmincut, double *pmindev, 
+	 int *pnnode, int *pwhere, int *pnmax, int *stype, int *pordered);
 
 
-void VR_dev1(Sint *nnode, Sint *nodes, Sint *parent, 
+void VR_dev1(int *nnode, int *nodes, int *parent, 
 	     double *dev, double *sdev,
-	     Sint *y, Sint *ny, Sint *yf, Sint *where, double *wt,
-	     Sint *nc, double *loss);
+	     int *y, int *ny, int *yf, int *where, double *wt,
+	     int *nc, double *loss);
 
-void VR_dev2(Sint *nnode, Sint *nodes, Sint *parent, 
+void VR_dev2(int *nnode, int *nodes, int *parent, 
 	     double *dev, double *sdev,
-	     Sint *y, Sint *ny, double *yprob, Sint* where, double *wt);
+	     int *y, int *ny, double *yprob, int* where, double *wt);
 
-void VR_dev3(Sint *nnode, Sint *nodes, Sint *parent, 
+void VR_dev3(int *nnode, int *nodes, int *parent, 
 	     double *dev, double *sdev,
-	     double *y, Sint *ny, double *yf, Sint* where, double *wt);
+	     double *y, int *ny, double *yf, int* where, double *wt);
 
 void    
-VR_prune2(Sint *nnode, Sint *nodes, Sint *leaf, double *dev, double *sdev,
-	  double *ndev, double *nsdev, Sint *keep, Sint *ord, double *g,
-	  Sint *size, double *cdev, double *alph, Sint *inodes, Sint *tsize,
+VR_prune2(int *nnode, int *nodes, int *leaf, double *dev, double *sdev,
+	  double *ndev, double *nsdev, int *keep, int *ord, double *g,
+	  int *size, double *cdev, double *alph, int *inodes, int *tsize,
 	  double *tdev, double *ntdev);
 
 void    
-VR_pred1(double *x, Sint *vars, char **lsplit, char **rsplit,
-	 Sint *nlevels, Sint *nodes, Sint *fn, Sint *nnode,
-	 Sint *nr, Sint *nc, Sint *where);
+VR_pred1(double *x, int *vars, char **lsplit, char **rsplit,
+	 int *nlevels, int *nodes, int *fn, int *nnode,
+	 int *nr, int *nc, int *where);
 
 void    
-VR_pred2(double *px, Sint *pvars, char **plsplit, char **prsplit,
-	 Sint *pnlevels, Sint *pnodes, Sint *fn, Sint *pnnode,
-	 Sint *nr, double *pwhere);
+VR_pred2(double *px, int *pvars, char **plsplit, char **prsplit,
+	 int *pnlevels, int *pnodes, int *fn, int *pnnode,
+	 int *nr, double *pwhere);
 
 
 
