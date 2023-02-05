@@ -1,6 +1,14 @@
 Library tree
 ============
 
+Version 1.0-43  2023-01-31
+
+Make example(prune.tree) less tricksy
+
+Version 1.0-42  2022-05-29
+
+eliminate Sint/Sfloat
+
 Version 1.0-41  2021-08-16
 
 src/treefix.c: replace PROBLEM by Rf_error

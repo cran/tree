@@ -1,7 +1,7 @@
 
-R Under development (unstable) (2019-03-01 r76184) -- "Unsuffered Consequences"
-Copyright (C) 2019 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu (64-bit)
+R Under development (unstable) (2023-01-30 r83727) -- "Unsuffered Consequences"
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin22.3.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -216,7 +216,7 @@ node), split, n, deviance, yval, (yprob)
 > 
 > data(fgl, package="MASS")
 > fgl.tr <- tree(type ~ ., fgl)
-> plot(print(fgl.tr))
+> print(fgl.tr); plot(fgl.tr)
 node), split, n, deviance, yval, (yprob)
       * denotes terminal node
 
@@ -259,6 +259,7 @@ node), split, n, deviance, yval, (yprob)
          31) Na > 12.835 28  14.410 WinNF ( 0.071429 0.928571 0.000000 0.000000 0.000000 0.000000 )  
            62) K < 0.55 6   7.638 WinNF ( 0.333333 0.666667 0.000000 0.000000 0.000000 0.000000 ) *
            63) K > 0.55 22   0.000 WinNF ( 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 ) *
+> 
 > fgl.cv <- cv.tree(fgl.tr,, prune.tree)
 > for(i in 2:5)  fgl.cv$dev <- fgl.cv$dev +
 +    cv.tree(fgl.tr,, prune.tree)$dev
@@ -470,7 +471,7 @@ Warning in data.tree(tree) : retrieving data from fgl
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.947 0.026 0.98 0 0 
+Time elapsed:  0.19 0.015 0.21 0 0 
 > grDevices::dev.off()
 null device 
           1 

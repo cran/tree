@@ -1,5 +1,5 @@
-509cfe2dfaa78f4ef5a344de2ecfea64 *ChangeLog
-cdb9e9c5eb3600cf96644412137c2f33 *DESCRIPTION
+ae669917abbec42ad5bf6d0bef43d65e *ChangeLog
+6fbf91e5d0630dc383735155768271b4 *DESCRIPTION
 eb723b61539feef013de476e68b5c50a *GPL-2
 e939f0b310630eb16cabc697aecaed25 *LICENCE.note
 00cdaa72f09db936b5b41756684624d2 *NAMESPACE
@@ -19,7 +19,7 @@ db15749f3ddc42b483e32f2b6ecce79d *man/misclass.tree.Rd
 7c9b50ab9d92c87a900605eb2781da9b *man/plot.tree.Rd
 dbfa0473e7e042f8232ad65defd85672 *man/plot.tree.sequence.Rd
 8d8342b1271cac507d7aa7f9b56e2838 *man/predict.tree.Rd
-62a2d742504af64ac77570d97edae5db *man/prune.tree.Rd
+a3c0fbf1b98b2ed330c83d8be7d48c18 *man/prune.tree.Rd
 b6a7be4ffbbb9cfa5211caf1391d56f6 *man/snip.tree.Rd
 c95e3718b1be2f0d8d0ca1465711a914 *man/text.tree.Rd
 39cbcde2aba456f81f5d0696823a02c8 *man/tile.tree.Rd
@@ -34,7 +34,7 @@ ca74a84b8a6fc39ec50c036f8eeaab33 *po/R-tree.pot
 126cd3f142169a55dcb46f556e77f69b *src/init.c
 966e10b9e9fdbd4bcd87cfcb0baa91fd *src/tree.h
 5c459affd59c706e404c7239fee50dab *src/treefix.c
-025358e8e6a1e4e4fa2349fa4341fc21 *tests/Examples/tree-Ex.Rout.save
+adcd9143371e844b5d7ce93fba24591e *tests/Examples/tree-Ex.Rout.save
 9862047f2cc81653d1f0918c59daff83 *tests/cv.tree.R
 fe25a08a0a0b50336629cf9e918c225f *tests/deparse.R
 1772d5b9db87591fa0630cf3253b84d6 *tests/no_obs.R
