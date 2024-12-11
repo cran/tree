@@ -1,5 +1,5 @@
 /*
- *  tree/src/grow.c by B. D. Ripley  Copyright (C) 1994-2022
+ *  tree/src/grow.c by B. D. Ripley  Copyright (C) 1994-2024
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -199,7 +199,7 @@ static void split_cont(int inode, int iv, double *bval)
 	    }
 	}
     if ( Gini && sdev > 0) 
-	error(_("cannot use 'Gini' with missing values"));
+	Rf_error(_("cannot use 'Gini' with missing values"));
     Printf(" count %d", ns);
     if ( ns < 2 || totw < EPS ) { Printf("\n"); return;}
     cntl = 0;
@@ -361,7 +361,7 @@ static void split_disc(int inode, int iv, double *bval)
 	    }
 	} else twhere[j] = -1;
     if ( Gini && sdev > 0) 
-	error(_("cannot use 'Gini' with missing values"));
+	Rf_error(_("cannot use 'Gini' with missing values"));
     ytot = y2 = 0.0;
     nll = 0;
     for (l = 0; l < nl; l++) {
@@ -641,7 +641,7 @@ static void divide_node(int inode)
     int     i, iv, j, k, shift, shifted = False;
     double  bval, tmp;
 
-    if (inode >= nmax) error(_("tree is too big"));
+    if (inode >= nmax) Rf_error(_("tree is too big"));
 
     fillin_node(inode);
     if ( n[inode] < minsize ) return;
@@ -675,7 +675,7 @@ static void divide_node(int inode)
     if (bval < devtarget) {
         Printf("..splitting\n");
 	if ( node[inode] >=  1073741824 ) {
-	    error(_("maximum depth reached\n"));
+	    Rf_error(_("maximum depth reached\n"));
 	    return;
 	}
    
@@ -735,7 +735,7 @@ BDRgrow1(double *pX, double *pY, double *pw, int *plevels, int *junk1,
     for(i = 0; i <= nvar; i++)
 	if (levels[i] > nl) nl = levels[i];
     maxnl = max(nl, 10);
-    if (maxnl > 32) error("factor predictors must have at most 32 levels");
+    if (maxnl > 32) Rf_error("factor predictors must have at most 32 levels");
     twhere = (int *) S_alloc(nobs, sizeof(int));
     ttw = (int *) S_alloc(nobs, sizeof(int));
     tvar = (double *) S_alloc(nobs, sizeof(double));
