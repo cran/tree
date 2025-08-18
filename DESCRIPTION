@@ -1,16 +1,16 @@
 Package: tree
 Title: Classification and Regression Trees
-Version: 1.0-44
-Date: 2024-12-10
+Version: 1.0-45
+Date: 2025-08-12
 Depends: R (>= 3.6.0), grDevices, graphics, stats
-Suggests: MASS
+Suggests: MASS, ISLR2
 Authors@R: person("Brian", "Ripley", role = c("aut", "cre"),
                   email = "Brian.Ripley@R-project.org")
 Description: Classification and regression trees.
 License: GPL-2 | GPL-3
 NeedsCompilation: yes
-Packaged: 2024-12-10 15:20:41 UTC; ripley
+Packaged: 2025-08-12 08:37:57 UTC; ripley
 Author: Brian Ripley [aut, cre]
 Maintainer: Brian Ripley <Brian.Ripley@R-project.org>
 Repository: CRAN
-Date/Publication: 2024-12-11 10:04:19 UTC
+Date/Publication: 2025-08-18 11:53:31 UTC

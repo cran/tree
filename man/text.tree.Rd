@@ -23,7 +23,8 @@
    true interior nodes are also labelled.}
  \item{pretty}{the manipulation used for split labels involving
    attributes.  See Details.}
- \item{digits}{significant digits for numerical labels.}
+ \item{digits}{significant digits for numerical labels.  Values less
+   than \code{1} are increased to \code{1} with a warning.}
  \item{adj, xpd, \dots}{graphical parameters such as \code{cex} and \code{font}.}
 }
 \details{

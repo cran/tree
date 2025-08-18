@@ -1,5 +1,5 @@
 #
-#  tree/R/treemisc.R Copyright (C) 1994-2018 B. D. Ripley
+#  tree/R/treemisc.R Copyright (C) 1994-2025 B. D. Ripley
 #  miscellaneous support routines for package 'tree'.
 #
 #  This program is free software; you can redistribute it and/or modify
@@ -271,6 +271,10 @@ print.tree <-
     function(x, pretty = 0, spaces = 2, digits = getOption("digits")-3, ...)
 {
     if(!inherits(x, "tree")) stop("not legitimate tree")
+    if (digits < 1L) {
+        warning("'digits' must be positive, so increased to 1")
+        digits <- max(digits, 1L) # needed in R
+    }
     is.prob <- !is.null(ylevels <- attr(x, "ylevels"))
     if(is.prob) cat("node), split, n, deviance, yval, (yprob)\n")
     else cat("node), split, n, deviance, yval\n")
@@ -347,6 +351,10 @@ snip.tree <-
 
     if(inherits(tree, "singlenode")) stop("cannot snip singlenode tree")
     if(!inherits(tree, "tree")) stop("not legitimate tree")
+    if (digits < 1L) {
+        warning("'digits' must be positive, so increased to 1")
+        digits <- max(digits, 1L) # needed in R
+    }
     call <- match.call()
     node <- as.integer(row.names(tree$frame))
     if(missing(nodes)) {
@@ -423,6 +431,10 @@ print.summary.tree <-
         cat("Variables actually used in tree construction:\n")
         print(as.character(x$used))
     }
+    if (digits < 1L) {
+        warning("'digits' must be positive, so increased to 1")
+        digits <- max(digits, 1L) # needed in R
+    }
     cat(paste("Number of terminal nodes: ", x$size, "\n"))
     if(!is.null(x$effect.size))
         cat("Effective number of terminal nodes: ",
@@ -447,6 +459,10 @@ text.tree <-
              pretty = NULL, digits = getOption("digits") - 3,
              adj = par("adj"), xpd = TRUE, ...)
 {
+    if (digits < 1L) {
+        warning("'digits' must be positive, so increased to 1")
+        digits <- max(digits, 1L) # needed in R
+    }
     oldxpd <- par(xpd=xpd)
     on.exit(par(oldxpd))
     if(inherits(x, "singlenode")) stop("cannot plot singlenode tree")

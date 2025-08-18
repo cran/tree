@@ -16,7 +16,8 @@ snip.tree(tree, nodes, xy.save = FALSE,
     select a node at which to snip.}
   \item{xy.save}{If true, the \code{x} and \code{y} coordinates selected
     interactively are saved as attribute \code{.xy} of the returned value.}
-  \item{digits}{Precision used in printing statistics for selected nodes.}
+  \item{digits}{Precision used in printing statistics for selected
+    nodes. Values less than \code{1} are increased to \code{1} with a warning.}
 }
 \description{
   \code{snip.tree} has two related functions. If \code{nodes} is
