@@ -1,11 +1,12 @@
 % This file is part of the 'tree' package for R
-% Copyright (C) B. D. Ripley 1998-2016
+% Copyright (C) B. D. Ripley 1998-2026
 % It is distributed under the GPL version 2 or 3
 
 \name{tree.control}
 \title{Select Parameters for Tree}
 \usage{
-tree.control(nobs, mincut = 5, minsize = 10, mindev = 0.01)
+tree.control(nobs, mincut = 5, minsize = 10, mindev = 0.01,
+             nmax = ceiling((4 * nobs)/(minsize - 1)) )
 }
 \alias{tree.control}
 \arguments{
@@ -17,6 +18,7 @@ tree.control(nobs, mincut = 5, minsize = 10, mindev = 0.01)
     default is 10.}
   \item{mindev}{The within-node deviance must be at least this times that
     of the root node for the node to be split.}
+  \item{nmax}{The maximum number of nodes that might be grown.}
 }
 \description{
   A utility function for use with the \code{control} argument of \code{tree}.

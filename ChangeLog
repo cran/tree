@@ -1,6 +1,23 @@
 Library tree
 ============
 
+Version 1.0-46  2026-07-20
+
+Attempting to groe too large a tree could corrupt R's heap.  (Based on a
+report by Wieger Schipper.)  Added regression test/too_large.R.
+
+tree.control() allows nmac to be specified.
+
+Version 1.0-45  2025-08-18
+
+Allow for people setiing too-small values of 'digits' (passed on by Duncan
+Murdoch).  Added regression test/digits.R
+
+Version 1.0-44  2023-01-31
+
+Change email address
+Use Rf_error explicity in C code.
+
 Version 1.0-43  2023-01-31
 
 Make example(prune.tree) less tricksy

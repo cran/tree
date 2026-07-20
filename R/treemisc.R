@@ -1,5 +1,5 @@
 #
-#  tree/R/treemisc.R Copyright (C) 1994-2025 B. D. Ripley
+#  tree/R/treemisc.R Copyright (C) 1994-2026 B. D. Ripley
 #  miscellaneous support routines for package 'tree'.
 #
 #  This program is free software; you can redistribute it and/or modify
@@ -554,7 +554,8 @@ tile.tree <- function(tree, var, screen.arg = ascr + 1, axes = TRUE)
     invisible(counts)
 }
 
-tree.control <- function(nobs, mincut = 5, minsize = 10, mindev = 0.01)
+tree.control <- function(nobs, mincut = 5, minsize = 10, mindev = 0.01,
+                         nmax = ceiling((4 * nobs)/(minsize - 1)) )
 {
     mcut <- missing(mincut)
     msize <- missing(minsize)
@@ -566,7 +567,6 @@ tree.control <- function(nobs, mincut = 5, minsize = 10, mindev = 0.01)
     }
     mincut <- max(1, mincut)
     minsize <- max(2, minsize)
-    nmax <- ceiling((4 * nobs)/(minsize - 1))
     list(mincut = mincut, minsize = minsize, mindev = mindev, nmax = nmax,
          nobs = nobs)
 }

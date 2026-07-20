@@ -1,5 +1,5 @@
 /*
- *  tree/src/grow.c by B. D. Ripley  Copyright (C) 1994-2024
+ *  tree/src/grow.c by B. D. Ripley  Copyright (C) 1994-2026
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -690,12 +690,14 @@ static void divide_node(int inode)
 	    if (ttw[j] == 0) where[j] = nnode;
 	    if (ttw[j] == NALEVEL) where[j] += NALEVEL;
 	}
+        if (nnode + 1 >= nmax) Rf_error(_("tree is too big"));
 	node[nnode++] = 2 * node[inode];
 	divide_node(nnode-1);
 	Printf("..done left at %d\n", inode);
 	/* write right as nnode */
 	for (j = 0; j < nobs; j++)
 	    if (where[j] == inode) where[j] = nnode;
+        if (nnode + 1 >= nmax) Rf_error(_("tree is too big"));
 	node[nnode++] = 2 * node[inode] + 1;
 	divide_node(nnode-1);
 	Printf("..done right at %d\n", inode);
