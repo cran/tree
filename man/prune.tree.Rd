@@ -1,5 +1,5 @@
 % This file is part of the 'tree' package for R
-% Copyright (C) B. D. Ripley 1998-2023
+% Copyright (C) B. D. Ripley 1998-2026
 % It is distributed under the GPL version 2 or 3
 
 \name{prune.tree}
@@ -103,7 +103,7 @@ prune.misclass(tree, k = NULL, best = NULL, newdata,
   }
 }
 \examples{
-data(fgl, package="MASS")
+if(length(data(fgl, package="MASS"))) {
 fgl.tr <- tree(type ~ ., fgl)
 print(fgl.tr); plot(fgl.tr)
 
@@ -112,5 +112,5 @@ for(i in 2:5)  fgl.cv$dev <- fgl.cv$dev +
    cv.tree(fgl.tr,, prune.tree)$dev
 fgl.cv$dev <- fgl.cv$dev/5
 plot(fgl.cv)
-}
+}}
 \keyword{tree}

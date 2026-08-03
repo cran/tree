@@ -1,5 +1,5 @@
 % This file is part of the 'tree' package for R
-% Copyright (C) B. D. Ripley 1998-2007
+% Copyright (C) B. D. Ripley 1998-2026
 % It is distributed under the GPL version 2 or 3
 
 \name{plot.tree.sequence}
@@ -37,9 +37,9 @@
   class of the object.
 }
 \examples{
-data(cpus, package="MASS")
+if(length(data(cpus, package="MASS"))) {
 cpus.ltr <- tree(log(perf) ~ syct + mmin + mmax + cach + chmin + chmax,
                  data = cpus)
 plot(prune.tree(cpus.ltr))
-}
+}}
 \keyword{tree}

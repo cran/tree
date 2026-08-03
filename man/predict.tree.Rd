@@ -1,5 +1,5 @@
 % This file is part of the 'tree' package for R
-% Copyright (C) B. D. Ripley 1998-2007
+% Copyright (C) B. D. Ripley 1998-2026
 % It is distributed under the GPL version 2 or 3
 
 \name{predict.tree}
@@ -91,11 +91,11 @@ Cambridge University Press, Cambridge. Chapter 7.
   \code{\link{predict}}, \code{\link{tree}}.
 }
 \examples{
-data(shuttle, package="MASS")
+if(length(data(shuttle, package="MASS"))) {
 shuttle.tr <- tree(use ~ ., shuttle, subset=1:253,
                    mindev=1e-6, minsize=2)
-shuttle.tr
+print(shuttle.tr)
 shuttle1 <- shuttle[254:256, ]  # 3 missing cases
-predict(shuttle.tr, shuttle1)
-}
+print(predict(shuttle.tr, shuttle1))
+}}
 \keyword{tree}

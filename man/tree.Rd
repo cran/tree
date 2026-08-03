@@ -1,5 +1,5 @@
 % This file is part of the 'tree' package for R
-% Copyright (C) B. D. Ripley 1998-2007
+% Copyright (C) B. D. Ripley 1998-2026
 % It is distributed under the GPL version 2 or 3
 
 \name{tree}
@@ -116,11 +116,12 @@ tree(formula, data, weights, subset,
    \code{\link{predict.tree}}, \code{\link{snip.tree}}}
 
 \examples{
-data(cpus, package="MASS")
+if(length(data(cpus, package="MASS"))) {
 cpus.ltr <- tree(log10(perf) ~ syct+mmin+mmax+cach+chmin+chmax, cpus)
-cpus.ltr
-summary(cpus.ltr)
+print(cpus.ltr)
+print(summary(cpus.ltr))
 plot(cpus.ltr);  text(cpus.ltr)
+}
 
 ir.tr <- tree(Species ~., iris)
 ir.tr

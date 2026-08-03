@@ -1,7 +1,7 @@
 
-R Under development (unstable) (2023-01-30 r83727) -- "Unsuffered Consequences"
-Copyright (C) 2023 The R Foundation for Statistical Computing
-Platform: aarch64-apple-darwin22.3.0 (64-bit)
+R Under development (unstable) (2026-08-03 r90343) -- "Unsuffered Consequences"
+Copyright (C) 2026 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin25.6.0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -148,11 +148,11 @@ Misclassification error rate: 0.02667 = 4 / 150
 > 
 > ### ** Examples
 > 
-> data(cpus, package="MASS")
-> cpus.ltr <- tree(log(perf) ~ syct + mmin + mmax + cach + chmin + chmax,
+> if(length(data(cpus, package="MASS"))) {
++ cpus.ltr <- tree(log(perf) ~ syct + mmin + mmax + cach + chmin + chmax,
 +                  data = cpus)
-> plot(prune.tree(cpus.ltr))
-> 
++ plot(prune.tree(cpus.ltr))
++ }
 > 
 > 
 > cleanEx()
@@ -168,10 +168,13 @@ Misclassification error rate: 0.02667 = 4 / 150
 > 
 > ### ** Examples
 > 
-> data(shuttle, package="MASS")
-> shuttle.tr <- tree(use ~ ., shuttle, subset=1:253,
+> if(length(data(shuttle, package="MASS"))) {
++ shuttle.tr <- tree(use ~ ., shuttle, subset=1:253,
 +                    mindev=1e-6, minsize=2)
-> shuttle.tr
++ print(shuttle.tr)
++ shuttle1 <- shuttle[254:256, ]  # 3 missing cases
++ print(predict(shuttle.tr, shuttle1))
++ }
 node), split, n, deviance, yval, (yprob)
       * denotes terminal node
 
@@ -192,13 +195,10 @@ node), split, n, deviance, yval, (yprob)
          25) magn: Out 8   0.000 noauto ( 0.0000 1.0000 ) *
        13) error: LX,XL 32   0.000 noauto ( 0.0000 1.0000 ) *
       7) stability: xstab 64   0.000 noauto ( 0.0000 1.0000 ) *
-> shuttle1 <- shuttle[254:256, ]  # 3 missing cases
-> predict(shuttle.tr, shuttle1)
     auto noauto
 254    0      1
 255    0      1
 256    0      1
-> 
 > 
 > 
 > cleanEx()
@@ -214,9 +214,16 @@ node), split, n, deviance, yval, (yprob)
 > 
 > ### ** Examples
 > 
-> data(fgl, package="MASS")
-> fgl.tr <- tree(type ~ ., fgl)
-> print(fgl.tr); plot(fgl.tr)
+> if(length(data(fgl, package="MASS"))) {
++ fgl.tr <- tree(type ~ ., fgl)
++ print(fgl.tr); plot(fgl.tr)
++ 
++ fgl.cv <- cv.tree(fgl.tr,, prune.tree)
++ for(i in 2:5)  fgl.cv$dev <- fgl.cv$dev +
++    cv.tree(fgl.tr,, prune.tree)$dev
++ fgl.cv$dev <- fgl.cv$dev/5
++ plot(fgl.cv)
++ }
 node), split, n, deviance, yval, (yprob)
       * denotes terminal node
 
@@ -260,13 +267,6 @@ node), split, n, deviance, yval, (yprob)
            62) K < 0.55 6   7.638 WinNF ( 0.333333 0.666667 0.000000 0.000000 0.000000 0.000000 ) *
            63) K > 0.55 22   0.000 WinNF ( 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 ) *
 > 
-> fgl.cv <- cv.tree(fgl.tr,, prune.tree)
-> for(i in 2:5)  fgl.cv$dev <- fgl.cv$dev +
-+    cv.tree(fgl.tr,, prune.tree)$dev
-> fgl.cv$dev <- fgl.cv$dev/5
-> plot(fgl.cv)
-> 
-> 
 > 
 > cleanEx()
 > nameEx("text.tree")
@@ -300,25 +300,24 @@ node), split, n, deviance, yval, (yprob)
 > 
 > ### ** Examples
 > 
-> data(fgl, package="MASS")
-> fgl.tr <- tree(type ~ ., fgl)
-> summary(fgl.tr)
+> if(length(data(fgl, package="MASS"))) {
++ fgl.tr <- tree(type ~ ., fgl)
++ print(summary(fgl.tr))
++ plot(fgl.tr);  text(fgl.tr, all=TRUE, cex=0.5)
++ fgl.tr1 <- snip.tree(fgl.tr, node=c(108, 31, 26))
++ tree.screens()
++ plot(fgl.tr1)
++ text(fgl.tr1)
++ tile.tree(fgl.tr1, fgl$type)
++ close.screen(all = TRUE)
++ }
 
 Classification tree:
 tree(formula = type ~ ., data = fgl)
 Number of terminal nodes:  20 
 Residual mean deviance:  0.6853 = 133 / 194 
 Misclassification error rate: 0.1542 = 33 / 214 
-> plot(fgl.tr);  text(fgl.tr, all=TRUE, cex=0.5)
-> fgl.tr1 <- snip.tree(fgl.tr, node=c(108, 31, 26))
-> tree.screens()
-[1] 1 2
-> plot(fgl.tr1)
-> text(fgl.tr1)
-> tile.tree(fgl.tr1, fgl$type)
 Warning in data.tree(tree) : retrieving data from fgl
-> close.screen(all = TRUE)
-> 
 > 
 > 
 > cleanEx()
@@ -334,9 +333,12 @@ Warning in data.tree(tree) : retrieving data from fgl
 > 
 > ### ** Examples
 > 
-> data(cpus, package="MASS")
-> cpus.ltr <- tree(log10(perf) ~ syct+mmin+mmax+cach+chmin+chmax, cpus)
-> cpus.ltr
+> if(length(data(cpus, package="MASS"))) {
++ cpus.ltr <- tree(log10(perf) ~ syct+mmin+mmax+cach+chmin+chmax, cpus)
++ print(cpus.ltr)
++ print(summary(cpus.ltr))
++ plot(cpus.ltr);  text(cpus.ltr)
++ }
 node), split, n, deviance, yval
       * denotes terminal node
 
@@ -359,7 +361,6 @@ node), split, n, deviance, yval
      7) mmax > 28000 25  1.52300 2.555  
       14) cach < 56 7  0.06929 2.268 *
       15) cach > 56 18  0.65350 2.667 *
-> summary(cpus.ltr)
 
 Regression tree:
 tree(formula = log10(perf) ~ syct + mmin + mmax + cach + chmin + 
@@ -371,7 +372,6 @@ Residual mean deviance:  0.03187 = 6.342 / 199
 Distribution of residuals:
       Min.    1st Qu.     Median       Mean    3rd Qu.       Max. 
 -0.4945000 -0.1191000  0.0003571  0.0000000  0.1141000  0.4680000 
-> plot(cpus.ltr);  text(cpus.ltr)
 > 
 > ir.tr <- tree(Species ~., iris)
 > ir.tr
@@ -446,24 +446,24 @@ Misclassification error rate: 0.4 = 2 / 5
 > 
 > ### ** Examples
 > 
-> data(fgl, package="MASS")
-> fgl.tr <- tree(type ~ ., fgl)
-> summary(fgl.tr)
+> if(length(data(fgl, package="MASS"))) {
++ fgl.tr <- tree(type ~ ., fgl)
++ print(summary(fgl.tr))
++ plot(fgl.tr);  text(fgl.tr, all=TRUE, cex=0.5)
++ fgl.tr1 <- snip.tree(fgl.tr, node=c(108, 31, 26))
++ print(tree.screens())
++ plot(fgl.tr1)
++ tile.tree(fgl.tr1, fgl$type)
++ close.screen(all = TRUE)
++ }
 
 Classification tree:
 tree(formula = type ~ ., data = fgl)
 Number of terminal nodes:  20 
 Residual mean deviance:  0.6853 = 133 / 194 
 Misclassification error rate: 0.1542 = 33 / 214 
-> plot(fgl.tr);  text(fgl.tr, all=TRUE, cex=0.5)
-> fgl.tr1 <- snip.tree(fgl.tr, node=c(108, 31, 26))
-> tree.screens()
 [1] 1 2
-> plot(fgl.tr1)
-> tile.tree(fgl.tr1, fgl$type)
 Warning in data.tree(tree) : retrieving data from fgl
-> close.screen(all = TRUE)
-> 
 > 
 > 
 > ### * <FOOTER>
@@ -471,7 +471,7 @@ Warning in data.tree(tree) : retrieving data from fgl
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.19 0.015 0.21 0 0 
+Time elapsed:  0.157 0.01 0.168 0 0 
 > grDevices::dev.off()
 null device 
           1 

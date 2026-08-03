@@ -1,5 +1,5 @@
 % This file is part of the 'tree' package for R
-% Copyright (C) B. D. Ripley 1998-2007
+% Copyright (C) B. D. Ripley 1998-2026
 % It is distributed under the GPL version 2 or 3
 
 \name{tree.screens}
@@ -25,15 +25,15 @@ tree.screens(figs, screen.arg = 0, ...)
 \seealso{\code{\link{tile.tree}}, \code{\link{split.screen}}}
 
 \examples{
-data(fgl, package="MASS")
+if(length(data(fgl, package="MASS"))) {
 fgl.tr <- tree(type ~ ., fgl)
-summary(fgl.tr)
+print(summary(fgl.tr))
 plot(fgl.tr);  text(fgl.tr, all=TRUE, cex=0.5)
 fgl.tr1 <- snip.tree(fgl.tr, node=c(108, 31, 26))
-tree.screens()
+print(tree.screens())
 plot(fgl.tr1)
 tile.tree(fgl.tr1, fgl$type)
 close.screen(all = TRUE)
-}
+}}
 \keyword{tree}
 \keyword{hplot}

@@ -3,10 +3,10 @@ Library tree
 
 Version 1.0-46  2026-07-20
 
-Attempting to groe too large a tree could corrupt R's heap.  (Based on a
+Attempting to grow too large a tree could corrupt R's heap.  (Based on a
 report by Wieger Schipper.)  Added regression test/too_large.R.
 
-tree.control() allows nmac to be specified.
+tree.control() allows nmax to be specified.
 
 Version 1.0-45  2025-08-18
 
