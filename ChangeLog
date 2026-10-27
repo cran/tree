@@ -1,6 +1,15 @@
 Library tree
 ============
 
+Version 1.0-48  2026-10-27
+
+One-char patch to src/grow.c, thanks to Andrew Greene and Vincent Gilbert
+tests/gini.R: tests example based on one by Vincent Gilbert
+
+Version 1.0-47  2026-08-03
+
+Improve dependenve on MASS.
+
 Version 1.0-46  2026-07-20
 
 Attempting to grow too large a tree could corrupt R's heap.  (Based on a

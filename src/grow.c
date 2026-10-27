@@ -251,7 +251,7 @@ static void split_cont(int inode, int iv, double *bval)
 		tmp = tab[k + nc] / (totw-cntl);
 		ysum += tmp*tmp;
 	    }
-	    ldev = (totw - cntl)*ysum;
+	    ldev -= (totw - cntl)*ysum;
 	} else {
 	    ldev = XLOGX(cntl) + XLOGX((totw - cntl));
 	    for (k = 0; k < nc; k++) {

@@ -1,5 +1,5 @@
-31eb49536f2d3120c579af69f39fe220 *ChangeLog
-950aa6ebf456a2567c521a9ba6e3290f *DESCRIPTION
+5b2ca1ea8a68c25086cdec2fd5750875 *ChangeLog
+88a02cc3f44972352b51dde41c5a1c4d *DESCRIPTION
 eb723b61539feef013de476e68b5c50a *GPL-2
 e939f0b310630eb16cabc697aecaed25 *LICENCE.note
 00cdaa72f09db936b5b41756684624d2 *NAMESPACE
@@ -30,7 +30,7 @@ dfc98cb8432ae1d2495e4a828cb1c3f5 *man/tree.screens.Rd
 ca74a84b8a6fc39ec50c036f8eeaab33 *po/R-tree.pot
 7d1b05fd137481f8c6fc1c5bced16cb9 *po/pl.po
 92c56c462369c8459528122c94651424 *po/tree.pot
-87241e273e3233bcdcd6ba059ff3fe8f *src/grow.c
+5fe8ab1f6abf2c95794d491a38c7900d *src/grow.c
 126cd3f142169a55dcb46f556e77f69b *src/init.c
 966e10b9e9fdbd4bcd87cfcb0baa91fd *src/tree.h
 5c459affd59c706e404c7239fee50dab *src/treefix.c
@@ -38,5 +38,6 @@ ca74a84b8a6fc39ec50c036f8eeaab33 *po/R-tree.pot
 9862047f2cc81653d1f0918c59daff83 *tests/cv.tree.R
 fe25a08a0a0b50336629cf9e918c225f *tests/deparse.R
 63c28d36747c424a6c91108665d4ed18 *tests/digits.R
+a3f5d93a436b9b7d07f5825ab282f6d1 *tests/gini.R
 1772d5b9db87591fa0630cf3253b84d6 *tests/no_obs.R
 de08e04d42b97740c1a7d0259d912377 *tests/too_large.R
